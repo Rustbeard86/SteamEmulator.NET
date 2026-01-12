@@ -4,5469 +4,6470 @@ using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
 namespace SteamEmulator;
 
-public static unsafe class SteamExtensions
+public static unsafe class ISteamClientExtensions
 {
     public static uint CreateSteamPipe(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint>)((byte*)vtable + 0 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint>)methodPtr;
         return func(pThis);
     }
     public static byte BReleaseSteamPipe(this IntPtr pThis, uint hSteamPipe)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, byte>)((byte*)vtable + 1 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, byte>)methodPtr;
         return func(pThis, hSteamPipe);
     }
     public static uint ConnectToGlobalUser(this IntPtr pThis, uint hSteamPipe)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint>)((byte*)vtable + 2 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint>)methodPtr;
         return func(pThis, hSteamPipe);
     }
     public static uint CreateLocalUser(this IntPtr pThis, IntPtr phSteamPipe, int eAccountType)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, uint>)((byte*)vtable + 3 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, uint>)methodPtr;
         return func(pThis, phSteamPipe, eAccountType);
     }
     public static void ReleaseUser(this IntPtr pThis, uint hSteamPipe, uint hUser)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, void>)((byte*)vtable + 4 * IntPtr.Size);
-        return func(pThis, hSteamPipe, hUser);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 4 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, void>)methodPtr;
+        func(pThis, hSteamPipe, hUser);
     }
     public static IntPtr GetISteamUser(this IntPtr pThis, uint hSteamUser, uint hSteamPipe, IntPtr pchVersion)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)((byte*)vtable + 5 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 5 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, hSteamUser, hSteamPipe, pchVersion);
     }
     public static IntPtr GetISteamGameServer(this IntPtr pThis, uint hSteamUser, uint hSteamPipe, IntPtr pchVersion)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)((byte*)vtable + 6 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 6 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, hSteamUser, hSteamPipe, pchVersion);
     }
     public static void SetLocalIPBinding(this IntPtr pThis, int unIP, int usPort)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, void>)((byte*)vtable + 7 * IntPtr.Size);
-        return func(pThis, unIP, usPort);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 7 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, void>)methodPtr;
+        func(pThis, unIP, usPort);
     }
     public static IntPtr GetISteamFriends(this IntPtr pThis, uint hSteamUser, uint hSteamPipe, IntPtr pchVersion)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)((byte*)vtable + 8 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 8 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, hSteamUser, hSteamPipe, pchVersion);
     }
     public static IntPtr GetISteamUtils(this IntPtr pThis, uint hSteamPipe, IntPtr pchVersion)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, IntPtr>)((byte*)vtable + 9 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 9 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, hSteamPipe, pchVersion);
     }
     public static IntPtr GetISteamMatchmaking(this IntPtr pThis, uint hSteamUser, uint hSteamPipe, IntPtr pchVersion)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)((byte*)vtable + 10 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 10 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, hSteamUser, hSteamPipe, pchVersion);
     }
     public static IntPtr GetISteamMatchmakingServers(this IntPtr pThis, uint hSteamUser, uint hSteamPipe, IntPtr pchVersion)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)((byte*)vtable + 11 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 11 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, hSteamUser, hSteamPipe, pchVersion);
     }
     public static IntPtr GetISteamGenericInterface(this IntPtr pThis, uint hSteamUser, uint hSteamPipe, IntPtr pchVersion)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)((byte*)vtable + 12 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 12 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, hSteamUser, hSteamPipe, pchVersion);
     }
     public static IntPtr GetISteamUserStats(this IntPtr pThis, uint hSteamUser, uint hSteamPipe, IntPtr pchVersion)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)((byte*)vtable + 13 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 13 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, hSteamUser, hSteamPipe, pchVersion);
     }
     public static IntPtr GetISteamGameServerStats(this IntPtr pThis, uint hSteamuser, uint hSteamPipe, IntPtr pchVersion)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)((byte*)vtable + 14 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 14 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, hSteamuser, hSteamPipe, pchVersion);
     }
     public static IntPtr GetISteamApps(this IntPtr pThis, uint hSteamUser, uint hSteamPipe, IntPtr pchVersion)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)((byte*)vtable + 15 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 15 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, hSteamUser, hSteamPipe, pchVersion);
     }
     public static IntPtr GetISteamNetworking(this IntPtr pThis, uint hSteamUser, uint hSteamPipe, IntPtr pchVersion)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)((byte*)vtable + 16 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 16 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, hSteamUser, hSteamPipe, pchVersion);
     }
     public static IntPtr GetISteamRemoteStorage(this IntPtr pThis, uint hSteamuser, uint hSteamPipe, IntPtr pchVersion)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)((byte*)vtable + 17 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 17 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, hSteamuser, hSteamPipe, pchVersion);
     }
     public static IntPtr GetISteamScreenshots(this IntPtr pThis, uint hSteamuser, uint hSteamPipe, IntPtr pchVersion)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)((byte*)vtable + 18 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 18 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, hSteamuser, hSteamPipe, pchVersion);
     }
     public static uint GetIPCCallCount(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint>)((byte*)vtable + 19 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 19 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint>)methodPtr;
         return func(pThis);
     }
     public static void SetWarningMessageHook(this IntPtr pThis, int pFunction)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, void>)((byte*)vtable + 20 * IntPtr.Size);
-        return func(pThis, pFunction);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 20 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, void>)methodPtr;
+        func(pThis, pFunction);
     }
     public static byte BShutdownIfAllPipesClosed(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 21 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 21 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static IntPtr GetISteamHTTP(this IntPtr pThis, uint hSteamuser, uint hSteamPipe, IntPtr pchVersion)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)((byte*)vtable + 22 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 22 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, hSteamuser, hSteamPipe, pchVersion);
     }
     public static IntPtr GetISteamController(this IntPtr pThis, uint hSteamUser, uint hSteamPipe, IntPtr pchVersion)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)((byte*)vtable + 23 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 23 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, hSteamUser, hSteamPipe, pchVersion);
     }
     public static IntPtr GetISteamUGC(this IntPtr pThis, uint hSteamUser, uint hSteamPipe, IntPtr pchVersion)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)((byte*)vtable + 24 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 24 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, hSteamUser, hSteamPipe, pchVersion);
     }
     public static IntPtr GetISteamMusic(this IntPtr pThis, uint hSteamuser, uint hSteamPipe, IntPtr pchVersion)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)((byte*)vtable + 25 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 25 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, hSteamuser, hSteamPipe, pchVersion);
     }
     public static IntPtr GetISteamHTMLSurface(this IntPtr pThis, uint hSteamuser, uint hSteamPipe, IntPtr pchVersion)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)((byte*)vtable + 26 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 26 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, hSteamuser, hSteamPipe, pchVersion);
     }
     public static IntPtr GetISteamInventory(this IntPtr pThis, uint hSteamuser, uint hSteamPipe, IntPtr pchVersion)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)((byte*)vtable + 27 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 27 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, hSteamuser, hSteamPipe, pchVersion);
     }
     public static IntPtr GetISteamVideo(this IntPtr pThis, uint hSteamuser, uint hSteamPipe, IntPtr pchVersion)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)((byte*)vtable + 28 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 28 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, hSteamuser, hSteamPipe, pchVersion);
     }
     public static IntPtr GetISteamParentalSettings(this IntPtr pThis, uint hSteamuser, uint hSteamPipe, IntPtr pchVersion)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)((byte*)vtable + 29 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 29 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, hSteamuser, hSteamPipe, pchVersion);
     }
     public static IntPtr GetISteamInput(this IntPtr pThis, uint hSteamUser, uint hSteamPipe, IntPtr pchVersion)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)((byte*)vtable + 30 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 30 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, hSteamUser, hSteamPipe, pchVersion);
     }
     public static IntPtr GetISteamParties(this IntPtr pThis, uint hSteamUser, uint hSteamPipe, IntPtr pchVersion)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)((byte*)vtable + 31 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 31 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, hSteamUser, hSteamPipe, pchVersion);
     }
     public static IntPtr GetISteamRemotePlay(this IntPtr pThis, uint hSteamUser, uint hSteamPipe, IntPtr pchVersion)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)((byte*)vtable + 32 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 32 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, hSteamUser, hSteamPipe, pchVersion);
     }
+}
 
+public static unsafe class ISteamUserExtensions
+{
     public static uint GetHSteamUser(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint>)((byte*)vtable + 0 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint>)methodPtr;
         return func(pThis);
     }
     public static byte BLoggedOn(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 1 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static ulong GetSteamID(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong>)((byte*)vtable + 2 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong>)methodPtr;
         return func(pThis);
     }
     public static int InitiateGameConnection_DEPRECATED(this IntPtr pThis, IntPtr pAuthBlob, int cbMaxAuthBlob, ulong steamIDGameServer, uint unIPServer, int usPortServer, byte bSecure)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, ulong, uint, int, byte, int>)((byte*)vtable + 3 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, ulong, uint, int, byte, int>)methodPtr;
         return func(pThis, pAuthBlob, cbMaxAuthBlob, steamIDGameServer, unIPServer, usPortServer, bSecure);
     }
     public static void TerminateGameConnection_DEPRECATED(this IntPtr pThis, uint unIPServer, int usPortServer)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, int, void>)((byte*)vtable + 4 * IntPtr.Size);
-        return func(pThis, unIPServer, usPortServer);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 4 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, int, void>)methodPtr;
+        func(pThis, unIPServer, usPortServer);
     }
     public static void TrackAppUsageEvent(this IntPtr pThis, ulong gameID, int eAppUsageEvent, IntPtr pchExtraInfo)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int, IntPtr, void>)((byte*)vtable + 5 * IntPtr.Size);
-        return func(pThis, gameID, eAppUsageEvent, pchExtraInfo);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 5 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, IntPtr, void>)methodPtr;
+        func(pThis, gameID, eAppUsageEvent, pchExtraInfo);
     }
     public static byte GetUserDataFolder(this IntPtr pThis, IntPtr pchBuffer, int cubBuffer)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, byte>)((byte*)vtable + 6 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 6 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, byte>)methodPtr;
         return func(pThis, pchBuffer, cubBuffer);
     }
     public static void StartVoiceRecording(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 7 * IntPtr.Size);
-        return func(pThis);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 7 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
     }
     public static void StopVoiceRecording(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 8 * IntPtr.Size);
-        return func(pThis);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 8 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
     }
     public static int GetAvailableVoice(this IntPtr pThis, IntPtr pcbCompressed, IntPtr pcbUncompressed_Deprecated, uint nUncompressedVoiceDesiredSampleRate_Deprecated)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, uint, int>)((byte*)vtable + 9 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 9 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, uint, int>)methodPtr;
         return func(pThis, pcbCompressed, pcbUncompressed_Deprecated, nUncompressedVoiceDesiredSampleRate_Deprecated);
     }
     public static int GetVoice(this IntPtr pThis, byte bWantCompressed, IntPtr pDestBuffer, uint cbDestBufferSize, IntPtr nBytesWritten, byte bWantUncompressed_Deprecated, IntPtr pUncompressedDestBuffer_Deprecated, uint cbUncompressedDestBufferSize_Deprecated, IntPtr nUncompressBytesWritten_Deprecated, uint nUncompressedVoiceDesiredSampleRate_Deprecated)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte, IntPtr, uint, IntPtr, byte, IntPtr, uint, IntPtr, uint, int>)((byte*)vtable + 10 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 10 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte, IntPtr, uint, IntPtr, byte, IntPtr, uint, IntPtr, uint, int>)methodPtr;
         return func(pThis, bWantCompressed, pDestBuffer, cbDestBufferSize, nBytesWritten, bWantUncompressed_Deprecated, pUncompressedDestBuffer_Deprecated, cbUncompressedDestBufferSize_Deprecated, nUncompressBytesWritten_Deprecated, nUncompressedVoiceDesiredSampleRate_Deprecated);
     }
     public static int DecompressVoice(this IntPtr pThis, IntPtr pCompressed, uint cbCompressed, IntPtr pDestBuffer, uint cbDestBufferSize, IntPtr nBytesWritten, uint nDesiredSampleRate)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, IntPtr, uint, IntPtr, uint, int>)((byte*)vtable + 11 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 11 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, IntPtr, uint, IntPtr, uint, int>)methodPtr;
         return func(pThis, pCompressed, cbCompressed, pDestBuffer, cbDestBufferSize, nBytesWritten, nDesiredSampleRate);
     }
     public static uint GetVoiceOptimalSampleRate(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint>)((byte*)vtable + 12 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 12 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint>)methodPtr;
         return func(pThis);
     }
     public static uint GetAuthSessionTicket(this IntPtr pThis, IntPtr pTicket, int cbMaxTicket, IntPtr pcbTicket, IntPtr pSteamNetworkingIdentity)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, IntPtr, IntPtr, uint>)((byte*)vtable + 13 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 13 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, IntPtr, IntPtr, uint>)methodPtr;
         return func(pThis, pTicket, cbMaxTicket, pcbTicket, pSteamNetworkingIdentity);
     }
     public static uint GetAuthTicketForWebApi(this IntPtr pThis, IntPtr pchIdentity)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint>)((byte*)vtable + 14 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 14 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint>)methodPtr;
         return func(pThis, pchIdentity);
     }
     public static int BeginAuthSession(this IntPtr pThis, IntPtr pAuthTicket, int cbAuthTicket, ulong steamID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, ulong, int>)((byte*)vtable + 15 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 15 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, ulong, int>)methodPtr;
         return func(pThis, pAuthTicket, cbAuthTicket, steamID);
     }
     public static void EndAuthSession(this IntPtr pThis, ulong steamID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, void>)((byte*)vtable + 16 * IntPtr.Size);
-        return func(pThis, steamID);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 16 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, void>)methodPtr;
+        func(pThis, steamID);
     }
     public static void CancelAuthTicket(this IntPtr pThis, uint hAuthTicket)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, void>)((byte*)vtable + 17 * IntPtr.Size);
-        return func(pThis, hAuthTicket);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 17 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, void>)methodPtr;
+        func(pThis, hAuthTicket);
     }
-    public static int UserHasLicenseForApp(this IntPtr pThis, ulong steamID, int appID)
+    public static int UserHasLicenseForApp(this IntPtr pThis, ulong steamID, uint appID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int, int>)((byte*)vtable + 18 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 18 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, int>)methodPtr;
         return func(pThis, steamID, appID);
     }
     public static byte BIsBehindNAT(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 19 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 19 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static void AdvertiseGame(this IntPtr pThis, ulong steamIDGameServer, uint unIPServer, int usPortServer)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, int, void>)((byte*)vtable + 20 * IntPtr.Size);
-        return func(pThis, steamIDGameServer, unIPServer, usPortServer);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 20 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, int, void>)methodPtr;
+        func(pThis, steamIDGameServer, unIPServer, usPortServer);
     }
     public static ulong RequestEncryptedAppTicket(this IntPtr pThis, IntPtr pDataToInclude, int cbDataToInclude)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, ulong>)((byte*)vtable + 21 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 21 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, ulong>)methodPtr;
         return func(pThis, pDataToInclude, cbDataToInclude);
     }
     public static byte GetEncryptedAppTicket(this IntPtr pThis, IntPtr pTicket, int cbMaxTicket, IntPtr pcbTicket)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, IntPtr, byte>)((byte*)vtable + 22 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 22 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, IntPtr, byte>)methodPtr;
         return func(pThis, pTicket, cbMaxTicket, pcbTicket);
     }
     public static int GetGameBadgeLevel(this IntPtr pThis, int nSeries, byte bFoil)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte, int>)((byte*)vtable + 23 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 23 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, byte, int>)methodPtr;
         return func(pThis, nSeries, bFoil);
     }
     public static int GetPlayerSteamLevel(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int>)((byte*)vtable + 24 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 24 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int>)methodPtr;
         return func(pThis);
     }
     public static ulong RequestStoreAuthURL(this IntPtr pThis, IntPtr pchRedirectURL)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, ulong>)((byte*)vtable + 25 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 25 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, ulong>)methodPtr;
         return func(pThis, pchRedirectURL);
     }
     public static byte BIsPhoneVerified(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 26 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 26 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static byte BIsTwoFactorEnabled(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 27 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 27 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static byte BIsPhoneIdentifying(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 28 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 28 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static byte BIsPhoneRequiringVerification(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 29 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 29 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static ulong GetMarketEligibility(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong>)((byte*)vtable + 30 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 30 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong>)methodPtr;
         return func(pThis);
     }
     public static ulong GetDurationControl(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong>)((byte*)vtable + 31 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 31 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong>)methodPtr;
         return func(pThis);
     }
     public static byte BSetDurationControlOnlineState(this IntPtr pThis, int eNewState)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte>)((byte*)vtable + 32 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 32 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, byte>)methodPtr;
         return func(pThis, eNewState);
     }
+}
 
+public static unsafe class ISteamFriendsExtensions
+{
     public static IntPtr GetPersonaName(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)((byte*)vtable + 0 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)methodPtr;
         return func(pThis);
     }
     public static int GetPersonaState(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int>)((byte*)vtable + 1 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int>)methodPtr;
         return func(pThis);
     }
     public static int GetFriendCount(this IntPtr pThis, int iFriendFlags)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 2 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int>)methodPtr;
         return func(pThis, iFriendFlags);
     }
     public static ulong GetFriendByIndex(this IntPtr pThis, int iFriend, int iFriendFlags)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, ulong>)((byte*)vtable + 3 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, ulong>)methodPtr;
         return func(pThis, iFriend, iFriendFlags);
     }
     public static int GetFriendRelationship(this IntPtr pThis, ulong steamIDFriend)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)((byte*)vtable + 4 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 4 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)methodPtr;
         return func(pThis, steamIDFriend);
     }
     public static int GetFriendPersonaState(this IntPtr pThis, ulong steamIDFriend)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)((byte*)vtable + 5 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 5 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)methodPtr;
         return func(pThis, steamIDFriend);
     }
     public static IntPtr GetFriendPersonaName(this IntPtr pThis, ulong steamIDFriend)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr>)((byte*)vtable + 6 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 6 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr>)methodPtr;
         return func(pThis, steamIDFriend);
     }
     public static byte GetFriendGamePlayed(this IntPtr pThis, ulong steamIDFriend, IntPtr pFriendGameInfo)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)((byte*)vtable + 7 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 7 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, steamIDFriend, pFriendGameInfo);
     }
     public static IntPtr GetFriendPersonaNameHistory(this IntPtr pThis, ulong steamIDFriend, int iPersonaName)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int, IntPtr>)((byte*)vtable + 8 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 8 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, IntPtr>)methodPtr;
         return func(pThis, steamIDFriend, iPersonaName);
     }
     public static int GetFriendSteamLevel(this IntPtr pThis, ulong steamIDFriend)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)((byte*)vtable + 9 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 9 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)methodPtr;
         return func(pThis, steamIDFriend);
     }
     public static IntPtr GetPlayerNickname(this IntPtr pThis, ulong steamIDPlayer)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr>)((byte*)vtable + 10 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 10 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr>)methodPtr;
         return func(pThis, steamIDPlayer);
     }
     public static int GetFriendsGroupCount(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int>)((byte*)vtable + 11 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 11 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int>)methodPtr;
         return func(pThis);
     }
     public static int GetFriendsGroupIDByIndex(this IntPtr pThis, int iFG)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 12 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 12 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int>)methodPtr;
         return func(pThis, iFG);
     }
     public static IntPtr GetFriendsGroupName(this IntPtr pThis, int friendsGroupID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)((byte*)vtable + 13 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 13 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)methodPtr;
         return func(pThis, friendsGroupID);
     }
     public static int GetFriendsGroupMembersCount(this IntPtr pThis, int friendsGroupID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 14 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 14 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int>)methodPtr;
         return func(pThis, friendsGroupID);
     }
     public static void GetFriendsGroupMembersList(this IntPtr pThis, int friendsGroupID, IntPtr pOutSteamIDMembers, int nMembersCount)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, int, void>)((byte*)vtable + 15 * IntPtr.Size);
-        return func(pThis, friendsGroupID, pOutSteamIDMembers, nMembersCount);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 15 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, int, void>)methodPtr;
+        func(pThis, friendsGroupID, pOutSteamIDMembers, nMembersCount);
     }
     public static byte HasFriend(this IntPtr pThis, ulong steamIDFriend, int iFriendFlags)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int, byte>)((byte*)vtable + 16 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 16 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, byte>)methodPtr;
         return func(pThis, steamIDFriend, iFriendFlags);
     }
     public static int GetClanCount(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int>)((byte*)vtable + 17 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 17 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int>)methodPtr;
         return func(pThis);
     }
     public static ulong GetClanByIndex(this IntPtr pThis, int iClan)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, ulong>)((byte*)vtable + 18 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 18 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, ulong>)methodPtr;
         return func(pThis, iClan);
     }
     public static IntPtr GetClanName(this IntPtr pThis, ulong steamIDClan)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr>)((byte*)vtable + 19 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 19 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr>)methodPtr;
         return func(pThis, steamIDClan);
     }
     public static IntPtr GetClanTag(this IntPtr pThis, ulong steamIDClan)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr>)((byte*)vtable + 20 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 20 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr>)methodPtr;
         return func(pThis, steamIDClan);
     }
     public static byte GetClanActivityCounts(this IntPtr pThis, ulong steamIDClan, IntPtr pnOnline, IntPtr pnInGame, IntPtr pnChatting)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, IntPtr, byte>)((byte*)vtable + 21 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 21 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, steamIDClan, pnOnline, pnInGame, pnChatting);
     }
     public static ulong DownloadClanActivityCounts(this IntPtr pThis, IntPtr psteamIDClans, int cClansToRequest)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, ulong>)((byte*)vtable + 22 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 22 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, ulong>)methodPtr;
         return func(pThis, psteamIDClans, cClansToRequest);
     }
     public static int GetFriendCountFromSource(this IntPtr pThis, ulong steamIDSource)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)((byte*)vtable + 23 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 23 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)methodPtr;
         return func(pThis, steamIDSource);
     }
     public static ulong GetFriendFromSourceByIndex(this IntPtr pThis, ulong steamIDSource, int iFriend)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int, ulong>)((byte*)vtable + 24 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 24 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, ulong>)methodPtr;
         return func(pThis, steamIDSource, iFriend);
     }
     public static byte IsUserInSource(this IntPtr pThis, ulong steamIDUser, ulong steamIDSource)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, byte>)((byte*)vtable + 25 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 25 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, byte>)methodPtr;
         return func(pThis, steamIDUser, steamIDSource);
     }
     public static void SetInGameVoiceSpeaking(this IntPtr pThis, ulong steamIDUser, byte bSpeaking)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, byte, void>)((byte*)vtable + 26 * IntPtr.Size);
-        return func(pThis, steamIDUser, bSpeaking);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 26 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte, void>)methodPtr;
+        func(pThis, steamIDUser, bSpeaking);
     }
     public static void ActivateGameOverlay(this IntPtr pThis, IntPtr pchDialog)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)((byte*)vtable + 27 * IntPtr.Size);
-        return func(pThis, pchDialog);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 27 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)methodPtr;
+        func(pThis, pchDialog);
     }
     public static void ActivateGameOverlayToUser(this IntPtr pThis, IntPtr pchDialog, ulong steamID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, ulong, void>)((byte*)vtable + 28 * IntPtr.Size);
-        return func(pThis, pchDialog, steamID);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 28 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, ulong, void>)methodPtr;
+        func(pThis, pchDialog, steamID);
     }
     public static void ActivateGameOverlayToWebPage(this IntPtr pThis, IntPtr pchURL, int eMode)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, void>)((byte*)vtable + 29 * IntPtr.Size);
-        return func(pThis, pchURL, eMode);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 29 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, void>)methodPtr;
+        func(pThis, pchURL, eMode);
     }
-    public static void ActivateGameOverlayToStore(this IntPtr pThis, int nAppID, int eFlag)
+    public static void ActivateGameOverlayToStore(this IntPtr pThis, uint nAppID, int eFlag)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, void>)((byte*)vtable + 30 * IntPtr.Size);
-        return func(pThis, nAppID, eFlag);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 30 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, int, void>)methodPtr;
+        func(pThis, nAppID, eFlag);
     }
     public static void SetPlayedWith(this IntPtr pThis, ulong steamIDUserPlayedWith)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, void>)((byte*)vtable + 31 * IntPtr.Size);
-        return func(pThis, steamIDUserPlayedWith);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 31 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, void>)methodPtr;
+        func(pThis, steamIDUserPlayedWith);
     }
     public static void ActivateGameOverlayInviteDialog(this IntPtr pThis, ulong steamIDLobby)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, void>)((byte*)vtable + 32 * IntPtr.Size);
-        return func(pThis, steamIDLobby);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 32 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, void>)methodPtr;
+        func(pThis, steamIDLobby);
     }
     public static int GetSmallFriendAvatar(this IntPtr pThis, ulong steamIDFriend)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)((byte*)vtable + 33 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 33 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)methodPtr;
         return func(pThis, steamIDFriend);
     }
     public static int GetMediumFriendAvatar(this IntPtr pThis, ulong steamIDFriend)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)((byte*)vtable + 34 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 34 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)methodPtr;
         return func(pThis, steamIDFriend);
     }
     public static int GetLargeFriendAvatar(this IntPtr pThis, ulong steamIDFriend)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)((byte*)vtable + 35 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 35 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)methodPtr;
         return func(pThis, steamIDFriend);
     }
     public static byte RequestUserInformation(this IntPtr pThis, ulong steamIDUser, byte bRequireNameOnly)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, byte, byte>)((byte*)vtable + 36 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 36 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte, byte>)methodPtr;
         return func(pThis, steamIDUser, bRequireNameOnly);
     }
     public static ulong RequestClanOfficerList(this IntPtr pThis, ulong steamIDClan)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)((byte*)vtable + 37 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 37 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, steamIDClan);
     }
     public static ulong GetClanOwner(this IntPtr pThis, ulong steamIDClan)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)((byte*)vtable + 38 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 38 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, steamIDClan);
     }
     public static int GetClanOfficerCount(this IntPtr pThis, ulong steamIDClan)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)((byte*)vtable + 39 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 39 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)methodPtr;
         return func(pThis, steamIDClan);
     }
     public static ulong GetClanOfficerByIndex(this IntPtr pThis, ulong steamIDClan, int iOfficer)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int, ulong>)((byte*)vtable + 40 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 40 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, ulong>)methodPtr;
         return func(pThis, steamIDClan, iOfficer);
     }
     public static byte SetRichPresence(this IntPtr pThis, IntPtr pchKey, IntPtr pchValue)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte>)((byte*)vtable + 41 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 41 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pchKey, pchValue);
     }
     public static void ClearRichPresence(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 42 * IntPtr.Size);
-        return func(pThis);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 42 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
     }
     public static IntPtr GetFriendRichPresence(this IntPtr pThis, ulong steamIDFriend, IntPtr pchKey)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr>)((byte*)vtable + 43 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 43 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr>)methodPtr;
         return func(pThis, steamIDFriend, pchKey);
     }
     public static int GetFriendRichPresenceKeyCount(this IntPtr pThis, ulong steamIDFriend)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)((byte*)vtable + 44 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 44 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)methodPtr;
         return func(pThis, steamIDFriend);
     }
     public static IntPtr GetFriendRichPresenceKeyByIndex(this IntPtr pThis, ulong steamIDFriend, int iKey)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int, IntPtr>)((byte*)vtable + 45 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 45 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, IntPtr>)methodPtr;
         return func(pThis, steamIDFriend, iKey);
     }
     public static void RequestFriendRichPresence(this IntPtr pThis, ulong steamIDFriend)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, void>)((byte*)vtable + 46 * IntPtr.Size);
-        return func(pThis, steamIDFriend);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 46 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, void>)methodPtr;
+        func(pThis, steamIDFriend);
     }
     public static byte InviteUserToGame(this IntPtr pThis, ulong steamIDFriend, IntPtr pchConnectString)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)((byte*)vtable + 47 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 47 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, steamIDFriend, pchConnectString);
     }
     public static int GetCoplayFriendCount(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int>)((byte*)vtable + 48 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 48 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int>)methodPtr;
         return func(pThis);
     }
     public static ulong GetCoplayFriend(this IntPtr pThis, int iCoplayFriend)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, ulong>)((byte*)vtable + 49 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 49 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, ulong>)methodPtr;
         return func(pThis, iCoplayFriend);
     }
     public static int GetFriendCoplayTime(this IntPtr pThis, ulong steamIDFriend)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)((byte*)vtable + 50 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 50 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)methodPtr;
         return func(pThis, steamIDFriend);
     }
-    public static int GetFriendCoplayGame(this IntPtr pThis, ulong steamIDFriend)
+    public static uint GetFriendCoplayGame(this IntPtr pThis, ulong steamIDFriend)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)((byte*)vtable + 51 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 51 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint>)methodPtr;
         return func(pThis, steamIDFriend);
     }
     public static ulong JoinClanChatRoom(this IntPtr pThis, ulong steamIDClan)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)((byte*)vtable + 52 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 52 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, steamIDClan);
     }
     public static byte LeaveClanChatRoom(this IntPtr pThis, ulong steamIDClan)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, byte>)((byte*)vtable + 53 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 53 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte>)methodPtr;
         return func(pThis, steamIDClan);
     }
     public static int GetClanChatMemberCount(this IntPtr pThis, ulong steamIDClan)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)((byte*)vtable + 54 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 54 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)methodPtr;
         return func(pThis, steamIDClan);
     }
     public static ulong GetChatMemberByIndex(this IntPtr pThis, ulong steamIDClan, int iUser)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int, ulong>)((byte*)vtable + 55 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 55 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, ulong>)methodPtr;
         return func(pThis, steamIDClan, iUser);
     }
     public static byte SendClanChatMessage(this IntPtr pThis, ulong steamIDClanChat, IntPtr pchText)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)((byte*)vtable + 56 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 56 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, steamIDClanChat, pchText);
     }
     public static int GetClanChatMessage(this IntPtr pThis, ulong steamIDClanChat, int iMessage, IntPtr prgchText, int cchTextMax, IntPtr peChatEntryType, IntPtr psteamidChatter)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int, IntPtr, int, IntPtr, IntPtr, int>)((byte*)vtable + 57 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 57 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, IntPtr, int, IntPtr, IntPtr, int>)methodPtr;
         return func(pThis, steamIDClanChat, iMessage, prgchText, cchTextMax, peChatEntryType, psteamidChatter);
     }
     public static byte IsClanChatAdmin(this IntPtr pThis, ulong steamIDClanChat, ulong steamIDUser)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, byte>)((byte*)vtable + 58 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 58 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, byte>)methodPtr;
         return func(pThis, steamIDClanChat, steamIDUser);
     }
     public static byte IsClanChatWindowOpenInSteam(this IntPtr pThis, ulong steamIDClanChat)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, byte>)((byte*)vtable + 59 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 59 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte>)methodPtr;
         return func(pThis, steamIDClanChat);
     }
     public static byte OpenClanChatWindowInSteam(this IntPtr pThis, ulong steamIDClanChat)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, byte>)((byte*)vtable + 60 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 60 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte>)methodPtr;
         return func(pThis, steamIDClanChat);
     }
     public static byte CloseClanChatWindowInSteam(this IntPtr pThis, ulong steamIDClanChat)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, byte>)((byte*)vtable + 61 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 61 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte>)methodPtr;
         return func(pThis, steamIDClanChat);
     }
     public static byte SetListenForFriendsMessages(this IntPtr pThis, byte bInterceptEnabled)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte, byte>)((byte*)vtable + 62 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 62 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte, byte>)methodPtr;
         return func(pThis, bInterceptEnabled);
     }
     public static byte ReplyToFriendMessage(this IntPtr pThis, ulong steamIDFriend, IntPtr pchMsgToSend)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)((byte*)vtable + 63 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 63 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, steamIDFriend, pchMsgToSend);
     }
     public static int GetFriendMessage(this IntPtr pThis, ulong steamIDFriend, int iMessageID, IntPtr pvData, int cubData, IntPtr peChatEntryType)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int, IntPtr, int, IntPtr, int>)((byte*)vtable + 64 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 64 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, IntPtr, int, IntPtr, int>)methodPtr;
         return func(pThis, steamIDFriend, iMessageID, pvData, cubData, peChatEntryType);
     }
     public static ulong GetFollowerCount(this IntPtr pThis, ulong steamID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)((byte*)vtable + 65 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 65 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, steamID);
     }
     public static ulong IsFollowing(this IntPtr pThis, ulong steamID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)((byte*)vtable + 66 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 66 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, steamID);
     }
     public static ulong EnumerateFollowingList(this IntPtr pThis, uint unStartIndex)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, ulong>)((byte*)vtable + 67 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 67 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, ulong>)methodPtr;
         return func(pThis, unStartIndex);
     }
     public static byte IsClanPublic(this IntPtr pThis, ulong steamIDClan)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, byte>)((byte*)vtable + 68 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 68 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte>)methodPtr;
         return func(pThis, steamIDClan);
     }
     public static byte IsClanOfficialGameGroup(this IntPtr pThis, ulong steamIDClan)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, byte>)((byte*)vtable + 69 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 69 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte>)methodPtr;
         return func(pThis, steamIDClan);
     }
     public static int GetNumChatsWithUnreadPriorityMessages(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int>)((byte*)vtable + 70 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 70 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int>)methodPtr;
         return func(pThis);
     }
     public static void ActivateGameOverlayRemotePlayTogetherInviteDialog(this IntPtr pThis, ulong steamIDLobby)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, void>)((byte*)vtable + 71 * IntPtr.Size);
-        return func(pThis, steamIDLobby);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 71 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, void>)methodPtr;
+        func(pThis, steamIDLobby);
     }
     public static byte RegisterProtocolInOverlayBrowser(this IntPtr pThis, IntPtr pchProtocol)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)((byte*)vtable + 72 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 72 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pchProtocol);
     }
     public static void ActivateGameOverlayInviteDialogConnectString(this IntPtr pThis, IntPtr pchConnectString)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)((byte*)vtable + 73 * IntPtr.Size);
-        return func(pThis, pchConnectString);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 73 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)methodPtr;
+        func(pThis, pchConnectString);
     }
     public static ulong RequestEquippedProfileItems(this IntPtr pThis, ulong steamID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)((byte*)vtable + 74 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 74 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, steamID);
     }
     public static byte BHasEquippedProfileItem(this IntPtr pThis, ulong steamID, int itemType)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int, byte>)((byte*)vtable + 75 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 75 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, byte>)methodPtr;
         return func(pThis, steamID, itemType);
     }
     public static IntPtr GetProfileItemPropertyString(this IntPtr pThis, ulong steamID, int itemType, int prop)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int, int, IntPtr>)((byte*)vtable + 76 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 76 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, int, IntPtr>)methodPtr;
         return func(pThis, steamID, itemType, prop);
     }
     public static uint GetProfileItemPropertyUint(this IntPtr pThis, ulong steamID, int itemType, int prop)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int, int, uint>)((byte*)vtable + 77 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 77 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, int, uint>)methodPtr;
         return func(pThis, steamID, itemType, prop);
     }
+}
 
+public static unsafe class ISteamUtilsExtensions
+{
     public static uint GetSecondsSinceAppActive(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint>)((byte*)vtable + 0 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint>)methodPtr;
         return func(pThis);
     }
     public static uint GetSecondsSinceComputerActive(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint>)((byte*)vtable + 1 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint>)methodPtr;
         return func(pThis);
     }
     public static int GetConnectedUniverse(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int>)((byte*)vtable + 2 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int>)methodPtr;
         return func(pThis);
     }
     public static uint GetServerRealTime(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint>)((byte*)vtable + 3 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint>)methodPtr;
         return func(pThis);
     }
     public static IntPtr GetIPCountry(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)((byte*)vtable + 4 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 4 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)methodPtr;
         return func(pThis);
     }
     public static byte GetImageSize(this IntPtr pThis, int iImage, IntPtr pnWidth, IntPtr pnHeight)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, byte>)((byte*)vtable + 5 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 5 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, iImage, pnWidth, pnHeight);
     }
     public static byte GetImageRGBA(this IntPtr pThis, int iImage, IntPtr pubDest, int nDestBufferSize)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, int, byte>)((byte*)vtable + 6 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 6 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, int, byte>)methodPtr;
         return func(pThis, iImage, pubDest, nDestBufferSize);
     }
     public static int GetCurrentBatteryPower(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int>)((byte*)vtable + 7 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 7 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int>)methodPtr;
         return func(pThis);
     }
     public static uint GetAppID(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint>)((byte*)vtable + 8 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 8 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint>)methodPtr;
         return func(pThis);
     }
     public static void SetOverlayNotificationPosition(this IntPtr pThis, int eNotificationPosition)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, void>)((byte*)vtable + 9 * IntPtr.Size);
-        return func(pThis, eNotificationPosition);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 9 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, void>)methodPtr;
+        func(pThis, eNotificationPosition);
     }
     public static byte IsAPICallCompleted(this IntPtr pThis, ulong hSteamAPICall, IntPtr pbFailed)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)((byte*)vtable + 10 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 10 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, hSteamAPICall, pbFailed);
     }
     public static int GetAPICallFailureReason(this IntPtr pThis, ulong hSteamAPICall)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)((byte*)vtable + 11 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 11 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)methodPtr;
         return func(pThis, hSteamAPICall);
     }
     public static byte GetAPICallResult(this IntPtr pThis, ulong hSteamAPICall, IntPtr pCallback, int cubCallback, int iCallbackExpected, IntPtr pbFailed)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, int, int, IntPtr, byte>)((byte*)vtable + 12 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 12 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, int, int, IntPtr, byte>)methodPtr;
         return func(pThis, hSteamAPICall, pCallback, cubCallback, iCallbackExpected, pbFailed);
     }
     public static uint GetIPCCallCount(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint>)((byte*)vtable + 13 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 13 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint>)methodPtr;
         return func(pThis);
     }
     public static void SetWarningMessageHook(this IntPtr pThis, int pFunction)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, void>)((byte*)vtable + 14 * IntPtr.Size);
-        return func(pThis, pFunction);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 14 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, void>)methodPtr;
+        func(pThis, pFunction);
     }
     public static byte IsOverlayEnabled(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 15 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 15 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static byte BOverlayNeedsPresent(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 16 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 16 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static ulong CheckFileSignature(this IntPtr pThis, IntPtr szFileName)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, ulong>)((byte*)vtable + 17 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 17 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, ulong>)methodPtr;
         return func(pThis, szFileName);
     }
     public static byte ShowGamepadTextInput(this IntPtr pThis, int eInputMode, int eLineInputMode, IntPtr pchDescription, uint unCharMax, IntPtr pchExistingText)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, IntPtr, uint, IntPtr, byte>)((byte*)vtable + 18 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 18 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, IntPtr, uint, IntPtr, byte>)methodPtr;
         return func(pThis, eInputMode, eLineInputMode, pchDescription, unCharMax, pchExistingText);
     }
     public static uint GetEnteredGamepadTextLength(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint>)((byte*)vtable + 19 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 19 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint>)methodPtr;
         return func(pThis);
     }
     public static byte GetEnteredGamepadTextInput(this IntPtr pThis, IntPtr pchText, uint cchText)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, byte>)((byte*)vtable + 20 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 20 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, byte>)methodPtr;
         return func(pThis, pchText, cchText);
     }
     public static IntPtr GetSteamUILanguage(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)((byte*)vtable + 21 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 21 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)methodPtr;
         return func(pThis);
     }
     public static byte IsSteamRunningInVR(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 22 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 22 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static void SetOverlayNotificationInset(this IntPtr pThis, int nHorizontalInset, int nVerticalInset)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, void>)((byte*)vtable + 23 * IntPtr.Size);
-        return func(pThis, nHorizontalInset, nVerticalInset);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 23 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, void>)methodPtr;
+        func(pThis, nHorizontalInset, nVerticalInset);
     }
     public static byte IsSteamInBigPictureMode(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 24 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 24 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static void StartVRDashboard(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 25 * IntPtr.Size);
-        return func(pThis);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 25 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
     }
     public static byte IsVRHeadsetStreamingEnabled(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 26 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 26 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static void SetVRHeadsetStreamingEnabled(this IntPtr pThis, byte bEnabled)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte, void>)((byte*)vtable + 27 * IntPtr.Size);
-        return func(pThis, bEnabled);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 27 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte, void>)methodPtr;
+        func(pThis, bEnabled);
     }
     public static byte IsSteamChinaLauncher(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 28 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 28 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static byte InitFilterText(this IntPtr pThis, uint unFilterOptions)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, byte>)((byte*)vtable + 29 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 29 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, byte>)methodPtr;
         return func(pThis, unFilterOptions);
     }
     public static int FilterText(this IntPtr pThis, int eContext, ulong sourceSteamID, IntPtr pchInputMessage, IntPtr pchOutFilteredText, uint nByteSizeOutFilteredText)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, ulong, IntPtr, IntPtr, uint, int>)((byte*)vtable + 30 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 30 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, ulong, IntPtr, IntPtr, uint, int>)methodPtr;
         return func(pThis, eContext, sourceSteamID, pchInputMessage, pchOutFilteredText, nByteSizeOutFilteredText);
     }
     public static int GetIPv6ConnectivityState(this IntPtr pThis, int eProtocol)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 31 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 31 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int>)methodPtr;
         return func(pThis, eProtocol);
     }
     public static byte IsSteamRunningOnSteamDeck(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 32 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 32 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static byte ShowFloatingGamepadTextInput(this IntPtr pThis, int eKeyboardMode, int nTextFieldXPosition, int nTextFieldYPosition, int nTextFieldWidth, int nTextFieldHeight)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, int, int, byte>)((byte*)vtable + 33 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 33 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, int, int, int, byte>)methodPtr;
         return func(pThis, eKeyboardMode, nTextFieldXPosition, nTextFieldYPosition, nTextFieldWidth, nTextFieldHeight);
     }
     public static void SetGameLauncherMode(this IntPtr pThis, byte bLauncherMode)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte, void>)((byte*)vtable + 34 * IntPtr.Size);
-        return func(pThis, bLauncherMode);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 34 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte, void>)methodPtr;
+        func(pThis, bLauncherMode);
     }
     public static byte DismissFloatingGamepadTextInput(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 35 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 35 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static byte DismissGamepadTextInput(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 36 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 36 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
+}
 
+public static unsafe class ISteamMatchmakingExtensions
+{
     public static int GetFavoriteGameCount(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int>)((byte*)vtable + 0 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int>)methodPtr;
         return func(pThis);
     }
     public static byte GetFavoriteGame(this IntPtr pThis, int iGame, IntPtr pnAppID, IntPtr pnIP, IntPtr pnConnPort, IntPtr pnQueryPort, IntPtr punFlags, IntPtr pRTime32LastPlayedOnServer)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, IntPtr, IntPtr, IntPtr, IntPtr, byte>)((byte*)vtable + 1 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, IntPtr, IntPtr, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, iGame, pnAppID, pnIP, pnConnPort, pnQueryPort, punFlags, pRTime32LastPlayedOnServer);
     }
-    public static int AddFavoriteGame(this IntPtr pThis, int nAppID, uint nIP, int nConnPort, int nQueryPort, uint unFlags, uint rTime32LastPlayedOnServer)
+    public static int AddFavoriteGame(this IntPtr pThis, uint nAppID, uint nIP, int nConnPort, int nQueryPort, uint unFlags, uint rTime32LastPlayedOnServer)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, int, int, uint, uint, int>)((byte*)vtable + 2 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, int, int, uint, uint, int>)methodPtr;
         return func(pThis, nAppID, nIP, nConnPort, nQueryPort, unFlags, rTime32LastPlayedOnServer);
     }
-    public static byte RemoveFavoriteGame(this IntPtr pThis, int nAppID, uint nIP, int nConnPort, int nQueryPort, uint unFlags)
+    public static byte RemoveFavoriteGame(this IntPtr pThis, uint nAppID, uint nIP, int nConnPort, int nQueryPort, uint unFlags)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, int, int, uint, byte>)((byte*)vtable + 3 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, int, int, uint, byte>)methodPtr;
         return func(pThis, nAppID, nIP, nConnPort, nQueryPort, unFlags);
     }
     public static ulong RequestLobbyList(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong>)((byte*)vtable + 4 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 4 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong>)methodPtr;
         return func(pThis);
     }
     public static void AddRequestLobbyListStringFilter(this IntPtr pThis, IntPtr pchKeyToMatch, IntPtr pchValueToMatch, int eComparisonType)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, int, void>)((byte*)vtable + 5 * IntPtr.Size);
-        return func(pThis, pchKeyToMatch, pchValueToMatch, eComparisonType);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 5 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, int, void>)methodPtr;
+        func(pThis, pchKeyToMatch, pchValueToMatch, eComparisonType);
     }
     public static void AddRequestLobbyListNumericalFilter(this IntPtr pThis, IntPtr pchKeyToMatch, int nValueToMatch, int eComparisonType)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, int, void>)((byte*)vtable + 6 * IntPtr.Size);
-        return func(pThis, pchKeyToMatch, nValueToMatch, eComparisonType);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 6 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, int, void>)methodPtr;
+        func(pThis, pchKeyToMatch, nValueToMatch, eComparisonType);
     }
     public static void AddRequestLobbyListNearValueFilter(this IntPtr pThis, IntPtr pchKeyToMatch, int nValueToBeCloseTo)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, void>)((byte*)vtable + 7 * IntPtr.Size);
-        return func(pThis, pchKeyToMatch, nValueToBeCloseTo);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 7 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, void>)methodPtr;
+        func(pThis, pchKeyToMatch, nValueToBeCloseTo);
     }
     public static void AddRequestLobbyListFilterSlotsAvailable(this IntPtr pThis, int nSlotsAvailable)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, void>)((byte*)vtable + 8 * IntPtr.Size);
-        return func(pThis, nSlotsAvailable);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 8 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, void>)methodPtr;
+        func(pThis, nSlotsAvailable);
     }
     public static void AddRequestLobbyListDistanceFilter(this IntPtr pThis, int eLobbyDistanceFilter)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, void>)((byte*)vtable + 9 * IntPtr.Size);
-        return func(pThis, eLobbyDistanceFilter);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 9 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, void>)methodPtr;
+        func(pThis, eLobbyDistanceFilter);
     }
     public static void AddRequestLobbyListResultCountFilter(this IntPtr pThis, int cMaxResults)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, void>)((byte*)vtable + 10 * IntPtr.Size);
-        return func(pThis, cMaxResults);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 10 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, void>)methodPtr;
+        func(pThis, cMaxResults);
     }
     public static void AddRequestLobbyListCompatibleMembersFilter(this IntPtr pThis, ulong steamIDLobby)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, void>)((byte*)vtable + 11 * IntPtr.Size);
-        return func(pThis, steamIDLobby);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 11 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, void>)methodPtr;
+        func(pThis, steamIDLobby);
     }
     public static ulong GetLobbyByIndex(this IntPtr pThis, int iLobby)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, ulong>)((byte*)vtable + 12 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 12 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, ulong>)methodPtr;
         return func(pThis, iLobby);
     }
     public static ulong CreateLobby(this IntPtr pThis, int eLobbyType, int cMaxMembers)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, ulong>)((byte*)vtable + 13 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 13 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, ulong>)methodPtr;
         return func(pThis, eLobbyType, cMaxMembers);
     }
     public static ulong JoinLobby(this IntPtr pThis, ulong steamIDLobby)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)((byte*)vtable + 14 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 14 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, steamIDLobby);
     }
     public static void LeaveLobby(this IntPtr pThis, ulong steamIDLobby)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, void>)((byte*)vtable + 15 * IntPtr.Size);
-        return func(pThis, steamIDLobby);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 15 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, void>)methodPtr;
+        func(pThis, steamIDLobby);
     }
     public static byte InviteUserToLobby(this IntPtr pThis, ulong steamIDLobby, ulong steamIDInvitee)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, byte>)((byte*)vtable + 16 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 16 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, byte>)methodPtr;
         return func(pThis, steamIDLobby, steamIDInvitee);
     }
     public static int GetNumLobbyMembers(this IntPtr pThis, ulong steamIDLobby)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)((byte*)vtable + 17 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 17 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)methodPtr;
         return func(pThis, steamIDLobby);
     }
     public static ulong GetLobbyMemberByIndex(this IntPtr pThis, ulong steamIDLobby, int iMember)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int, ulong>)((byte*)vtable + 18 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 18 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, ulong>)methodPtr;
         return func(pThis, steamIDLobby, iMember);
     }
     public static IntPtr GetLobbyData(this IntPtr pThis, ulong steamIDLobby, IntPtr pchKey)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr>)((byte*)vtable + 19 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 19 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr>)methodPtr;
         return func(pThis, steamIDLobby, pchKey);
     }
     public static byte SetLobbyData(this IntPtr pThis, ulong steamIDLobby, IntPtr pchKey, IntPtr pchValue)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, byte>)((byte*)vtable + 20 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 20 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, steamIDLobby, pchKey, pchValue);
     }
     public static int GetLobbyDataCount(this IntPtr pThis, ulong steamIDLobby)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)((byte*)vtable + 21 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 21 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)methodPtr;
         return func(pThis, steamIDLobby);
     }
     public static byte GetLobbyDataByIndex(this IntPtr pThis, ulong steamIDLobby, int iLobbyData, IntPtr pchKey, int cchKeyBufferSize, IntPtr pchValue, int cchValueBufferSize)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int, IntPtr, int, IntPtr, int, byte>)((byte*)vtable + 22 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 22 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, IntPtr, int, IntPtr, int, byte>)methodPtr;
         return func(pThis, steamIDLobby, iLobbyData, pchKey, cchKeyBufferSize, pchValue, cchValueBufferSize);
     }
     public static byte DeleteLobbyData(this IntPtr pThis, ulong steamIDLobby, IntPtr pchKey)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)((byte*)vtable + 23 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 23 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, steamIDLobby, pchKey);
     }
     public static IntPtr GetLobbyMemberData(this IntPtr pThis, ulong steamIDLobby, ulong steamIDUser, IntPtr pchKey)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, IntPtr, IntPtr>)((byte*)vtable + 24 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 24 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, IntPtr, IntPtr>)methodPtr;
         return func(pThis, steamIDLobby, steamIDUser, pchKey);
     }
     public static void SetLobbyMemberData(this IntPtr pThis, ulong steamIDLobby, IntPtr pchKey, IntPtr pchValue)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, void>)((byte*)vtable + 25 * IntPtr.Size);
-        return func(pThis, steamIDLobby, pchKey, pchValue);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 25 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, void>)methodPtr;
+        func(pThis, steamIDLobby, pchKey, pchValue);
     }
     public static byte SendLobbyChatMsg(this IntPtr pThis, ulong steamIDLobby, IntPtr pvMsgBody, int cubMsgBody)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, int, byte>)((byte*)vtable + 26 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 26 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, int, byte>)methodPtr;
         return func(pThis, steamIDLobby, pvMsgBody, cubMsgBody);
     }
     public static int GetLobbyChatEntry(this IntPtr pThis, ulong steamIDLobby, int iChatID, IntPtr pSteamIDUser, IntPtr pvData, int cubData, IntPtr peChatEntryType)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int, IntPtr, IntPtr, int, IntPtr, int>)((byte*)vtable + 27 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 27 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, IntPtr, IntPtr, int, IntPtr, int>)methodPtr;
         return func(pThis, steamIDLobby, iChatID, pSteamIDUser, pvData, cubData, peChatEntryType);
     }
     public static byte RequestLobbyData(this IntPtr pThis, ulong steamIDLobby)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, byte>)((byte*)vtable + 28 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 28 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte>)methodPtr;
         return func(pThis, steamIDLobby);
     }
     public static void SetLobbyGameServer(this IntPtr pThis, ulong steamIDLobby, uint unGameServerIP, int unGameServerPort, ulong steamIDGameServer)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, int, ulong, void>)((byte*)vtable + 29 * IntPtr.Size);
-        return func(pThis, steamIDLobby, unGameServerIP, unGameServerPort, steamIDGameServer);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 29 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, int, ulong, void>)methodPtr;
+        func(pThis, steamIDLobby, unGameServerIP, unGameServerPort, steamIDGameServer);
     }
     public static byte GetLobbyGameServer(this IntPtr pThis, ulong steamIDLobby, IntPtr punGameServerIP, IntPtr punGameServerPort, IntPtr psteamIDGameServer)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, IntPtr, byte>)((byte*)vtable + 30 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 30 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, steamIDLobby, punGameServerIP, punGameServerPort, psteamIDGameServer);
     }
     public static byte SetLobbyMemberLimit(this IntPtr pThis, ulong steamIDLobby, int cMaxMembers)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int, byte>)((byte*)vtable + 31 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 31 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, byte>)methodPtr;
         return func(pThis, steamIDLobby, cMaxMembers);
     }
     public static int GetLobbyMemberLimit(this IntPtr pThis, ulong steamIDLobby)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)((byte*)vtable + 32 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 32 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)methodPtr;
         return func(pThis, steamIDLobby);
     }
     public static byte SetLobbyType(this IntPtr pThis, ulong steamIDLobby, int eLobbyType)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int, byte>)((byte*)vtable + 33 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 33 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, byte>)methodPtr;
         return func(pThis, steamIDLobby, eLobbyType);
     }
     public static byte SetLobbyJoinable(this IntPtr pThis, ulong steamIDLobby, byte bLobbyJoinable)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, byte, byte>)((byte*)vtable + 34 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 34 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte, byte>)methodPtr;
         return func(pThis, steamIDLobby, bLobbyJoinable);
     }
     public static ulong GetLobbyOwner(this IntPtr pThis, ulong steamIDLobby)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)((byte*)vtable + 35 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 35 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, steamIDLobby);
     }
     public static byte SetLobbyOwner(this IntPtr pThis, ulong steamIDLobby, ulong steamIDNewOwner)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, byte>)((byte*)vtable + 36 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 36 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, byte>)methodPtr;
         return func(pThis, steamIDLobby, steamIDNewOwner);
     }
     public static byte SetLinkedLobby(this IntPtr pThis, ulong steamIDLobby, ulong steamIDLobbyDependent)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, byte>)((byte*)vtable + 37 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 37 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, byte>)methodPtr;
         return func(pThis, steamIDLobby, steamIDLobbyDependent);
     }
+}
 
-    public static void ServerResponded(this IntPtr pThis, uint hRequest, int iServer)
+public static unsafe class ISteamMatchmakingServerListResponseExtensions
+{
+    public static void ServerResponded(this IntPtr pThis, IntPtr hRequest, int iServer)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, int, void>)((byte*)vtable + 0 * IntPtr.Size);
-        return func(pThis, hRequest, iServer);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, void>)methodPtr;
+        func(pThis, hRequest, iServer);
     }
-    public static void ServerFailedToRespond(this IntPtr pThis, uint hRequest, int iServer)
+    public static void ServerFailedToRespond(this IntPtr pThis, IntPtr hRequest, int iServer)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, int, void>)((byte*)vtable + 1 * IntPtr.Size);
-        return func(pThis, hRequest, iServer);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, void>)methodPtr;
+        func(pThis, hRequest, iServer);
     }
-    public static void RefreshComplete(this IntPtr pThis, uint hRequest, int response)
+    public static void RefreshComplete(this IntPtr pThis, IntPtr hRequest, int response)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, int, void>)((byte*)vtable + 2 * IntPtr.Size);
-        return func(pThis, hRequest, response);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, void>)methodPtr;
+        func(pThis, hRequest, response);
     }
+}
 
+public static unsafe class ISteamMatchmakingPingResponseExtensions
+{
     public static void ServerResponded(this IntPtr pThis, int server)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, void>)((byte*)vtable + 0 * IntPtr.Size);
-        return func(pThis, server);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, void>)methodPtr;
+        func(pThis, server);
     }
     public static void ServerFailedToRespond(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 1 * IntPtr.Size);
-        return func(pThis);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
     }
+}
 
-    public static void AddPlayerToList(this IntPtr pThis, IntPtr pchName, int nScore, int flTimePlayed)
+public static unsafe class ISteamMatchmakingPlayersResponseExtensions
+{
+    public static void AddPlayerToList(this IntPtr pThis, IntPtr pchName, int nScore, float flTimePlayed)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, int, void>)((byte*)vtable + 0 * IntPtr.Size);
-        return func(pThis, pchName, nScore, flTimePlayed);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, float, void>)methodPtr;
+        func(pThis, pchName, nScore, flTimePlayed);
     }
     public static void PlayersFailedToRespond(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 1 * IntPtr.Size);
-        return func(pThis);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
     }
     public static void PlayersRefreshComplete(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 2 * IntPtr.Size);
-        return func(pThis);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
     }
+}
 
+public static unsafe class ISteamMatchmakingRulesResponseExtensions
+{
     public static void RulesResponded(this IntPtr pThis, IntPtr pchRule, IntPtr pchValue)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, void>)((byte*)vtable + 0 * IntPtr.Size);
-        return func(pThis, pchRule, pchValue);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, void>)methodPtr;
+        func(pThis, pchRule, pchValue);
     }
     public static void RulesFailedToRespond(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 1 * IntPtr.Size);
-        return func(pThis);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
     }
     public static void RulesRefreshComplete(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 2 * IntPtr.Size);
-        return func(pThis);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
     }
+}
 
-    public static uint RequestInternetServerList(this IntPtr pThis, int iApp, IntPtr ppchFilters, uint nFilters, IntPtr pRequestServersResponse)
+public static unsafe class ISteamMatchmakingServersExtensions
+{
+    public static IntPtr RequestInternetServerList(this IntPtr pThis, uint iApp, IntPtr ppchFilters, uint nFilters, IntPtr pRequestServersResponse)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, uint, IntPtr, uint>)((byte*)vtable + 0 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, iApp, ppchFilters, nFilters, pRequestServersResponse);
     }
-    public static uint RequestLANServerList(this IntPtr pThis, int iApp, IntPtr pRequestServersResponse)
+    public static IntPtr RequestLANServerList(this IntPtr pThis, uint iApp, IntPtr pRequestServersResponse)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, uint>)((byte*)vtable + 1 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, iApp, pRequestServersResponse);
     }
-    public static uint RequestFriendsServerList(this IntPtr pThis, int iApp, IntPtr ppchFilters, uint nFilters, IntPtr pRequestServersResponse)
+    public static IntPtr RequestFriendsServerList(this IntPtr pThis, uint iApp, IntPtr ppchFilters, uint nFilters, IntPtr pRequestServersResponse)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, uint, IntPtr, uint>)((byte*)vtable + 2 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, iApp, ppchFilters, nFilters, pRequestServersResponse);
     }
-    public static uint RequestFavoritesServerList(this IntPtr pThis, int iApp, IntPtr ppchFilters, uint nFilters, IntPtr pRequestServersResponse)
+    public static IntPtr RequestFavoritesServerList(this IntPtr pThis, uint iApp, IntPtr ppchFilters, uint nFilters, IntPtr pRequestServersResponse)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, uint, IntPtr, uint>)((byte*)vtable + 3 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, iApp, ppchFilters, nFilters, pRequestServersResponse);
     }
-    public static uint RequestHistoryServerList(this IntPtr pThis, int iApp, IntPtr ppchFilters, uint nFilters, IntPtr pRequestServersResponse)
+    public static IntPtr RequestHistoryServerList(this IntPtr pThis, uint iApp, IntPtr ppchFilters, uint nFilters, IntPtr pRequestServersResponse)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, uint, IntPtr, uint>)((byte*)vtable + 4 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 4 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, iApp, ppchFilters, nFilters, pRequestServersResponse);
     }
-    public static uint RequestSpectatorServerList(this IntPtr pThis, int iApp, IntPtr ppchFilters, uint nFilters, IntPtr pRequestServersResponse)
+    public static IntPtr RequestSpectatorServerList(this IntPtr pThis, uint iApp, IntPtr ppchFilters, uint nFilters, IntPtr pRequestServersResponse)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, uint, IntPtr, uint>)((byte*)vtable + 5 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 5 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, uint, IntPtr, IntPtr>)methodPtr;
         return func(pThis, iApp, ppchFilters, nFilters, pRequestServersResponse);
     }
-    public static void ReleaseRequest(this IntPtr pThis, uint hServerListRequest)
+    public static void ReleaseRequest(this IntPtr pThis, IntPtr hServerListRequest)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, void>)((byte*)vtable + 6 * IntPtr.Size);
-        return func(pThis, hServerListRequest);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 6 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)methodPtr;
+        func(pThis, hServerListRequest);
     }
-    public static IntPtr GetServerDetails(this IntPtr pThis, uint hRequest, int iServer)
+    public static IntPtr GetServerDetails(this IntPtr pThis, IntPtr hRequest, int iServer)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, int, IntPtr>)((byte*)vtable + 7 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 7 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, IntPtr>)methodPtr;
         return func(pThis, hRequest, iServer);
     }
-    public static void CancelQuery(this IntPtr pThis, uint hRequest)
+    public static void CancelQuery(this IntPtr pThis, IntPtr hRequest)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, void>)((byte*)vtable + 8 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 8 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)methodPtr;
+        func(pThis, hRequest);
+    }
+    public static void RefreshQuery(this IntPtr pThis, IntPtr hRequest)
+    {
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 9 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)methodPtr;
+        func(pThis, hRequest);
+    }
+    public static byte IsRefreshing(this IntPtr pThis, IntPtr hRequest)
+    {
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 10 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, hRequest);
     }
-    public static void RefreshQuery(this IntPtr pThis, uint hRequest)
+    public static int GetServerCount(this IntPtr pThis, IntPtr hRequest)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, void>)((byte*)vtable + 9 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 11 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int>)methodPtr;
         return func(pThis, hRequest);
     }
-    public static byte IsRefreshing(this IntPtr pThis, uint hRequest)
+    public static void RefreshServer(this IntPtr pThis, IntPtr hRequest, int iServer)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, byte>)((byte*)vtable + 10 * IntPtr.Size);
-        return func(pThis, hRequest);
-    }
-    public static int GetServerCount(this IntPtr pThis, uint hRequest)
-    {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, int>)((byte*)vtable + 11 * IntPtr.Size);
-        return func(pThis, hRequest);
-    }
-    public static void RefreshServer(this IntPtr pThis, uint hRequest, int iServer)
-    {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, int, void>)((byte*)vtable + 12 * IntPtr.Size);
-        return func(pThis, hRequest, iServer);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 12 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, void>)methodPtr;
+        func(pThis, hRequest, iServer);
     }
     public static uint PingServer(this IntPtr pThis, uint unIP, int usPort, IntPtr pRequestServersResponse)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, int, IntPtr, uint>)((byte*)vtable + 13 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 13 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, int, IntPtr, uint>)methodPtr;
         return func(pThis, unIP, usPort, pRequestServersResponse);
     }
     public static uint PlayerDetails(this IntPtr pThis, uint unIP, int usPort, IntPtr pRequestServersResponse)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, int, IntPtr, uint>)((byte*)vtable + 14 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 14 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, int, IntPtr, uint>)methodPtr;
         return func(pThis, unIP, usPort, pRequestServersResponse);
     }
     public static uint ServerRules(this IntPtr pThis, uint unIP, int usPort, IntPtr pRequestServersResponse)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, int, IntPtr, uint>)((byte*)vtable + 15 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 15 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, int, IntPtr, uint>)methodPtr;
         return func(pThis, unIP, usPort, pRequestServersResponse);
     }
     public static void CancelServerQuery(this IntPtr pThis, uint hServerQuery)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, void>)((byte*)vtable + 16 * IntPtr.Size);
-        return func(pThis, hServerQuery);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 16 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, void>)methodPtr;
+        func(pThis, hServerQuery);
     }
+}
 
+public static unsafe class ISteamPartiesExtensions
+{
     public static uint GetNumActiveBeacons(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint>)((byte*)vtable + 0 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint>)methodPtr;
         return func(pThis);
     }
-    public static int GetBeaconByIndex(this IntPtr pThis, uint unIndex)
+    public static ulong GetBeaconByIndex(this IntPtr pThis, uint unIndex)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, int>)((byte*)vtable + 1 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, ulong>)methodPtr;
         return func(pThis, unIndex);
     }
-    public static byte GetBeaconDetails(this IntPtr pThis, int ulBeaconID, IntPtr pSteamIDBeaconOwner, IntPtr pLocation, IntPtr pchMetadata, int cchMetadata)
+    public static byte GetBeaconDetails(this IntPtr pThis, ulong ulBeaconID, IntPtr pSteamIDBeaconOwner, IntPtr pLocation, IntPtr pchMetadata, int cchMetadata)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, IntPtr, int, byte>)((byte*)vtable + 2 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, IntPtr, int, byte>)methodPtr;
         return func(pThis, ulBeaconID, pSteamIDBeaconOwner, pLocation, pchMetadata, cchMetadata);
     }
-    public static ulong JoinParty(this IntPtr pThis, int ulBeaconID)
+    public static ulong JoinParty(this IntPtr pThis, ulong ulBeaconID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, ulong>)((byte*)vtable + 3 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, ulBeaconID);
     }
     public static byte GetNumAvailableBeaconLocations(this IntPtr pThis, IntPtr puNumLocations)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)((byte*)vtable + 4 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 4 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, puNumLocations);
     }
     public static byte GetAvailableBeaconLocations(this IntPtr pThis, IntPtr pLocationList, uint uMaxNumLocations)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, byte>)((byte*)vtable + 5 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 5 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, byte>)methodPtr;
         return func(pThis, pLocationList, uMaxNumLocations);
     }
     public static ulong CreateBeacon(this IntPtr pThis, uint unOpenSlots, IntPtr pBeaconLocation, IntPtr pchConnectString, IntPtr pchMetadata)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, IntPtr, IntPtr, ulong>)((byte*)vtable + 6 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 6 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, IntPtr, IntPtr, ulong>)methodPtr;
         return func(pThis, unOpenSlots, pBeaconLocation, pchConnectString, pchMetadata);
     }
-    public static void OnReservationCompleted(this IntPtr pThis, int ulBeacon, ulong steamIDUser)
+    public static void OnReservationCompleted(this IntPtr pThis, ulong ulBeacon, ulong steamIDUser)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, ulong, void>)((byte*)vtable + 7 * IntPtr.Size);
-        return func(pThis, ulBeacon, steamIDUser);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 7 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, void>)methodPtr;
+        func(pThis, ulBeacon, steamIDUser);
     }
-    public static void CancelReservation(this IntPtr pThis, int ulBeacon, ulong steamIDUser)
+    public static void CancelReservation(this IntPtr pThis, ulong ulBeacon, ulong steamIDUser)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, ulong, void>)((byte*)vtable + 8 * IntPtr.Size);
-        return func(pThis, ulBeacon, steamIDUser);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 8 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, void>)methodPtr;
+        func(pThis, ulBeacon, steamIDUser);
     }
-    public static ulong ChangeNumOpenSlots(this IntPtr pThis, int ulBeacon, uint unOpenSlots)
+    public static ulong ChangeNumOpenSlots(this IntPtr pThis, ulong ulBeacon, uint unOpenSlots)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, ulong>)((byte*)vtable + 9 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 9 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, ulong>)methodPtr;
         return func(pThis, ulBeacon, unOpenSlots);
     }
-    public static byte DestroyBeacon(this IntPtr pThis, int ulBeacon)
+    public static byte DestroyBeacon(this IntPtr pThis, ulong ulBeacon)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte>)((byte*)vtable + 10 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 10 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte>)methodPtr;
         return func(pThis, ulBeacon);
     }
     public static byte GetBeaconLocationData(this IntPtr pThis, int BeaconLocation, int eData, IntPtr pchDataStringOut, int cchDataStringOut)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, IntPtr, int, byte>)((byte*)vtable + 11 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 11 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, IntPtr, int, byte>)methodPtr;
         return func(pThis, BeaconLocation, eData, pchDataStringOut, cchDataStringOut);
     }
+}
 
+public static unsafe class ISteamRemoteStorageExtensions
+{
     public static byte FileWrite(this IntPtr pThis, IntPtr pchFile, IntPtr pvData, int cubData)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, int, byte>)((byte*)vtable + 0 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, int, byte>)methodPtr;
         return func(pThis, pchFile, pvData, cubData);
     }
     public static int FileRead(this IntPtr pThis, IntPtr pchFile, IntPtr pvData, int cubDataToRead)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, int, int>)((byte*)vtable + 1 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, int, int>)methodPtr;
         return func(pThis, pchFile, pvData, cubDataToRead);
     }
     public static ulong FileWriteAsync(this IntPtr pThis, IntPtr pchFile, IntPtr pvData, uint cubData)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, uint, ulong>)((byte*)vtable + 2 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, uint, ulong>)methodPtr;
         return func(pThis, pchFile, pvData, cubData);
     }
     public static ulong FileReadAsync(this IntPtr pThis, IntPtr pchFile, uint nOffset, uint cubToRead)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, uint, ulong>)((byte*)vtable + 3 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, uint, ulong>)methodPtr;
         return func(pThis, pchFile, nOffset, cubToRead);
     }
     public static byte FileReadAsyncComplete(this IntPtr pThis, ulong hReadCall, IntPtr pvBuffer, uint cubToRead)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, uint, byte>)((byte*)vtable + 4 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 4 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, uint, byte>)methodPtr;
         return func(pThis, hReadCall, pvBuffer, cubToRead);
     }
     public static byte FileForget(this IntPtr pThis, IntPtr pchFile)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)((byte*)vtable + 5 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 5 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pchFile);
     }
     public static byte FileDelete(this IntPtr pThis, IntPtr pchFile)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)((byte*)vtable + 6 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 6 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pchFile);
     }
     public static ulong FileShare(this IntPtr pThis, IntPtr pchFile)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, ulong>)((byte*)vtable + 7 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 7 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, ulong>)methodPtr;
         return func(pThis, pchFile);
     }
     public static byte SetSyncPlatforms(this IntPtr pThis, IntPtr pchFile, int eRemoteStoragePlatform)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, byte>)((byte*)vtable + 8 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 8 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, byte>)methodPtr;
         return func(pThis, pchFile, eRemoteStoragePlatform);
     }
-    public static int FileWriteStreamOpen(this IntPtr pThis, IntPtr pchFile)
+    public static ulong FileWriteStreamOpen(this IntPtr pThis, IntPtr pchFile)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int>)((byte*)vtable + 9 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 9 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, ulong>)methodPtr;
         return func(pThis, pchFile);
     }
-    public static byte FileWriteStreamWriteChunk(this IntPtr pThis, int writeHandle, IntPtr pvData, int cubData)
+    public static byte FileWriteStreamWriteChunk(this IntPtr pThis, ulong writeHandle, IntPtr pvData, int cubData)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, int, byte>)((byte*)vtable + 10 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 10 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, int, byte>)methodPtr;
         return func(pThis, writeHandle, pvData, cubData);
     }
-    public static byte FileWriteStreamClose(this IntPtr pThis, int writeHandle)
+    public static byte FileWriteStreamClose(this IntPtr pThis, ulong writeHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte>)((byte*)vtable + 11 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 11 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte>)methodPtr;
         return func(pThis, writeHandle);
     }
-    public static byte FileWriteStreamCancel(this IntPtr pThis, int writeHandle)
+    public static byte FileWriteStreamCancel(this IntPtr pThis, ulong writeHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte>)((byte*)vtable + 12 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 12 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte>)methodPtr;
         return func(pThis, writeHandle);
     }
     public static byte FileExists(this IntPtr pThis, IntPtr pchFile)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)((byte*)vtable + 13 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 13 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pchFile);
     }
     public static byte FilePersisted(this IntPtr pThis, IntPtr pchFile)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)((byte*)vtable + 14 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 14 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pchFile);
     }
     public static int GetFileSize(this IntPtr pThis, IntPtr pchFile)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int>)((byte*)vtable + 15 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 15 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int>)methodPtr;
         return func(pThis, pchFile);
     }
     public static long GetFileTimestamp(this IntPtr pThis, IntPtr pchFile)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, long>)((byte*)vtable + 16 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 16 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, long>)methodPtr;
         return func(pThis, pchFile);
     }
     public static int GetSyncPlatforms(this IntPtr pThis, IntPtr pchFile)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int>)((byte*)vtable + 17 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 17 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int>)methodPtr;
         return func(pThis, pchFile);
     }
     public static int GetFileCount(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int>)((byte*)vtable + 18 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 18 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int>)methodPtr;
         return func(pThis);
     }
     public static IntPtr GetFileNameAndSize(this IntPtr pThis, int iFile, IntPtr pnFileSizeInBytes)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr>)((byte*)vtable + 19 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 19 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr>)methodPtr;
         return func(pThis, iFile, pnFileSizeInBytes);
     }
     public static byte GetQuota(this IntPtr pThis, IntPtr pnTotalBytes, IntPtr puAvailableBytes)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte>)((byte*)vtable + 20 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 20 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pnTotalBytes, puAvailableBytes);
     }
     public static byte IsCloudEnabledForAccount(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 21 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 21 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static byte IsCloudEnabledForApp(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 22 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 22 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static void SetCloudEnabledForApp(this IntPtr pThis, byte bEnabled)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte, void>)((byte*)vtable + 23 * IntPtr.Size);
-        return func(pThis, bEnabled);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 23 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte, void>)methodPtr;
+        func(pThis, bEnabled);
     }
-    public static ulong UGCDownload(this IntPtr pThis, int hContent, uint unPriority)
+    public static ulong UGCDownload(this IntPtr pThis, ulong hContent, uint unPriority)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, ulong>)((byte*)vtable + 24 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 24 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, ulong>)methodPtr;
         return func(pThis, hContent, unPriority);
     }
-    public static byte GetUGCDownloadProgress(this IntPtr pThis, int hContent, IntPtr pnBytesDownloaded, IntPtr pnBytesExpected)
+    public static byte GetUGCDownloadProgress(this IntPtr pThis, ulong hContent, IntPtr pnBytesDownloaded, IntPtr pnBytesExpected)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, byte>)((byte*)vtable + 25 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 25 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, hContent, pnBytesDownloaded, pnBytesExpected);
     }
-    public static byte GetUGCDetails(this IntPtr pThis, int hContent, IntPtr pnAppID, IntPtr ppchName, IntPtr pnFileSizeInBytes, IntPtr pSteamIDOwner)
+    public static byte GetUGCDetails(this IntPtr pThis, ulong hContent, IntPtr pnAppID, IntPtr ppchName, IntPtr pnFileSizeInBytes, IntPtr pSteamIDOwner)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, IntPtr, IntPtr, byte>)((byte*)vtable + 26 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 26 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, hContent, pnAppID, ppchName, pnFileSizeInBytes, pSteamIDOwner);
     }
-    public static int UGCRead(this IntPtr pThis, int hContent, IntPtr pvData, int cubDataToRead, uint cOffset, int eAction)
+    public static int UGCRead(this IntPtr pThis, ulong hContent, IntPtr pvData, int cubDataToRead, uint cOffset, int eAction)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, int, uint, int, int>)((byte*)vtable + 27 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 27 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, int, uint, int, int>)methodPtr;
         return func(pThis, hContent, pvData, cubDataToRead, cOffset, eAction);
     }
     public static int GetCachedUGCCount(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int>)((byte*)vtable + 28 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 28 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int>)methodPtr;
         return func(pThis);
     }
-    public static int GetCachedUGCHandle(this IntPtr pThis, int iCachedContent)
+    public static ulong GetCachedUGCHandle(this IntPtr pThis, int iCachedContent)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 29 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 29 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, ulong>)methodPtr;
         return func(pThis, iCachedContent);
     }
-    public static ulong PublishWorkshopFile(this IntPtr pThis, IntPtr pchFile, IntPtr pchPreviewFile, int nConsumerAppId, IntPtr pchTitle, IntPtr pchDescription, int eVisibility, IntPtr pTags, int eWorkshopFileType)
+    public static ulong PublishWorkshopFile(this IntPtr pThis, IntPtr pchFile, IntPtr pchPreviewFile, uint nConsumerAppId, IntPtr pchTitle, IntPtr pchDescription, int eVisibility, IntPtr pTags, int eWorkshopFileType)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, int, IntPtr, IntPtr, int, IntPtr, int, ulong>)((byte*)vtable + 30 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 30 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, uint, IntPtr, IntPtr, int, IntPtr, int, ulong>)methodPtr;
         return func(pThis, pchFile, pchPreviewFile, nConsumerAppId, pchTitle, pchDescription, eVisibility, pTags, eWorkshopFileType);
     }
-    public static int CreatePublishedFileUpdateRequest(this IntPtr pThis, int unPublishedFileId)
+    public static ulong CreatePublishedFileUpdateRequest(this IntPtr pThis, ulong unPublishedFileId)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 31 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 31 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, unPublishedFileId);
     }
-    public static byte UpdatePublishedFileFile(this IntPtr pThis, int updateHandle, IntPtr pchFile)
+    public static byte UpdatePublishedFileFile(this IntPtr pThis, ulong updateHandle, IntPtr pchFile)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)((byte*)vtable + 32 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 32 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, updateHandle, pchFile);
     }
-    public static byte UpdatePublishedFilePreviewFile(this IntPtr pThis, int updateHandle, IntPtr pchPreviewFile)
+    public static byte UpdatePublishedFilePreviewFile(this IntPtr pThis, ulong updateHandle, IntPtr pchPreviewFile)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)((byte*)vtable + 33 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 33 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, updateHandle, pchPreviewFile);
     }
-    public static byte UpdatePublishedFileTitle(this IntPtr pThis, int updateHandle, IntPtr pchTitle)
+    public static byte UpdatePublishedFileTitle(this IntPtr pThis, ulong updateHandle, IntPtr pchTitle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)((byte*)vtable + 34 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 34 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, updateHandle, pchTitle);
     }
-    public static byte UpdatePublishedFileDescription(this IntPtr pThis, int updateHandle, IntPtr pchDescription)
+    public static byte UpdatePublishedFileDescription(this IntPtr pThis, ulong updateHandle, IntPtr pchDescription)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)((byte*)vtable + 35 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 35 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, updateHandle, pchDescription);
     }
-    public static byte UpdatePublishedFileVisibility(this IntPtr pThis, int updateHandle, int eVisibility)
+    public static byte UpdatePublishedFileVisibility(this IntPtr pThis, ulong updateHandle, int eVisibility)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, byte>)((byte*)vtable + 36 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 36 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, byte>)methodPtr;
         return func(pThis, updateHandle, eVisibility);
     }
-    public static byte UpdatePublishedFileTags(this IntPtr pThis, int updateHandle, IntPtr pTags)
+    public static byte UpdatePublishedFileTags(this IntPtr pThis, ulong updateHandle, IntPtr pTags)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)((byte*)vtable + 37 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 37 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, updateHandle, pTags);
     }
-    public static ulong CommitPublishedFileUpdate(this IntPtr pThis, int updateHandle)
+    public static ulong CommitPublishedFileUpdate(this IntPtr pThis, ulong updateHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, ulong>)((byte*)vtable + 38 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 38 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, updateHandle);
     }
-    public static ulong GetPublishedFileDetails(this IntPtr pThis, int unPublishedFileId, uint unMaxSecondsOld)
+    public static ulong GetPublishedFileDetails(this IntPtr pThis, ulong unPublishedFileId, uint unMaxSecondsOld)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, ulong>)((byte*)vtable + 39 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 39 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, ulong>)methodPtr;
         return func(pThis, unPublishedFileId, unMaxSecondsOld);
     }
-    public static ulong DeletePublishedFile(this IntPtr pThis, int unPublishedFileId)
+    public static ulong DeletePublishedFile(this IntPtr pThis, ulong unPublishedFileId)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, ulong>)((byte*)vtable + 40 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 40 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, unPublishedFileId);
     }
     public static ulong EnumerateUserPublishedFiles(this IntPtr pThis, uint unStartIndex)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, ulong>)((byte*)vtable + 41 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 41 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, ulong>)methodPtr;
         return func(pThis, unStartIndex);
     }
-    public static ulong SubscribePublishedFile(this IntPtr pThis, int unPublishedFileId)
+    public static ulong SubscribePublishedFile(this IntPtr pThis, ulong unPublishedFileId)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, ulong>)((byte*)vtable + 42 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 42 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, unPublishedFileId);
     }
     public static ulong EnumerateUserSubscribedFiles(this IntPtr pThis, uint unStartIndex)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, ulong>)((byte*)vtable + 43 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 43 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, ulong>)methodPtr;
         return func(pThis, unStartIndex);
     }
-    public static ulong UnsubscribePublishedFile(this IntPtr pThis, int unPublishedFileId)
+    public static ulong UnsubscribePublishedFile(this IntPtr pThis, ulong unPublishedFileId)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, ulong>)((byte*)vtable + 44 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 44 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, unPublishedFileId);
     }
-    public static byte UpdatePublishedFileSetChangeDescription(this IntPtr pThis, int updateHandle, IntPtr pchChangeDescription)
+    public static byte UpdatePublishedFileSetChangeDescription(this IntPtr pThis, ulong updateHandle, IntPtr pchChangeDescription)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)((byte*)vtable + 45 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 45 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, updateHandle, pchChangeDescription);
     }
-    public static ulong GetPublishedItemVoteDetails(this IntPtr pThis, int unPublishedFileId)
+    public static ulong GetPublishedItemVoteDetails(this IntPtr pThis, ulong unPublishedFileId)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, ulong>)((byte*)vtable + 46 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 46 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, unPublishedFileId);
     }
-    public static ulong UpdateUserPublishedItemVote(this IntPtr pThis, int unPublishedFileId, byte bVoteUp)
+    public static ulong UpdateUserPublishedItemVote(this IntPtr pThis, ulong unPublishedFileId, byte bVoteUp)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte, ulong>)((byte*)vtable + 47 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 47 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte, ulong>)methodPtr;
         return func(pThis, unPublishedFileId, bVoteUp);
     }
-    public static ulong GetUserPublishedItemVoteDetails(this IntPtr pThis, int unPublishedFileId)
+    public static ulong GetUserPublishedItemVoteDetails(this IntPtr pThis, ulong unPublishedFileId)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, ulong>)((byte*)vtable + 48 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 48 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, unPublishedFileId);
     }
     public static ulong EnumerateUserSharedWorkshopFiles(this IntPtr pThis, ulong steamId, uint unStartIndex, IntPtr pRequiredTags, IntPtr pExcludedTags)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, IntPtr, IntPtr, ulong>)((byte*)vtable + 49 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 49 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, IntPtr, IntPtr, ulong>)methodPtr;
         return func(pThis, steamId, unStartIndex, pRequiredTags, pExcludedTags);
     }
-    public static ulong PublishVideo(this IntPtr pThis, int eVideoProvider, IntPtr pchVideoAccount, IntPtr pchVideoIdentifier, IntPtr pchPreviewFile, int nConsumerAppId, IntPtr pchTitle, IntPtr pchDescription, int eVisibility, IntPtr pTags)
+    public static ulong PublishVideo(this IntPtr pThis, int eVideoProvider, IntPtr pchVideoAccount, IntPtr pchVideoIdentifier, IntPtr pchPreviewFile, uint nConsumerAppId, IntPtr pchTitle, IntPtr pchDescription, int eVisibility, IntPtr pTags)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, IntPtr, int, IntPtr, IntPtr, int, IntPtr, ulong>)((byte*)vtable + 50 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 50 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, IntPtr, uint, IntPtr, IntPtr, int, IntPtr, ulong>)methodPtr;
         return func(pThis, eVideoProvider, pchVideoAccount, pchVideoIdentifier, pchPreviewFile, nConsumerAppId, pchTitle, pchDescription, eVisibility, pTags);
     }
-    public static ulong SetUserPublishedFileAction(this IntPtr pThis, int unPublishedFileId, int eAction)
+    public static ulong SetUserPublishedFileAction(this IntPtr pThis, ulong unPublishedFileId, int eAction)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, ulong>)((byte*)vtable + 51 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 51 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, ulong>)methodPtr;
         return func(pThis, unPublishedFileId, eAction);
     }
     public static ulong EnumeratePublishedFilesByUserAction(this IntPtr pThis, int eAction, uint unStartIndex)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, ulong>)((byte*)vtable + 52 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 52 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, uint, ulong>)methodPtr;
         return func(pThis, eAction, unStartIndex);
     }
     public static ulong EnumeratePublishedWorkshopFiles(this IntPtr pThis, int eEnumerationType, uint unStartIndex, uint unCount, uint unDays, IntPtr pTags, IntPtr pUserTags)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, uint, uint, IntPtr, IntPtr, ulong>)((byte*)vtable + 53 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 53 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, uint, uint, uint, IntPtr, IntPtr, ulong>)methodPtr;
         return func(pThis, eEnumerationType, unStartIndex, unCount, unDays, pTags, pUserTags);
     }
-    public static ulong UGCDownloadToLocation(this IntPtr pThis, int hContent, IntPtr pchLocation, uint unPriority)
+    public static ulong UGCDownloadToLocation(this IntPtr pThis, ulong hContent, IntPtr pchLocation, uint unPriority)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, uint, ulong>)((byte*)vtable + 54 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 54 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, uint, ulong>)methodPtr;
         return func(pThis, hContent, pchLocation, unPriority);
     }
     public static int GetLocalFileChangeCount(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int>)((byte*)vtable + 55 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 55 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int>)methodPtr;
         return func(pThis);
     }
     public static IntPtr GetLocalFileChange(this IntPtr pThis, int iFile, IntPtr pEChangeType, IntPtr pEFilePathType)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, IntPtr>)((byte*)vtable + 56 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 56 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, IntPtr>)methodPtr;
         return func(pThis, iFile, pEChangeType, pEFilePathType);
     }
     public static byte BeginFileWriteBatch(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 57 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 57 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static byte EndFileWriteBatch(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 58 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 58 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
+}
 
-    public static byte GetStat(this IntPtr pThis, IntPtr pchName, IntPtr pData)
+public static unsafe class ISteamUserStatsExtensions
+{
+    public static byte GetStat_Int32(this IntPtr pThis, IntPtr pchName, IntPtr pData)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte>)((byte*)vtable + 0 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pchName, pData);
     }
-    public static byte GetStat(this IntPtr pThis, IntPtr pchName, IntPtr pData)
+    public static byte GetStat_Float(this IntPtr pThis, IntPtr pchName, IntPtr pData)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte>)((byte*)vtable + 1 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pchName, pData);
     }
-    public static byte SetStat(this IntPtr pThis, IntPtr pchName, int nData)
+    public static byte SetStat_Int32(this IntPtr pThis, IntPtr pchName, int nData)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, byte>)((byte*)vtable + 2 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, byte>)methodPtr;
         return func(pThis, pchName, nData);
     }
-    public static byte SetStat(this IntPtr pThis, IntPtr pchName, int fData)
+    public static byte SetStat_Float(this IntPtr pThis, IntPtr pchName, float fData)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, byte>)((byte*)vtable + 3 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float, byte>)methodPtr;
         return func(pThis, pchName, fData);
     }
-    public static byte UpdateAvgRateStat(this IntPtr pThis, IntPtr pchName, int flCountThisSession, int dSessionLength)
+    public static byte UpdateAvgRateStat(this IntPtr pThis, IntPtr pchName, float flCountThisSession, double dSessionLength)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, int, byte>)((byte*)vtable + 4 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 4 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float, double, byte>)methodPtr;
         return func(pThis, pchName, flCountThisSession, dSessionLength);
     }
     public static byte GetAchievement(this IntPtr pThis, IntPtr pchName, IntPtr pbAchieved)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte>)((byte*)vtable + 5 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 5 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pchName, pbAchieved);
     }
     public static byte SetAchievement(this IntPtr pThis, IntPtr pchName)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)((byte*)vtable + 6 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 6 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pchName);
     }
     public static byte ClearAchievement(this IntPtr pThis, IntPtr pchName)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)((byte*)vtable + 7 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 7 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pchName);
     }
     public static byte GetAchievementAndUnlockTime(this IntPtr pThis, IntPtr pchName, IntPtr pbAchieved, IntPtr punUnlockTime)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr, byte>)((byte*)vtable + 8 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 8 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pchName, pbAchieved, punUnlockTime);
     }
     public static byte StoreStats(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 9 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 9 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static int GetAchievementIcon(this IntPtr pThis, IntPtr pchName)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int>)((byte*)vtable + 10 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 10 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int>)methodPtr;
         return func(pThis, pchName);
     }
     public static IntPtr GetAchievementDisplayAttribute(this IntPtr pThis, IntPtr pchName, IntPtr pchKey)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr>)((byte*)vtable + 11 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 11 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr>)methodPtr;
         return func(pThis, pchName, pchKey);
     }
     public static byte IndicateAchievementProgress(this IntPtr pThis, IntPtr pchName, uint nCurProgress, uint nMaxProgress)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, uint, byte>)((byte*)vtable + 12 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 12 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, uint, byte>)methodPtr;
         return func(pThis, pchName, nCurProgress, nMaxProgress);
     }
     public static uint GetNumAchievements(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint>)((byte*)vtable + 13 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 13 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint>)methodPtr;
         return func(pThis);
     }
     public static IntPtr GetAchievementName(this IntPtr pThis, uint iAchievement)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr>)((byte*)vtable + 14 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 14 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr>)methodPtr;
         return func(pThis, iAchievement);
     }
     public static ulong RequestUserStats(this IntPtr pThis, ulong steamIDUser)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)((byte*)vtable + 15 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 15 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, steamIDUser);
     }
-    public static byte GetUserStat(this IntPtr pThis, ulong steamIDUser, IntPtr pchName, IntPtr pData)
+    public static byte GetUserStat_Int32(this IntPtr pThis, ulong steamIDUser, IntPtr pchName, IntPtr pData)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, byte>)((byte*)vtable + 16 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 16 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, steamIDUser, pchName, pData);
     }
-    public static byte GetUserStat(this IntPtr pThis, ulong steamIDUser, IntPtr pchName, IntPtr pData)
+    public static byte GetUserStat_Float(this IntPtr pThis, ulong steamIDUser, IntPtr pchName, IntPtr pData)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, byte>)((byte*)vtable + 17 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 17 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, steamIDUser, pchName, pData);
     }
     public static byte GetUserAchievement(this IntPtr pThis, ulong steamIDUser, IntPtr pchName, IntPtr pbAchieved)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, byte>)((byte*)vtable + 18 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 18 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, steamIDUser, pchName, pbAchieved);
     }
     public static byte GetUserAchievementAndUnlockTime(this IntPtr pThis, ulong steamIDUser, IntPtr pchName, IntPtr pbAchieved, IntPtr punUnlockTime)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, IntPtr, byte>)((byte*)vtable + 19 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 19 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, steamIDUser, pchName, pbAchieved, punUnlockTime);
     }
     public static byte ResetAllStats(this IntPtr pThis, byte bAchievementsToo)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte, byte>)((byte*)vtable + 20 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 20 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte, byte>)methodPtr;
         return func(pThis, bAchievementsToo);
     }
     public static ulong FindOrCreateLeaderboard(this IntPtr pThis, IntPtr pchLeaderboardName, int eLeaderboardSortMethod, int eLeaderboardDisplayType)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, int, ulong>)((byte*)vtable + 21 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 21 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, int, ulong>)methodPtr;
         return func(pThis, pchLeaderboardName, eLeaderboardSortMethod, eLeaderboardDisplayType);
     }
     public static ulong FindLeaderboard(this IntPtr pThis, IntPtr pchLeaderboardName)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, ulong>)((byte*)vtable + 22 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 22 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, ulong>)methodPtr;
         return func(pThis, pchLeaderboardName);
     }
-    public static IntPtr GetLeaderboardName(this IntPtr pThis, int hSteamLeaderboard)
+    public static IntPtr GetLeaderboardName(this IntPtr pThis, ulong hSteamLeaderboard)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)((byte*)vtable + 23 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 23 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr>)methodPtr;
         return func(pThis, hSteamLeaderboard);
     }
-    public static int GetLeaderboardEntryCount(this IntPtr pThis, int hSteamLeaderboard)
+    public static int GetLeaderboardEntryCount(this IntPtr pThis, ulong hSteamLeaderboard)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 24 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 24 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)methodPtr;
         return func(pThis, hSteamLeaderboard);
     }
-    public static int GetLeaderboardSortMethod(this IntPtr pThis, int hSteamLeaderboard)
+    public static int GetLeaderboardSortMethod(this IntPtr pThis, ulong hSteamLeaderboard)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 25 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 25 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)methodPtr;
         return func(pThis, hSteamLeaderboard);
     }
-    public static int GetLeaderboardDisplayType(this IntPtr pThis, int hSteamLeaderboard)
+    public static int GetLeaderboardDisplayType(this IntPtr pThis, ulong hSteamLeaderboard)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 26 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 26 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)methodPtr;
         return func(pThis, hSteamLeaderboard);
     }
-    public static ulong DownloadLeaderboardEntries(this IntPtr pThis, int hSteamLeaderboard, int eLeaderboardDataRequest, int nRangeStart, int nRangeEnd)
+    public static ulong DownloadLeaderboardEntries(this IntPtr pThis, ulong hSteamLeaderboard, int eLeaderboardDataRequest, int nRangeStart, int nRangeEnd)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, int, ulong>)((byte*)vtable + 27 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 27 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, int, int, ulong>)methodPtr;
         return func(pThis, hSteamLeaderboard, eLeaderboardDataRequest, nRangeStart, nRangeEnd);
     }
-    public static ulong DownloadLeaderboardEntriesForUsers(this IntPtr pThis, int hSteamLeaderboard, IntPtr prgUsers, int cUsers)
+    public static ulong DownloadLeaderboardEntriesForUsers(this IntPtr pThis, ulong hSteamLeaderboard, IntPtr prgUsers, int cUsers)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, int, ulong>)((byte*)vtable + 28 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 28 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, int, ulong>)methodPtr;
         return func(pThis, hSteamLeaderboard, prgUsers, cUsers);
     }
-    public static byte GetDownloadedLeaderboardEntry(this IntPtr pThis, int hSteamLeaderboardEntries, int index, IntPtr pLeaderboardEntry, IntPtr pDetails, int cDetailsMax)
+    public static byte GetDownloadedLeaderboardEntry(this IntPtr pThis, ulong hSteamLeaderboardEntries, int index, IntPtr pLeaderboardEntry, IntPtr pDetails, int cDetailsMax)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, IntPtr, IntPtr, int, byte>)((byte*)vtable + 29 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 29 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, IntPtr, IntPtr, int, byte>)methodPtr;
         return func(pThis, hSteamLeaderboardEntries, index, pLeaderboardEntry, pDetails, cDetailsMax);
     }
-    public static ulong UploadLeaderboardScore(this IntPtr pThis, int hSteamLeaderboard, int eLeaderboardUploadScoreMethod, int nScore, IntPtr pScoreDetails, int cScoreDetailsCount)
+    public static ulong UploadLeaderboardScore(this IntPtr pThis, ulong hSteamLeaderboard, int eLeaderboardUploadScoreMethod, int nScore, IntPtr pScoreDetails, int cScoreDetailsCount)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, IntPtr, int, ulong>)((byte*)vtable + 30 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 30 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, int, IntPtr, int, ulong>)methodPtr;
         return func(pThis, hSteamLeaderboard, eLeaderboardUploadScoreMethod, nScore, pScoreDetails, cScoreDetailsCount);
     }
-    public static ulong AttachLeaderboardUGC(this IntPtr pThis, int hSteamLeaderboard, int hUGC)
+    public static ulong AttachLeaderboardUGC(this IntPtr pThis, ulong hSteamLeaderboard, ulong hUGC)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, ulong>)((byte*)vtable + 31 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 31 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, ulong>)methodPtr;
         return func(pThis, hSteamLeaderboard, hUGC);
     }
     public static ulong GetNumberOfCurrentPlayers(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong>)((byte*)vtable + 32 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 32 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong>)methodPtr;
         return func(pThis);
     }
     public static ulong RequestGlobalAchievementPercentages(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong>)((byte*)vtable + 33 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 33 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong>)methodPtr;
         return func(pThis);
     }
     public static int GetMostAchievedAchievementInfo(this IntPtr pThis, IntPtr pchName, uint unNameBufLen, IntPtr pflPercent, IntPtr pbAchieved)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, IntPtr, IntPtr, int>)((byte*)vtable + 34 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 34 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, IntPtr, IntPtr, int>)methodPtr;
         return func(pThis, pchName, unNameBufLen, pflPercent, pbAchieved);
     }
     public static int GetNextMostAchievedAchievementInfo(this IntPtr pThis, int iIteratorPrevious, IntPtr pchName, uint unNameBufLen, IntPtr pflPercent, IntPtr pbAchieved)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, uint, IntPtr, IntPtr, int>)((byte*)vtable + 35 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 35 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, uint, IntPtr, IntPtr, int>)methodPtr;
         return func(pThis, iIteratorPrevious, pchName, unNameBufLen, pflPercent, pbAchieved);
     }
     public static byte GetAchievementAchievedPercent(this IntPtr pThis, IntPtr pchName, IntPtr pflPercent)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte>)((byte*)vtable + 36 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 36 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pchName, pflPercent);
     }
     public static ulong RequestGlobalStats(this IntPtr pThis, int nHistoryDays)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, ulong>)((byte*)vtable + 37 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 37 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, ulong>)methodPtr;
         return func(pThis, nHistoryDays);
     }
-    public static byte GetGlobalStat(this IntPtr pThis, IntPtr pchStatName, IntPtr pData)
+    public static byte GetGlobalStat_Int64(this IntPtr pThis, IntPtr pchStatName, IntPtr pData)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte>)((byte*)vtable + 38 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 38 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pchStatName, pData);
     }
-    public static byte GetGlobalStat(this IntPtr pThis, IntPtr pchStatName, IntPtr pData)
+    public static byte GetGlobalStat_Double(this IntPtr pThis, IntPtr pchStatName, IntPtr pData)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte>)((byte*)vtable + 39 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 39 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pchStatName, pData);
     }
-    public static int GetGlobalStatHistory(this IntPtr pThis, IntPtr pchStatName, IntPtr pData, uint cubData)
+    public static int GetGlobalStatHistory_Int64(this IntPtr pThis, IntPtr pchStatName, IntPtr pData, uint cubData)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, uint, int>)((byte*)vtable + 40 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 40 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, uint, int>)methodPtr;
         return func(pThis, pchStatName, pData, cubData);
     }
-    public static int GetGlobalStatHistory(this IntPtr pThis, IntPtr pchStatName, IntPtr pData, uint cubData)
+    public static int GetGlobalStatHistory_Double(this IntPtr pThis, IntPtr pchStatName, IntPtr pData, uint cubData)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, uint, int>)((byte*)vtable + 41 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 41 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, uint, int>)methodPtr;
         return func(pThis, pchStatName, pData, cubData);
     }
-    public static byte GetAchievementProgressLimits(this IntPtr pThis, IntPtr pchName, IntPtr pnMinProgress, IntPtr pnMaxProgress)
+    public static byte GetAchievementProgressLimits_Int32(this IntPtr pThis, IntPtr pchName, IntPtr pnMinProgress, IntPtr pnMaxProgress)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr, byte>)((byte*)vtable + 42 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 42 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pchName, pnMinProgress, pnMaxProgress);
     }
-    public static byte GetAchievementProgressLimits(this IntPtr pThis, IntPtr pchName, IntPtr pfMinProgress, IntPtr pfMaxProgress)
+    public static byte GetAchievementProgressLimits_Float(this IntPtr pThis, IntPtr pchName, IntPtr pfMinProgress, IntPtr pfMaxProgress)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr, byte>)((byte*)vtable + 43 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 43 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pchName, pfMinProgress, pfMaxProgress);
     }
+}
 
+public static unsafe class ISteamAppsExtensions
+{
     public static byte BIsSubscribed(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 0 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static byte BIsLowViolence(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 1 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static byte BIsCybercafe(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 2 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static byte BIsVACBanned(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 3 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static IntPtr GetCurrentGameLanguage(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)((byte*)vtable + 4 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 4 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)methodPtr;
         return func(pThis);
     }
     public static IntPtr GetAvailableGameLanguages(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)((byte*)vtable + 5 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 5 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)methodPtr;
         return func(pThis);
     }
-    public static byte BIsSubscribedApp(this IntPtr pThis, int appID)
+    public static byte BIsSubscribedApp(this IntPtr pThis, uint appID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte>)((byte*)vtable + 6 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 6 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, byte>)methodPtr;
         return func(pThis, appID);
     }
-    public static byte BIsDlcInstalled(this IntPtr pThis, int appID)
+    public static byte BIsDlcInstalled(this IntPtr pThis, uint appID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte>)((byte*)vtable + 7 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 7 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, byte>)methodPtr;
         return func(pThis, appID);
     }
-    public static uint GetEarliestPurchaseUnixTime(this IntPtr pThis, int nAppID)
+    public static uint GetEarliestPurchaseUnixTime(this IntPtr pThis, uint nAppID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint>)((byte*)vtable + 8 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 8 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint>)methodPtr;
         return func(pThis, nAppID);
     }
     public static byte BIsSubscribedFromFreeWeekend(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 9 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 9 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static int GetDLCCount(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int>)((byte*)vtable + 10 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 10 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int>)methodPtr;
         return func(pThis);
     }
     public static byte BGetDLCDataByIndex(this IntPtr pThis, int iDLC, IntPtr pAppID, IntPtr pbAvailable, IntPtr pchName, int cchNameBufferSize)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, IntPtr, int, byte>)((byte*)vtable + 11 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 11 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, IntPtr, int, byte>)methodPtr;
         return func(pThis, iDLC, pAppID, pbAvailable, pchName, cchNameBufferSize);
     }
-    public static void InstallDLC(this IntPtr pThis, int nAppID)
+    public static void InstallDLC(this IntPtr pThis, uint nAppID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, void>)((byte*)vtable + 12 * IntPtr.Size);
-        return func(pThis, nAppID);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 12 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, void>)methodPtr;
+        func(pThis, nAppID);
     }
-    public static void UninstallDLC(this IntPtr pThis, int nAppID)
+    public static void UninstallDLC(this IntPtr pThis, uint nAppID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, void>)((byte*)vtable + 13 * IntPtr.Size);
-        return func(pThis, nAppID);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 13 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, void>)methodPtr;
+        func(pThis, nAppID);
     }
-    public static void RequestAppProofOfPurchaseKey(this IntPtr pThis, int nAppID)
+    public static void RequestAppProofOfPurchaseKey(this IntPtr pThis, uint nAppID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, void>)((byte*)vtable + 14 * IntPtr.Size);
-        return func(pThis, nAppID);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 14 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, void>)methodPtr;
+        func(pThis, nAppID);
     }
     public static byte GetCurrentBetaName(this IntPtr pThis, IntPtr pchName, int cchNameBufferSize)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, byte>)((byte*)vtable + 15 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 15 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, byte>)methodPtr;
         return func(pThis, pchName, cchNameBufferSize);
     }
     public static byte MarkContentCorrupt(this IntPtr pThis, byte bMissingFilesOnly)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte, byte>)((byte*)vtable + 16 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 16 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte, byte>)methodPtr;
         return func(pThis, bMissingFilesOnly);
     }
-    public static uint GetInstalledDepots(this IntPtr pThis, int appID, IntPtr pvecDepots, uint cMaxDepots)
+    public static uint GetInstalledDepots(this IntPtr pThis, uint appID, IntPtr pvecDepots, uint cMaxDepots)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, uint, uint>)((byte*)vtable + 17 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 17 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, uint, uint>)methodPtr;
         return func(pThis, appID, pvecDepots, cMaxDepots);
     }
-    public static uint GetAppInstallDir(this IntPtr pThis, int appID, IntPtr pchFolder, uint cchFolderBufferSize)
+    public static uint GetAppInstallDir(this IntPtr pThis, uint appID, IntPtr pchFolder, uint cchFolderBufferSize)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, uint, uint>)((byte*)vtable + 18 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 18 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, uint, uint>)methodPtr;
         return func(pThis, appID, pchFolder, cchFolderBufferSize);
     }
-    public static byte BIsAppInstalled(this IntPtr pThis, int appID)
+    public static byte BIsAppInstalled(this IntPtr pThis, uint appID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte>)((byte*)vtable + 19 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 19 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, byte>)methodPtr;
         return func(pThis, appID);
     }
     public static ulong GetAppOwner(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong>)((byte*)vtable + 20 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 20 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong>)methodPtr;
         return func(pThis);
     }
     public static IntPtr GetLaunchQueryParam(this IntPtr pThis, IntPtr pchKey)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr>)((byte*)vtable + 21 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 21 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr>)methodPtr;
         return func(pThis, pchKey);
     }
-    public static byte GetDlcDownloadProgress(this IntPtr pThis, int nAppID, IntPtr punBytesDownloaded, IntPtr punBytesTotal)
+    public static byte GetDlcDownloadProgress(this IntPtr pThis, uint nAppID, IntPtr punBytesDownloaded, IntPtr punBytesTotal)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, byte>)((byte*)vtable + 22 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 22 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, nAppID, punBytesDownloaded, punBytesTotal);
     }
     public static int GetAppBuildId(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int>)((byte*)vtable + 23 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 23 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int>)methodPtr;
         return func(pThis);
     }
     public static void RequestAllProofOfPurchaseKeys(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 24 * IntPtr.Size);
-        return func(pThis);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 24 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
     }
     public static ulong GetFileDetails(this IntPtr pThis, IntPtr pszFileName)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, ulong>)((byte*)vtable + 25 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 25 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, ulong>)methodPtr;
         return func(pThis, pszFileName);
     }
     public static int GetLaunchCommandLine(this IntPtr pThis, IntPtr pszCommandLine, int cubCommandLine)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, int>)((byte*)vtable + 26 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 26 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, int>)methodPtr;
         return func(pThis, pszCommandLine, cubCommandLine);
     }
     public static byte BIsSubscribedFromFamilySharing(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 27 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 27 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static byte BIsTimedTrial(this IntPtr pThis, IntPtr punSecondsAllowed, IntPtr punSecondsPlayed)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte>)((byte*)vtable + 28 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 28 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, punSecondsAllowed, punSecondsPlayed);
     }
-    public static byte SetDlcContext(this IntPtr pThis, int nAppID)
+    public static byte SetDlcContext(this IntPtr pThis, uint nAppID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte>)((byte*)vtable + 29 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 29 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, byte>)methodPtr;
         return func(pThis, nAppID);
     }
     public static int GetNumBetas(this IntPtr pThis, IntPtr pnAvailable, IntPtr pnPrivate)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, int>)((byte*)vtable + 30 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 30 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, int>)methodPtr;
         return func(pThis, pnAvailable, pnPrivate);
     }
     public static byte GetBetaInfo(this IntPtr pThis, int iBetaIndex, IntPtr punFlags, IntPtr punBuildID, IntPtr pchBetaName, int cchBetaName, IntPtr pchDescription, int cchDescription)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, IntPtr, int, IntPtr, int, byte>)((byte*)vtable + 31 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 31 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, IntPtr, int, IntPtr, int, byte>)methodPtr;
         return func(pThis, iBetaIndex, punFlags, punBuildID, pchBetaName, cchBetaName, pchDescription, cchDescription);
     }
     public static byte SetActiveBeta(this IntPtr pThis, IntPtr pchBetaName)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)((byte*)vtable + 32 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 32 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pchBetaName);
     }
+}
 
+public static unsafe class ISteamNetworkingExtensions
+{
     public static byte SendP2PPacket(this IntPtr pThis, ulong steamIDRemote, IntPtr pubData, uint cubData, int eP2PSendType, int nChannel)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, uint, int, int, byte>)((byte*)vtable + 0 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, uint, int, int, byte>)methodPtr;
         return func(pThis, steamIDRemote, pubData, cubData, eP2PSendType, nChannel);
     }
     public static byte IsP2PPacketAvailable(this IntPtr pThis, IntPtr pcubMsgSize, int nChannel)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, byte>)((byte*)vtable + 1 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, byte>)methodPtr;
         return func(pThis, pcubMsgSize, nChannel);
     }
     public static byte ReadP2PPacket(this IntPtr pThis, IntPtr pubDest, uint cubDest, IntPtr pcubMsgSize, IntPtr psteamIDRemote, int nChannel)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, IntPtr, IntPtr, int, byte>)((byte*)vtable + 2 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, IntPtr, IntPtr, int, byte>)methodPtr;
         return func(pThis, pubDest, cubDest, pcubMsgSize, psteamIDRemote, nChannel);
     }
     public static byte AcceptP2PSessionWithUser(this IntPtr pThis, ulong steamIDRemote)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, byte>)((byte*)vtable + 3 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte>)methodPtr;
         return func(pThis, steamIDRemote);
     }
     public static byte CloseP2PSessionWithUser(this IntPtr pThis, ulong steamIDRemote)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, byte>)((byte*)vtable + 4 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 4 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte>)methodPtr;
         return func(pThis, steamIDRemote);
     }
     public static byte CloseP2PChannelWithUser(this IntPtr pThis, ulong steamIDRemote, int nChannel)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int, byte>)((byte*)vtable + 5 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 5 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, byte>)methodPtr;
         return func(pThis, steamIDRemote, nChannel);
     }
     public static byte GetP2PSessionState(this IntPtr pThis, ulong steamIDRemote, IntPtr pConnectionState)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)((byte*)vtable + 6 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 6 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, steamIDRemote, pConnectionState);
     }
     public static byte AllowP2PPacketRelay(this IntPtr pThis, byte bAllow)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte, byte>)((byte*)vtable + 7 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 7 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte, byte>)methodPtr;
         return func(pThis, bAllow);
     }
-    public static int CreateListenSocket(this IntPtr pThis, int nVirtualP2PPort, int nIP, int nPort, byte bAllowUseOfPacketRelay)
+    public static uint CreateListenSocket(this IntPtr pThis, int nVirtualP2PPort, int nIP, int nPort, byte bAllowUseOfPacketRelay)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, byte, int>)((byte*)vtable + 8 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 8 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, int, byte, uint>)methodPtr;
         return func(pThis, nVirtualP2PPort, nIP, nPort, bAllowUseOfPacketRelay);
     }
-    public static int CreateP2PConnectionSocket(this IntPtr pThis, ulong steamIDTarget, int nVirtualPort, int nTimeoutSec, byte bAllowUseOfPacketRelay)
+    public static uint CreateP2PConnectionSocket(this IntPtr pThis, ulong steamIDTarget, int nVirtualPort, int nTimeoutSec, byte bAllowUseOfPacketRelay)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int, int, byte, int>)((byte*)vtable + 9 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 9 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, int, byte, uint>)methodPtr;
         return func(pThis, steamIDTarget, nVirtualPort, nTimeoutSec, bAllowUseOfPacketRelay);
     }
-    public static int CreateConnectionSocket(this IntPtr pThis, int nIP, int nPort, int nTimeoutSec)
+    public static uint CreateConnectionSocket(this IntPtr pThis, int nIP, int nPort, int nTimeoutSec)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, int>)((byte*)vtable + 10 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 10 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, int, uint>)methodPtr;
         return func(pThis, nIP, nPort, nTimeoutSec);
     }
-    public static byte DestroySocket(this IntPtr pThis, int hSocket, byte bNotifyRemoteEnd)
+    public static byte DestroySocket(this IntPtr pThis, uint hSocket, byte bNotifyRemoteEnd)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte, byte>)((byte*)vtable + 11 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 11 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, byte, byte>)methodPtr;
         return func(pThis, hSocket, bNotifyRemoteEnd);
     }
-    public static byte DestroyListenSocket(this IntPtr pThis, int hSocket, byte bNotifyRemoteEnd)
+    public static byte DestroyListenSocket(this IntPtr pThis, uint hSocket, byte bNotifyRemoteEnd)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte, byte>)((byte*)vtable + 12 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 12 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, byte, byte>)methodPtr;
         return func(pThis, hSocket, bNotifyRemoteEnd);
     }
-    public static byte SendDataOnSocket(this IntPtr pThis, int hSocket, IntPtr pubData, uint cubData, byte bReliable)
+    public static byte SendDataOnSocket(this IntPtr pThis, uint hSocket, IntPtr pubData, uint cubData, byte bReliable)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, uint, byte, byte>)((byte*)vtable + 13 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 13 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, uint, byte, byte>)methodPtr;
         return func(pThis, hSocket, pubData, cubData, bReliable);
     }
-    public static byte IsDataAvailableOnSocket(this IntPtr pThis, int hSocket, IntPtr pcubMsgSize)
+    public static byte IsDataAvailableOnSocket(this IntPtr pThis, uint hSocket, IntPtr pcubMsgSize)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)((byte*)vtable + 14 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 14 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, byte>)methodPtr;
         return func(pThis, hSocket, pcubMsgSize);
     }
-    public static byte RetrieveDataFromSocket(this IntPtr pThis, int hSocket, IntPtr pubDest, uint cubDest, IntPtr pcubMsgSize)
+    public static byte RetrieveDataFromSocket(this IntPtr pThis, uint hSocket, IntPtr pubDest, uint cubDest, IntPtr pcubMsgSize)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, uint, IntPtr, byte>)((byte*)vtable + 15 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 15 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, uint, IntPtr, byte>)methodPtr;
         return func(pThis, hSocket, pubDest, cubDest, pcubMsgSize);
     }
-    public static byte IsDataAvailable(this IntPtr pThis, int hListenSocket, IntPtr pcubMsgSize, IntPtr phSocket)
+    public static byte IsDataAvailable(this IntPtr pThis, uint hListenSocket, IntPtr pcubMsgSize, IntPtr phSocket)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, byte>)((byte*)vtable + 16 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 16 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, hListenSocket, pcubMsgSize, phSocket);
     }
-    public static byte RetrieveData(this IntPtr pThis, int hListenSocket, IntPtr pubDest, uint cubDest, IntPtr pcubMsgSize, IntPtr phSocket)
+    public static byte RetrieveData(this IntPtr pThis, uint hListenSocket, IntPtr pubDest, uint cubDest, IntPtr pcubMsgSize, IntPtr phSocket)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, uint, IntPtr, IntPtr, byte>)((byte*)vtable + 17 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 17 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, uint, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, hListenSocket, pubDest, cubDest, pcubMsgSize, phSocket);
     }
-    public static byte GetSocketInfo(this IntPtr pThis, int hSocket, IntPtr pSteamIDRemote, IntPtr peSocketStatus, IntPtr punIPRemote, IntPtr punPortRemote)
+    public static byte GetSocketInfo(this IntPtr pThis, uint hSocket, IntPtr pSteamIDRemote, IntPtr peSocketStatus, IntPtr punIPRemote, IntPtr punPortRemote)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, IntPtr, IntPtr, byte>)((byte*)vtable + 18 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 18 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, IntPtr, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, hSocket, pSteamIDRemote, peSocketStatus, punIPRemote, punPortRemote);
     }
-    public static byte GetListenSocketInfo(this IntPtr pThis, int hListenSocket, IntPtr pnIP, IntPtr pnPort)
+    public static byte GetListenSocketInfo(this IntPtr pThis, uint hListenSocket, IntPtr pnIP, IntPtr pnPort)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, byte>)((byte*)vtable + 19 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 19 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, hListenSocket, pnIP, pnPort);
     }
-    public static int GetSocketConnectionType(this IntPtr pThis, int hSocket)
+    public static int GetSocketConnectionType(this IntPtr pThis, uint hSocket)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 20 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 20 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, int>)methodPtr;
         return func(pThis, hSocket);
     }
-    public static int GetMaxPacketSize(this IntPtr pThis, int hSocket)
+    public static int GetMaxPacketSize(this IntPtr pThis, uint hSocket)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 21 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 21 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, int>)methodPtr;
         return func(pThis, hSocket);
     }
+}
 
-    public static int WriteScreenshot(this IntPtr pThis, IntPtr pubRGB, uint cubRGB, int nWidth, int nHeight)
+public static unsafe class ISteamScreenshotsExtensions
+{
+    public static uint WriteScreenshot(this IntPtr pThis, IntPtr pubRGB, uint cubRGB, int nWidth, int nHeight)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, int, int, int>)((byte*)vtable + 0 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, int, int, uint>)methodPtr;
         return func(pThis, pubRGB, cubRGB, nWidth, nHeight);
     }
-    public static int AddScreenshotToLibrary(this IntPtr pThis, IntPtr pchFilename, IntPtr pchThumbnailFilename, int nWidth, int nHeight)
+    public static uint AddScreenshotToLibrary(this IntPtr pThis, IntPtr pchFilename, IntPtr pchThumbnailFilename, int nWidth, int nHeight)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, int, int, int>)((byte*)vtable + 1 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, int, int, uint>)methodPtr;
         return func(pThis, pchFilename, pchThumbnailFilename, nWidth, nHeight);
     }
     public static void TriggerScreenshot(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 2 * IntPtr.Size);
-        return func(pThis);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
     }
     public static void HookScreenshots(this IntPtr pThis, byte bHook)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte, void>)((byte*)vtable + 3 * IntPtr.Size);
-        return func(pThis, bHook);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte, void>)methodPtr;
+        func(pThis, bHook);
     }
-    public static byte SetLocation(this IntPtr pThis, int hScreenshot, IntPtr pchLocation)
+    public static byte SetLocation(this IntPtr pThis, uint hScreenshot, IntPtr pchLocation)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)((byte*)vtable + 4 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 4 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, byte>)methodPtr;
         return func(pThis, hScreenshot, pchLocation);
     }
-    public static byte TagUser(this IntPtr pThis, int hScreenshot, ulong steamID)
+    public static byte TagUser(this IntPtr pThis, uint hScreenshot, ulong steamID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, ulong, byte>)((byte*)vtable + 5 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 5 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, ulong, byte>)methodPtr;
         return func(pThis, hScreenshot, steamID);
     }
-    public static byte TagPublishedFile(this IntPtr pThis, int hScreenshot, int unPublishedFileID)
+    public static byte TagPublishedFile(this IntPtr pThis, uint hScreenshot, ulong unPublishedFileID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, byte>)((byte*)vtable + 6 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 6 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, ulong, byte>)methodPtr;
         return func(pThis, hScreenshot, unPublishedFileID);
     }
     public static byte IsScreenshotsHooked(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 7 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 7 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
-    public static int AddVRScreenshotToLibrary(this IntPtr pThis, int eType, IntPtr pchFilename, IntPtr pchVRFilename)
+    public static uint AddVRScreenshotToLibrary(this IntPtr pThis, int eType, IntPtr pchFilename, IntPtr pchVRFilename)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, int>)((byte*)vtable + 8 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 8 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, uint>)methodPtr;
         return func(pThis, eType, pchFilename, pchVRFilename);
     }
+}
 
+public static unsafe class ISteamMusicExtensions
+{
     public static byte BIsEnabled(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 0 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static byte BIsPlaying(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 1 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static int GetPlaybackStatus(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int>)((byte*)vtable + 2 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int>)methodPtr;
         return func(pThis);
     }
     public static void Play(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 3 * IntPtr.Size);
-        return func(pThis);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
     }
     public static void Pause(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 4 * IntPtr.Size);
-        return func(pThis);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 4 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
     }
     public static void PlayPrevious(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 5 * IntPtr.Size);
-        return func(pThis);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 5 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
     }
     public static void PlayNext(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 6 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 6 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
+    }
+    public static void SetVolume(this IntPtr pThis, float flVolume)
+    {
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 7 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)methodPtr;
+        func(pThis, flVolume);
+    }
+    public static float GetVolume(this IntPtr pThis)
+    {
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 8 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, float>)methodPtr;
         return func(pThis);
     }
-    public static void SetVolume(this IntPtr pThis, int flVolume)
-    {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, void>)((byte*)vtable + 7 * IntPtr.Size);
-        return func(pThis, flVolume);
-    }
-    public static int GetVolume(this IntPtr pThis)
-    {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int>)((byte*)vtable + 8 * IntPtr.Size);
-        return func(pThis);
-    }
+}
 
+public static unsafe class ISteamHTTPExtensions
+{
     public static uint CreateHTTPRequest(this IntPtr pThis, int eHTTPRequestMethod, IntPtr pchAbsoluteURL)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, uint>)((byte*)vtable + 0 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, uint>)methodPtr;
         return func(pThis, eHTTPRequestMethod, pchAbsoluteURL);
     }
     public static byte SetHTTPRequestContextValue(this IntPtr pThis, uint hRequest, ulong ulContextValue)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, ulong, byte>)((byte*)vtable + 1 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, ulong, byte>)methodPtr;
         return func(pThis, hRequest, ulContextValue);
     }
     public static byte SetHTTPRequestNetworkActivityTimeout(this IntPtr pThis, uint hRequest, uint unTimeoutSeconds)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, byte>)((byte*)vtable + 2 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, byte>)methodPtr;
         return func(pThis, hRequest, unTimeoutSeconds);
     }
     public static byte SetHTTPRequestHeaderValue(this IntPtr pThis, uint hRequest, IntPtr pchHeaderName, IntPtr pchHeaderValue)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, IntPtr, byte>)((byte*)vtable + 3 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, hRequest, pchHeaderName, pchHeaderValue);
     }
     public static byte SetHTTPRequestGetOrPostParameter(this IntPtr pThis, uint hRequest, IntPtr pchParamName, IntPtr pchParamValue)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, IntPtr, byte>)((byte*)vtable + 4 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 4 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, hRequest, pchParamName, pchParamValue);
     }
     public static byte SendHTTPRequest(this IntPtr pThis, uint hRequest, IntPtr pCallHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, byte>)((byte*)vtable + 5 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 5 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, byte>)methodPtr;
         return func(pThis, hRequest, pCallHandle);
     }
     public static byte SendHTTPRequestAndStreamResponse(this IntPtr pThis, uint hRequest, IntPtr pCallHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, byte>)((byte*)vtable + 6 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 6 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, byte>)methodPtr;
         return func(pThis, hRequest, pCallHandle);
     }
     public static byte DeferHTTPRequest(this IntPtr pThis, uint hRequest)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, byte>)((byte*)vtable + 7 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 7 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, byte>)methodPtr;
         return func(pThis, hRequest);
     }
     public static byte PrioritizeHTTPRequest(this IntPtr pThis, uint hRequest)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, byte>)((byte*)vtable + 8 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 8 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, byte>)methodPtr;
         return func(pThis, hRequest);
     }
     public static byte GetHTTPResponseHeaderSize(this IntPtr pThis, uint hRequest, IntPtr pchHeaderName, IntPtr unResponseHeaderSize)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, IntPtr, byte>)((byte*)vtable + 9 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 9 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, hRequest, pchHeaderName, unResponseHeaderSize);
     }
     public static byte GetHTTPResponseHeaderValue(this IntPtr pThis, uint hRequest, IntPtr pchHeaderName, IntPtr pHeaderValueBuffer, uint unBufferSize)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, IntPtr, uint, byte>)((byte*)vtable + 10 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 10 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, IntPtr, uint, byte>)methodPtr;
         return func(pThis, hRequest, pchHeaderName, pHeaderValueBuffer, unBufferSize);
     }
     public static byte GetHTTPResponseBodySize(this IntPtr pThis, uint hRequest, IntPtr unBodySize)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, byte>)((byte*)vtable + 11 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 11 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, byte>)methodPtr;
         return func(pThis, hRequest, unBodySize);
     }
     public static byte GetHTTPResponseBodyData(this IntPtr pThis, uint hRequest, IntPtr pBodyDataBuffer, uint unBufferSize)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, uint, byte>)((byte*)vtable + 12 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 12 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, uint, byte>)methodPtr;
         return func(pThis, hRequest, pBodyDataBuffer, unBufferSize);
     }
     public static byte GetHTTPStreamingResponseBodyData(this IntPtr pThis, uint hRequest, uint cOffset, IntPtr pBodyDataBuffer, uint unBufferSize)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, uint, byte>)((byte*)vtable + 13 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 13 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, IntPtr, uint, byte>)methodPtr;
         return func(pThis, hRequest, cOffset, pBodyDataBuffer, unBufferSize);
     }
     public static byte ReleaseHTTPRequest(this IntPtr pThis, uint hRequest)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, byte>)((byte*)vtable + 14 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 14 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, byte>)methodPtr;
         return func(pThis, hRequest);
     }
     public static byte GetHTTPDownloadProgressPct(this IntPtr pThis, uint hRequest, IntPtr pflPercentOut)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, byte>)((byte*)vtable + 15 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 15 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, byte>)methodPtr;
         return func(pThis, hRequest, pflPercentOut);
     }
     public static byte SetHTTPRequestRawPostBody(this IntPtr pThis, uint hRequest, IntPtr pchContentType, IntPtr pubBody, uint unBodyLen)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, IntPtr, uint, byte>)((byte*)vtable + 16 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 16 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, IntPtr, uint, byte>)methodPtr;
         return func(pThis, hRequest, pchContentType, pubBody, unBodyLen);
     }
     public static uint CreateCookieContainer(this IntPtr pThis, byte bAllowResponsesToModify)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte, uint>)((byte*)vtable + 17 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 17 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte, uint>)methodPtr;
         return func(pThis, bAllowResponsesToModify);
     }
     public static byte ReleaseCookieContainer(this IntPtr pThis, uint hCookieContainer)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, byte>)((byte*)vtable + 18 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 18 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, byte>)methodPtr;
         return func(pThis, hCookieContainer);
     }
     public static byte SetCookie(this IntPtr pThis, uint hCookieContainer, IntPtr pchHost, IntPtr pchUrl, IntPtr pchCookie)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, IntPtr, IntPtr, byte>)((byte*)vtable + 19 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 19 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, hCookieContainer, pchHost, pchUrl, pchCookie);
     }
     public static byte SetHTTPRequestCookieContainer(this IntPtr pThis, uint hRequest, uint hCookieContainer)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, byte>)((byte*)vtable + 20 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 20 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, byte>)methodPtr;
         return func(pThis, hRequest, hCookieContainer);
     }
     public static byte SetHTTPRequestUserAgentInfo(this IntPtr pThis, uint hRequest, IntPtr pchUserAgentInfo)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, byte>)((byte*)vtable + 21 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 21 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, byte>)methodPtr;
         return func(pThis, hRequest, pchUserAgentInfo);
     }
     public static byte SetHTTPRequestRequiresVerifiedCertificate(this IntPtr pThis, uint hRequest, byte bRequireVerifiedCertificate)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, byte, byte>)((byte*)vtable + 22 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 22 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, byte, byte>)methodPtr;
         return func(pThis, hRequest, bRequireVerifiedCertificate);
     }
     public static byte SetHTTPRequestAbsoluteTimeoutMS(this IntPtr pThis, uint hRequest, uint unMilliseconds)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, byte>)((byte*)vtable + 23 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 23 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, byte>)methodPtr;
         return func(pThis, hRequest, unMilliseconds);
     }
     public static byte GetHTTPRequestWasTimedOut(this IntPtr pThis, uint hRequest, IntPtr pbWasTimedOut)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, byte>)((byte*)vtable + 24 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 24 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, byte>)methodPtr;
         return func(pThis, hRequest, pbWasTimedOut);
     }
+}
 
+public static unsafe class ISteamInputExtensions
+{
     public static byte Init(this IntPtr pThis, byte bExplicitlyCallRunFrame)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte, byte>)((byte*)vtable + 0 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte, byte>)methodPtr;
         return func(pThis, bExplicitlyCallRunFrame);
     }
     public static byte Shutdown(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 1 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static byte SetInputActionManifestFilePath(this IntPtr pThis, IntPtr pchInputActionManifestAbsolutePath)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)((byte*)vtable + 2 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pchInputActionManifestAbsolutePath);
     }
     public static void RunFrame(this IntPtr pThis, byte bReservedValue)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte, void>)((byte*)vtable + 3 * IntPtr.Size);
-        return func(pThis, bReservedValue);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte, void>)methodPtr;
+        func(pThis, bReservedValue);
     }
     public static byte BWaitForData(this IntPtr pThis, byte bWaitForever, uint unTimeout)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte, uint, byte>)((byte*)vtable + 4 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 4 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte, uint, byte>)methodPtr;
         return func(pThis, bWaitForever, unTimeout);
     }
     public static byte BNewDataAvailable(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 5 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 5 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static int GetConnectedControllers(this IntPtr pThis, IntPtr handlesOut)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int>)((byte*)vtable + 6 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 6 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int>)methodPtr;
         return func(pThis, handlesOut);
     }
     public static void EnableDeviceCallbacks(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 7 * IntPtr.Size);
-        return func(pThis);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 7 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
     }
     public static void EnableActionEventCallbacks(this IntPtr pThis, int pCallback)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, void>)((byte*)vtable + 8 * IntPtr.Size);
-        return func(pThis, pCallback);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 8 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, void>)methodPtr;
+        func(pThis, pCallback);
     }
-    public static int GetActionSetHandle(this IntPtr pThis, IntPtr pszActionSetName)
+    public static ulong GetActionSetHandle(this IntPtr pThis, IntPtr pszActionSetName)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int>)((byte*)vtable + 9 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 9 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, ulong>)methodPtr;
         return func(pThis, pszActionSetName);
     }
-    public static void ActivateActionSet(this IntPtr pThis, int inputHandle, int actionSetHandle)
+    public static void ActivateActionSet(this IntPtr pThis, ulong inputHandle, ulong actionSetHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, void>)((byte*)vtable + 10 * IntPtr.Size);
-        return func(pThis, inputHandle, actionSetHandle);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 10 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, void>)methodPtr;
+        func(pThis, inputHandle, actionSetHandle);
     }
-    public static int GetCurrentActionSet(this IntPtr pThis, int inputHandle)
+    public static ulong GetCurrentActionSet(this IntPtr pThis, ulong inputHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 11 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 11 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, inputHandle);
     }
-    public static void ActivateActionSetLayer(this IntPtr pThis, int inputHandle, int actionSetLayerHandle)
+    public static void ActivateActionSetLayer(this IntPtr pThis, ulong inputHandle, ulong actionSetLayerHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, void>)((byte*)vtable + 12 * IntPtr.Size);
-        return func(pThis, inputHandle, actionSetLayerHandle);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 12 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, void>)methodPtr;
+        func(pThis, inputHandle, actionSetLayerHandle);
     }
-    public static void DeactivateActionSetLayer(this IntPtr pThis, int inputHandle, int actionSetLayerHandle)
+    public static void DeactivateActionSetLayer(this IntPtr pThis, ulong inputHandle, ulong actionSetLayerHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, void>)((byte*)vtable + 13 * IntPtr.Size);
-        return func(pThis, inputHandle, actionSetLayerHandle);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 13 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, void>)methodPtr;
+        func(pThis, inputHandle, actionSetLayerHandle);
     }
-    public static void DeactivateAllActionSetLayers(this IntPtr pThis, int inputHandle)
+    public static void DeactivateAllActionSetLayers(this IntPtr pThis, ulong inputHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, void>)((byte*)vtable + 14 * IntPtr.Size);
-        return func(pThis, inputHandle);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 14 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, void>)methodPtr;
+        func(pThis, inputHandle);
     }
-    public static int GetActiveActionSetLayers(this IntPtr pThis, int inputHandle, IntPtr handlesOut)
+    public static int GetActiveActionSetLayers(this IntPtr pThis, ulong inputHandle, IntPtr handlesOut)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, int>)((byte*)vtable + 15 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 15 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, int>)methodPtr;
         return func(pThis, inputHandle, handlesOut);
     }
-    public static int GetDigitalActionHandle(this IntPtr pThis, IntPtr pszActionName)
+    public static ulong GetDigitalActionHandle(this IntPtr pThis, IntPtr pszActionName)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int>)((byte*)vtable + 16 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 16 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, ulong>)methodPtr;
         return func(pThis, pszActionName);
     }
-    public static int GetDigitalActionData(this IntPtr pThis, int inputHandle, int digitalActionHandle)
+    public static int GetDigitalActionData(this IntPtr pThis, ulong inputHandle, ulong digitalActionHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int>)((byte*)vtable + 17 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 17 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, int>)methodPtr;
         return func(pThis, inputHandle, digitalActionHandle);
     }
-    public static int GetDigitalActionOrigins(this IntPtr pThis, int inputHandle, int actionSetHandle, int digitalActionHandle, IntPtr originsOut)
+    public static int GetDigitalActionOrigins(this IntPtr pThis, ulong inputHandle, ulong actionSetHandle, ulong digitalActionHandle, IntPtr originsOut)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, IntPtr, int>)((byte*)vtable + 18 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 18 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, ulong, IntPtr, int>)methodPtr;
         return func(pThis, inputHandle, actionSetHandle, digitalActionHandle, originsOut);
     }
-    public static IntPtr GetStringForDigitalActionName(this IntPtr pThis, int eActionHandle)
+    public static IntPtr GetStringForDigitalActionName(this IntPtr pThis, ulong eActionHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)((byte*)vtable + 19 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 19 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr>)methodPtr;
         return func(pThis, eActionHandle);
     }
-    public static int GetAnalogActionHandle(this IntPtr pThis, IntPtr pszActionName)
+    public static ulong GetAnalogActionHandle(this IntPtr pThis, IntPtr pszActionName)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int>)((byte*)vtable + 20 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 20 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, ulong>)methodPtr;
         return func(pThis, pszActionName);
     }
-    public static int GetAnalogActionData(this IntPtr pThis, int inputHandle, int analogActionHandle)
+    public static int GetAnalogActionData(this IntPtr pThis, ulong inputHandle, ulong analogActionHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int>)((byte*)vtable + 21 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 21 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, int>)methodPtr;
         return func(pThis, inputHandle, analogActionHandle);
     }
-    public static int GetAnalogActionOrigins(this IntPtr pThis, int inputHandle, int actionSetHandle, int analogActionHandle, IntPtr originsOut)
+    public static int GetAnalogActionOrigins(this IntPtr pThis, ulong inputHandle, ulong actionSetHandle, ulong analogActionHandle, IntPtr originsOut)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, IntPtr, int>)((byte*)vtable + 22 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 22 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, ulong, IntPtr, int>)methodPtr;
         return func(pThis, inputHandle, actionSetHandle, analogActionHandle, originsOut);
     }
     public static IntPtr GetGlyphPNGForActionOrigin(this IntPtr pThis, int eOrigin, int eSize, uint unFlags)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, uint, IntPtr>)((byte*)vtable + 23 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 23 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, uint, IntPtr>)methodPtr;
         return func(pThis, eOrigin, eSize, unFlags);
     }
     public static IntPtr GetGlyphSVGForActionOrigin(this IntPtr pThis, int eOrigin, uint unFlags)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, IntPtr>)((byte*)vtable + 24 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 24 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, uint, IntPtr>)methodPtr;
         return func(pThis, eOrigin, unFlags);
     }
     public static IntPtr GetGlyphForActionOrigin_Legacy(this IntPtr pThis, int eOrigin)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)((byte*)vtable + 25 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 25 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)methodPtr;
         return func(pThis, eOrigin);
     }
     public static IntPtr GetStringForActionOrigin(this IntPtr pThis, int eOrigin)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)((byte*)vtable + 26 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 26 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)methodPtr;
         return func(pThis, eOrigin);
     }
-    public static IntPtr GetStringForAnalogActionName(this IntPtr pThis, int eActionHandle)
+    public static IntPtr GetStringForAnalogActionName(this IntPtr pThis, ulong eActionHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)((byte*)vtable + 27 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 27 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr>)methodPtr;
         return func(pThis, eActionHandle);
     }
-    public static void StopAnalogActionMomentum(this IntPtr pThis, int inputHandle, int eAction)
+    public static void StopAnalogActionMomentum(this IntPtr pThis, ulong inputHandle, ulong eAction)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, void>)((byte*)vtable + 28 * IntPtr.Size);
-        return func(pThis, inputHandle, eAction);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 28 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, void>)methodPtr;
+        func(pThis, inputHandle, eAction);
     }
-    public static int GetMotionData(this IntPtr pThis, int inputHandle)
+    public static int GetMotionData(this IntPtr pThis, ulong inputHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 29 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 29 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)methodPtr;
         return func(pThis, inputHandle);
     }
-    public static void TriggerVibration(this IntPtr pThis, int inputHandle, int usLeftSpeed, int usRightSpeed)
+    public static void TriggerVibration(this IntPtr pThis, ulong inputHandle, int usLeftSpeed, int usRightSpeed)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, void>)((byte*)vtable + 30 * IntPtr.Size);
-        return func(pThis, inputHandle, usLeftSpeed, usRightSpeed);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 30 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, int, void>)methodPtr;
+        func(pThis, inputHandle, usLeftSpeed, usRightSpeed);
     }
-    public static void TriggerVibrationExtended(this IntPtr pThis, int inputHandle, int usLeftSpeed, int usRightSpeed, int usLeftTriggerSpeed, int usRightTriggerSpeed)
+    public static void TriggerVibrationExtended(this IntPtr pThis, ulong inputHandle, int usLeftSpeed, int usRightSpeed, int usLeftTriggerSpeed, int usRightTriggerSpeed)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, int, int, void>)((byte*)vtable + 31 * IntPtr.Size);
-        return func(pThis, inputHandle, usLeftSpeed, usRightSpeed, usLeftTriggerSpeed, usRightTriggerSpeed);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 31 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, int, int, int, void>)methodPtr;
+        func(pThis, inputHandle, usLeftSpeed, usRightSpeed, usLeftTriggerSpeed, usRightTriggerSpeed);
     }
-    public static void TriggerSimpleHapticEvent(this IntPtr pThis, int inputHandle, int eHapticLocation, int nIntensity, int nGainDB, int nOtherIntensity, int nOtherGainDB)
+    public static void TriggerSimpleHapticEvent(this IntPtr pThis, ulong inputHandle, int eHapticLocation, int nIntensity, int nGainDB, int nOtherIntensity, int nOtherGainDB)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, int, int, int, void>)((byte*)vtable + 32 * IntPtr.Size);
-        return func(pThis, inputHandle, eHapticLocation, nIntensity, nGainDB, nOtherIntensity, nOtherGainDB);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 32 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, int, int, int, int, void>)methodPtr;
+        func(pThis, inputHandle, eHapticLocation, nIntensity, nGainDB, nOtherIntensity, nOtherGainDB);
     }
-    public static void SetLEDColor(this IntPtr pThis, int inputHandle, int nColorR, int nColorG, int nColorB, int nFlags)
+    public static void SetLEDColor(this IntPtr pThis, ulong inputHandle, int nColorR, int nColorG, int nColorB, uint nFlags)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, int, int, void>)((byte*)vtable + 33 * IntPtr.Size);
-        return func(pThis, inputHandle, nColorR, nColorG, nColorB, nFlags);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 33 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, int, int, uint, void>)methodPtr;
+        func(pThis, inputHandle, nColorR, nColorG, nColorB, nFlags);
     }
-    public static void Legacy_TriggerHapticPulse(this IntPtr pThis, int inputHandle, int eTargetPad, int usDurationMicroSec)
+    public static void Legacy_TriggerHapticPulse(this IntPtr pThis, ulong inputHandle, int eTargetPad, int usDurationMicroSec)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, void>)((byte*)vtable + 34 * IntPtr.Size);
-        return func(pThis, inputHandle, eTargetPad, usDurationMicroSec);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 34 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, int, void>)methodPtr;
+        func(pThis, inputHandle, eTargetPad, usDurationMicroSec);
     }
-    public static void Legacy_TriggerRepeatedHapticPulse(this IntPtr pThis, int inputHandle, int eTargetPad, int usDurationMicroSec, int usOffMicroSec, int unRepeat, int nFlags)
+    public static void Legacy_TriggerRepeatedHapticPulse(this IntPtr pThis, ulong inputHandle, int eTargetPad, int usDurationMicroSec, int usOffMicroSec, int unRepeat, uint nFlags)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, int, int, int, void>)((byte*)vtable + 35 * IntPtr.Size);
-        return func(pThis, inputHandle, eTargetPad, usDurationMicroSec, usOffMicroSec, unRepeat, nFlags);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 35 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, int, int, int, uint, void>)methodPtr;
+        func(pThis, inputHandle, eTargetPad, usDurationMicroSec, usOffMicroSec, unRepeat, nFlags);
     }
-    public static byte ShowBindingPanel(this IntPtr pThis, int inputHandle)
+    public static byte ShowBindingPanel(this IntPtr pThis, ulong inputHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte>)((byte*)vtable + 36 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 36 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte>)methodPtr;
         return func(pThis, inputHandle);
     }
-    public static int GetInputTypeForHandle(this IntPtr pThis, int inputHandle)
+    public static int GetInputTypeForHandle(this IntPtr pThis, ulong inputHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 37 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 37 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)methodPtr;
         return func(pThis, inputHandle);
     }
-    public static int GetControllerForGamepadIndex(this IntPtr pThis, int nIndex)
+    public static ulong GetControllerForGamepadIndex(this IntPtr pThis, int nIndex)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 38 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 38 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, ulong>)methodPtr;
         return func(pThis, nIndex);
     }
-    public static int GetGamepadIndexForController(this IntPtr pThis, int ulinputHandle)
+    public static int GetGamepadIndexForController(this IntPtr pThis, ulong ulinputHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 39 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 39 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)methodPtr;
         return func(pThis, ulinputHandle);
     }
     public static IntPtr GetStringForXboxOrigin(this IntPtr pThis, int eOrigin)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)((byte*)vtable + 40 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 40 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)methodPtr;
         return func(pThis, eOrigin);
     }
     public static IntPtr GetGlyphForXboxOrigin(this IntPtr pThis, int eOrigin)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)((byte*)vtable + 41 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 41 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)methodPtr;
         return func(pThis, eOrigin);
     }
-    public static int GetActionOriginFromXboxOrigin(this IntPtr pThis, int inputHandle, int eOrigin)
+    public static int GetActionOriginFromXboxOrigin(this IntPtr pThis, ulong inputHandle, int eOrigin)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int>)((byte*)vtable + 42 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 42 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, int>)methodPtr;
         return func(pThis, inputHandle, eOrigin);
     }
     public static int TranslateActionOrigin(this IntPtr pThis, int eDestinationInputType, int eSourceOrigin)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int>)((byte*)vtable + 43 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 43 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, int>)methodPtr;
         return func(pThis, eDestinationInputType, eSourceOrigin);
     }
-    public static byte GetDeviceBindingRevision(this IntPtr pThis, int inputHandle, IntPtr pMajor, IntPtr pMinor)
+    public static byte GetDeviceBindingRevision(this IntPtr pThis, ulong inputHandle, IntPtr pMajor, IntPtr pMinor)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, byte>)((byte*)vtable + 44 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 44 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, inputHandle, pMajor, pMinor);
     }
-    public static uint GetRemotePlaySessionID(this IntPtr pThis, int inputHandle)
+    public static uint GetRemotePlaySessionID(this IntPtr pThis, ulong inputHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint>)((byte*)vtable + 45 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 45 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint>)methodPtr;
         return func(pThis, inputHandle);
     }
     public static int GetSessionInputConfigurationSettings(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int>)((byte*)vtable + 46 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 46 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int>)methodPtr;
         return func(pThis);
     }
-    public static void SetDualSenseTriggerEffect(this IntPtr pThis, int inputHandle, IntPtr pParam)
+    public static void SetDualSenseTriggerEffect(this IntPtr pThis, ulong inputHandle, IntPtr pParam)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, void>)((byte*)vtable + 47 * IntPtr.Size);
-        return func(pThis, inputHandle, pParam);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 47 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, void>)methodPtr;
+        func(pThis, inputHandle, pParam);
     }
+}
 
+public static unsafe class ISteamControllerExtensions
+{
     public static byte Init(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 0 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static byte Shutdown(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 1 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static void RunFrame(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 2 * IntPtr.Size);
-        return func(pThis);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
     }
     public static int GetConnectedControllers(this IntPtr pThis, IntPtr handlesOut)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int>)((byte*)vtable + 3 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int>)methodPtr;
         return func(pThis, handlesOut);
     }
-    public static int GetActionSetHandle(this IntPtr pThis, IntPtr pszActionSetName)
+    public static ulong GetActionSetHandle(this IntPtr pThis, IntPtr pszActionSetName)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int>)((byte*)vtable + 4 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 4 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, ulong>)methodPtr;
         return func(pThis, pszActionSetName);
     }
-    public static void ActivateActionSet(this IntPtr pThis, int controllerHandle, int actionSetHandle)
+    public static void ActivateActionSet(this IntPtr pThis, ulong controllerHandle, ulong actionSetHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, void>)((byte*)vtable + 5 * IntPtr.Size);
-        return func(pThis, controllerHandle, actionSetHandle);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 5 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, void>)methodPtr;
+        func(pThis, controllerHandle, actionSetHandle);
     }
-    public static int GetCurrentActionSet(this IntPtr pThis, int controllerHandle)
+    public static ulong GetCurrentActionSet(this IntPtr pThis, ulong controllerHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 6 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 6 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, controllerHandle);
     }
-    public static void ActivateActionSetLayer(this IntPtr pThis, int controllerHandle, int actionSetLayerHandle)
+    public static void ActivateActionSetLayer(this IntPtr pThis, ulong controllerHandle, ulong actionSetLayerHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, void>)((byte*)vtable + 7 * IntPtr.Size);
-        return func(pThis, controllerHandle, actionSetLayerHandle);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 7 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, void>)methodPtr;
+        func(pThis, controllerHandle, actionSetLayerHandle);
     }
-    public static void DeactivateActionSetLayer(this IntPtr pThis, int controllerHandle, int actionSetLayerHandle)
+    public static void DeactivateActionSetLayer(this IntPtr pThis, ulong controllerHandle, ulong actionSetLayerHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, void>)((byte*)vtable + 8 * IntPtr.Size);
-        return func(pThis, controllerHandle, actionSetLayerHandle);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 8 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, void>)methodPtr;
+        func(pThis, controllerHandle, actionSetLayerHandle);
     }
-    public static void DeactivateAllActionSetLayers(this IntPtr pThis, int controllerHandle)
+    public static void DeactivateAllActionSetLayers(this IntPtr pThis, ulong controllerHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, void>)((byte*)vtable + 9 * IntPtr.Size);
-        return func(pThis, controllerHandle);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 9 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, void>)methodPtr;
+        func(pThis, controllerHandle);
     }
-    public static int GetActiveActionSetLayers(this IntPtr pThis, int controllerHandle, IntPtr handlesOut)
+    public static int GetActiveActionSetLayers(this IntPtr pThis, ulong controllerHandle, IntPtr handlesOut)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, int>)((byte*)vtable + 10 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 10 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, int>)methodPtr;
         return func(pThis, controllerHandle, handlesOut);
     }
-    public static int GetDigitalActionHandle(this IntPtr pThis, IntPtr pszActionName)
+    public static ulong GetDigitalActionHandle(this IntPtr pThis, IntPtr pszActionName)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int>)((byte*)vtable + 11 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 11 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, ulong>)methodPtr;
         return func(pThis, pszActionName);
     }
-    public static int GetDigitalActionData(this IntPtr pThis, int controllerHandle, int digitalActionHandle)
+    public static int GetDigitalActionData(this IntPtr pThis, ulong controllerHandle, ulong digitalActionHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int>)((byte*)vtable + 12 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 12 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, int>)methodPtr;
         return func(pThis, controllerHandle, digitalActionHandle);
     }
-    public static int GetDigitalActionOrigins(this IntPtr pThis, int controllerHandle, int actionSetHandle, int digitalActionHandle, IntPtr originsOut)
+    public static int GetDigitalActionOrigins(this IntPtr pThis, ulong controllerHandle, ulong actionSetHandle, ulong digitalActionHandle, IntPtr originsOut)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, IntPtr, int>)((byte*)vtable + 13 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 13 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, ulong, IntPtr, int>)methodPtr;
         return func(pThis, controllerHandle, actionSetHandle, digitalActionHandle, originsOut);
     }
-    public static int GetAnalogActionHandle(this IntPtr pThis, IntPtr pszActionName)
+    public static ulong GetAnalogActionHandle(this IntPtr pThis, IntPtr pszActionName)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int>)((byte*)vtable + 14 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 14 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, ulong>)methodPtr;
         return func(pThis, pszActionName);
     }
-    public static int GetAnalogActionData(this IntPtr pThis, int controllerHandle, int analogActionHandle)
+    public static int GetAnalogActionData(this IntPtr pThis, ulong controllerHandle, ulong analogActionHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int>)((byte*)vtable + 15 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 15 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, int>)methodPtr;
         return func(pThis, controllerHandle, analogActionHandle);
     }
-    public static int GetAnalogActionOrigins(this IntPtr pThis, int controllerHandle, int actionSetHandle, int analogActionHandle, IntPtr originsOut)
+    public static int GetAnalogActionOrigins(this IntPtr pThis, ulong controllerHandle, ulong actionSetHandle, ulong analogActionHandle, IntPtr originsOut)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, IntPtr, int>)((byte*)vtable + 16 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 16 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, ulong, IntPtr, int>)methodPtr;
         return func(pThis, controllerHandle, actionSetHandle, analogActionHandle, originsOut);
     }
     public static IntPtr GetGlyphForActionOrigin(this IntPtr pThis, int eOrigin)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)((byte*)vtable + 17 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 17 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)methodPtr;
         return func(pThis, eOrigin);
     }
     public static IntPtr GetStringForActionOrigin(this IntPtr pThis, int eOrigin)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)((byte*)vtable + 18 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 18 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)methodPtr;
         return func(pThis, eOrigin);
     }
-    public static void StopAnalogActionMomentum(this IntPtr pThis, int controllerHandle, int eAction)
+    public static void StopAnalogActionMomentum(this IntPtr pThis, ulong controllerHandle, ulong eAction)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, void>)((byte*)vtable + 19 * IntPtr.Size);
-        return func(pThis, controllerHandle, eAction);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 19 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, void>)methodPtr;
+        func(pThis, controllerHandle, eAction);
     }
-    public static int GetMotionData(this IntPtr pThis, int controllerHandle)
+    public static int GetMotionData(this IntPtr pThis, ulong controllerHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 20 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 20 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)methodPtr;
         return func(pThis, controllerHandle);
     }
-    public static void TriggerHapticPulse(this IntPtr pThis, int controllerHandle, int eTargetPad, int usDurationMicroSec)
+    public static void TriggerHapticPulse(this IntPtr pThis, ulong controllerHandle, int eTargetPad, int usDurationMicroSec)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, void>)((byte*)vtable + 21 * IntPtr.Size);
-        return func(pThis, controllerHandle, eTargetPad, usDurationMicroSec);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 21 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, int, void>)methodPtr;
+        func(pThis, controllerHandle, eTargetPad, usDurationMicroSec);
     }
-    public static void TriggerRepeatedHapticPulse(this IntPtr pThis, int controllerHandle, int eTargetPad, int usDurationMicroSec, int usOffMicroSec, int unRepeat, int nFlags)
+    public static void TriggerRepeatedHapticPulse(this IntPtr pThis, ulong controllerHandle, int eTargetPad, int usDurationMicroSec, int usOffMicroSec, int unRepeat, uint nFlags)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, int, int, int, void>)((byte*)vtable + 22 * IntPtr.Size);
-        return func(pThis, controllerHandle, eTargetPad, usDurationMicroSec, usOffMicroSec, unRepeat, nFlags);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 22 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, int, int, int, uint, void>)methodPtr;
+        func(pThis, controllerHandle, eTargetPad, usDurationMicroSec, usOffMicroSec, unRepeat, nFlags);
     }
-    public static void TriggerVibration(this IntPtr pThis, int controllerHandle, int usLeftSpeed, int usRightSpeed)
+    public static void TriggerVibration(this IntPtr pThis, ulong controllerHandle, int usLeftSpeed, int usRightSpeed)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, void>)((byte*)vtable + 23 * IntPtr.Size);
-        return func(pThis, controllerHandle, usLeftSpeed, usRightSpeed);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 23 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, int, void>)methodPtr;
+        func(pThis, controllerHandle, usLeftSpeed, usRightSpeed);
     }
-    public static void SetLEDColor(this IntPtr pThis, int controllerHandle, int nColorR, int nColorG, int nColorB, int nFlags)
+    public static void SetLEDColor(this IntPtr pThis, ulong controllerHandle, int nColorR, int nColorG, int nColorB, uint nFlags)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, int, int, void>)((byte*)vtable + 24 * IntPtr.Size);
-        return func(pThis, controllerHandle, nColorR, nColorG, nColorB, nFlags);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 24 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, int, int, uint, void>)methodPtr;
+        func(pThis, controllerHandle, nColorR, nColorG, nColorB, nFlags);
     }
-    public static byte ShowBindingPanel(this IntPtr pThis, int controllerHandle)
+    public static byte ShowBindingPanel(this IntPtr pThis, ulong controllerHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte>)((byte*)vtable + 25 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 25 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte>)methodPtr;
         return func(pThis, controllerHandle);
     }
-    public static int GetInputTypeForHandle(this IntPtr pThis, int controllerHandle)
+    public static int GetInputTypeForHandle(this IntPtr pThis, ulong controllerHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 26 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 26 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)methodPtr;
         return func(pThis, controllerHandle);
     }
-    public static int GetControllerForGamepadIndex(this IntPtr pThis, int nIndex)
+    public static ulong GetControllerForGamepadIndex(this IntPtr pThis, int nIndex)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 27 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 27 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, ulong>)methodPtr;
         return func(pThis, nIndex);
     }
-    public static int GetGamepadIndexForController(this IntPtr pThis, int ulControllerHandle)
+    public static int GetGamepadIndexForController(this IntPtr pThis, ulong ulControllerHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 28 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 28 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int>)methodPtr;
         return func(pThis, ulControllerHandle);
     }
     public static IntPtr GetStringForXboxOrigin(this IntPtr pThis, int eOrigin)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)((byte*)vtable + 29 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 29 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)methodPtr;
         return func(pThis, eOrigin);
     }
     public static IntPtr GetGlyphForXboxOrigin(this IntPtr pThis, int eOrigin)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)((byte*)vtable + 30 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 30 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)methodPtr;
         return func(pThis, eOrigin);
     }
-    public static int GetActionOriginFromXboxOrigin(this IntPtr pThis, int controllerHandle, int eOrigin)
+    public static int GetActionOriginFromXboxOrigin(this IntPtr pThis, ulong controllerHandle, int eOrigin)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int>)((byte*)vtable + 31 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 31 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, int>)methodPtr;
         return func(pThis, controllerHandle, eOrigin);
     }
     public static int TranslateActionOrigin(this IntPtr pThis, int eDestinationInputType, int eSourceOrigin)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int>)((byte*)vtable + 32 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 32 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, int>)methodPtr;
         return func(pThis, eDestinationInputType, eSourceOrigin);
     }
-    public static byte GetControllerBindingRevision(this IntPtr pThis, int controllerHandle, IntPtr pMajor, IntPtr pMinor)
+    public static byte GetControllerBindingRevision(this IntPtr pThis, ulong controllerHandle, IntPtr pMajor, IntPtr pMinor)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, byte>)((byte*)vtable + 33 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 33 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, controllerHandle, pMajor, pMinor);
     }
+}
 
-    public static int CreateQueryUserUGCRequest(this IntPtr pThis, int unAccountID, int eListType, int eMatchingUGCType, int eSortOrder, int nCreatorAppID, int nConsumerAppID, uint unPage)
+public static unsafe class ISteamUGCExtensions
+{
+    public static ulong CreateQueryUserUGCRequest(this IntPtr pThis, uint unAccountID, int eListType, int eMatchingUGCType, int eSortOrder, uint nCreatorAppID, uint nConsumerAppID, uint unPage)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, int, int, int, uint, int>)((byte*)vtable + 0 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, int, int, int, uint, uint, uint, ulong>)methodPtr;
         return func(pThis, unAccountID, eListType, eMatchingUGCType, eSortOrder, nCreatorAppID, nConsumerAppID, unPage);
     }
-    public static int CreateQueryAllUGCRequest(this IntPtr pThis, int eQueryType, int eMatchingeMatchingUGCTypeFileType, int nCreatorAppID, int nConsumerAppID, uint unPage)
+    public static ulong CreateQueryAllUGCRequest_Page(this IntPtr pThis, int eQueryType, int eMatchingeMatchingUGCTypeFileType, uint nCreatorAppID, uint nConsumerAppID, uint unPage)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, int, uint, int>)((byte*)vtable + 1 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, uint, uint, uint, ulong>)methodPtr;
         return func(pThis, eQueryType, eMatchingeMatchingUGCTypeFileType, nCreatorAppID, nConsumerAppID, unPage);
     }
-    public static int CreateQueryAllUGCRequest(this IntPtr pThis, int eQueryType, int eMatchingeMatchingUGCTypeFileType, int nCreatorAppID, int nConsumerAppID, IntPtr pchCursor)
+    public static ulong CreateQueryAllUGCRequest_Cursor(this IntPtr pThis, int eQueryType, int eMatchingeMatchingUGCTypeFileType, uint nCreatorAppID, uint nConsumerAppID, IntPtr pchCursor)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, int, IntPtr, int>)((byte*)vtable + 2 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, uint, uint, IntPtr, ulong>)methodPtr;
         return func(pThis, eQueryType, eMatchingeMatchingUGCTypeFileType, nCreatorAppID, nConsumerAppID, pchCursor);
     }
-    public static int CreateQueryUGCDetailsRequest(this IntPtr pThis, IntPtr pvecPublishedFileID, uint unNumPublishedFileIDs)
+    public static ulong CreateQueryUGCDetailsRequest(this IntPtr pThis, IntPtr pvecPublishedFileID, uint unNumPublishedFileIDs)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, int>)((byte*)vtable + 3 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, ulong>)methodPtr;
         return func(pThis, pvecPublishedFileID, unNumPublishedFileIDs);
     }
-    public static ulong SendQueryUGCRequest(this IntPtr pThis, int handle)
+    public static ulong SendQueryUGCRequest(this IntPtr pThis, ulong handle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, ulong>)((byte*)vtable + 4 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 4 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, handle);
     }
-    public static byte GetQueryUGCResult(this IntPtr pThis, int handle, uint index, IntPtr pDetails)
+    public static byte GetQueryUGCResult(this IntPtr pThis, ulong handle, uint index, IntPtr pDetails)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, IntPtr, byte>)((byte*)vtable + 5 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 5 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, IntPtr, byte>)methodPtr;
         return func(pThis, handle, index, pDetails);
     }
-    public static uint GetQueryUGCNumTags(this IntPtr pThis, int handle, uint index)
+    public static uint GetQueryUGCNumTags(this IntPtr pThis, ulong handle, uint index)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, uint>)((byte*)vtable + 6 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 6 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, uint>)methodPtr;
         return func(pThis, handle, index);
     }
-    public static byte GetQueryUGCTag(this IntPtr pThis, int handle, uint index, uint indexTag, IntPtr pchValue, uint cchValueSize)
+    public static byte GetQueryUGCTag(this IntPtr pThis, ulong handle, uint index, uint indexTag, IntPtr pchValue, uint cchValueSize)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, uint, IntPtr, uint, byte>)((byte*)vtable + 7 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 7 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, uint, IntPtr, uint, byte>)methodPtr;
         return func(pThis, handle, index, indexTag, pchValue, cchValueSize);
     }
-    public static byte GetQueryUGCTagDisplayName(this IntPtr pThis, int handle, uint index, uint indexTag, IntPtr pchValue, uint cchValueSize)
+    public static byte GetQueryUGCTagDisplayName(this IntPtr pThis, ulong handle, uint index, uint indexTag, IntPtr pchValue, uint cchValueSize)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, uint, IntPtr, uint, byte>)((byte*)vtable + 8 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 8 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, uint, IntPtr, uint, byte>)methodPtr;
         return func(pThis, handle, index, indexTag, pchValue, cchValueSize);
     }
-    public static byte GetQueryUGCPreviewURL(this IntPtr pThis, int handle, uint index, IntPtr pchURL, uint cchURLSize)
+    public static byte GetQueryUGCPreviewURL(this IntPtr pThis, ulong handle, uint index, IntPtr pchURL, uint cchURLSize)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, IntPtr, uint, byte>)((byte*)vtable + 9 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 9 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, IntPtr, uint, byte>)methodPtr;
         return func(pThis, handle, index, pchURL, cchURLSize);
     }
-    public static byte GetQueryUGCMetadata(this IntPtr pThis, int handle, uint index, IntPtr pchMetadata, uint cchMetadatasize)
+    public static byte GetQueryUGCMetadata(this IntPtr pThis, ulong handle, uint index, IntPtr pchMetadata, uint cchMetadatasize)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, IntPtr, uint, byte>)((byte*)vtable + 10 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 10 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, IntPtr, uint, byte>)methodPtr;
         return func(pThis, handle, index, pchMetadata, cchMetadatasize);
     }
-    public static byte GetQueryUGCChildren(this IntPtr pThis, int handle, uint index, IntPtr pvecPublishedFileID, uint cMaxEntries)
+    public static byte GetQueryUGCChildren(this IntPtr pThis, ulong handle, uint index, IntPtr pvecPublishedFileID, uint cMaxEntries)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, IntPtr, uint, byte>)((byte*)vtable + 11 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 11 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, IntPtr, uint, byte>)methodPtr;
         return func(pThis, handle, index, pvecPublishedFileID, cMaxEntries);
     }
-    public static byte GetQueryUGCStatistic(this IntPtr pThis, int handle, uint index, int eStatType, IntPtr pStatValue)
+    public static byte GetQueryUGCStatistic(this IntPtr pThis, ulong handle, uint index, int eStatType, IntPtr pStatValue)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, int, IntPtr, byte>)((byte*)vtable + 12 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 12 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, int, IntPtr, byte>)methodPtr;
         return func(pThis, handle, index, eStatType, pStatValue);
     }
-    public static uint GetQueryUGCNumAdditionalPreviews(this IntPtr pThis, int handle, uint index)
+    public static uint GetQueryUGCNumAdditionalPreviews(this IntPtr pThis, ulong handle, uint index)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, uint>)((byte*)vtable + 13 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 13 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, uint>)methodPtr;
         return func(pThis, handle, index);
     }
-    public static byte GetQueryUGCAdditionalPreview(this IntPtr pThis, int handle, uint index, uint previewIndex, IntPtr pchURLOrVideoID, uint cchURLSize, IntPtr pchOriginalFileName, uint cchOriginalFileNameSize, IntPtr pPreviewType)
+    public static byte GetQueryUGCAdditionalPreview(this IntPtr pThis, ulong handle, uint index, uint previewIndex, IntPtr pchURLOrVideoID, uint cchURLSize, IntPtr pchOriginalFileName, uint cchOriginalFileNameSize, IntPtr pPreviewType)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, uint, IntPtr, uint, IntPtr, uint, IntPtr, byte>)((byte*)vtable + 14 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 14 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, uint, IntPtr, uint, IntPtr, uint, IntPtr, byte>)methodPtr;
         return func(pThis, handle, index, previewIndex, pchURLOrVideoID, cchURLSize, pchOriginalFileName, cchOriginalFileNameSize, pPreviewType);
     }
-    public static uint GetQueryUGCNumKeyValueTags(this IntPtr pThis, int handle, uint index)
+    public static uint GetQueryUGCNumKeyValueTags(this IntPtr pThis, ulong handle, uint index)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, uint>)((byte*)vtable + 15 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 15 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, uint>)methodPtr;
         return func(pThis, handle, index);
     }
-    public static byte GetQueryUGCKeyValueTag(this IntPtr pThis, int handle, uint index, uint keyValueTagIndex, IntPtr pchKey, uint cchKeySize, IntPtr pchValue, uint cchValueSize)
+    public static byte GetQueryUGCKeyValueTag(this IntPtr pThis, ulong handle, uint index, uint keyValueTagIndex, IntPtr pchKey, uint cchKeySize, IntPtr pchValue, uint cchValueSize)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, uint, IntPtr, uint, IntPtr, uint, byte>)((byte*)vtable + 16 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 16 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, uint, IntPtr, uint, IntPtr, uint, byte>)methodPtr;
         return func(pThis, handle, index, keyValueTagIndex, pchKey, cchKeySize, pchValue, cchValueSize);
     }
-    public static byte GetQueryUGCKeyValueTag(this IntPtr pThis, int handle, uint index, IntPtr pchKey, IntPtr pchValue, uint cchValueSize)
+    public static byte GetQueryUGCKeyValueTag_2(this IntPtr pThis, ulong handle, uint index, IntPtr pchKey, IntPtr pchValue, uint cchValueSize)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, IntPtr, IntPtr, uint, byte>)((byte*)vtable + 17 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 17 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, IntPtr, IntPtr, uint, byte>)methodPtr;
         return func(pThis, handle, index, pchKey, pchValue, cchValueSize);
     }
-    public static uint GetNumSupportedGameVersions(this IntPtr pThis, int handle, uint index)
+    public static uint GetNumSupportedGameVersions(this IntPtr pThis, ulong handle, uint index)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, uint>)((byte*)vtable + 18 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 18 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, uint>)methodPtr;
         return func(pThis, handle, index);
     }
-    public static byte GetSupportedGameVersionData(this IntPtr pThis, int handle, uint index, uint versionIndex, IntPtr pchGameBranchMin, IntPtr pchGameBranchMax, uint cchGameBranchSize)
+    public static byte GetSupportedGameVersionData(this IntPtr pThis, ulong handle, uint index, uint versionIndex, IntPtr pchGameBranchMin, IntPtr pchGameBranchMax, uint cchGameBranchSize)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, uint, IntPtr, IntPtr, uint, byte>)((byte*)vtable + 19 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 19 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, uint, IntPtr, IntPtr, uint, byte>)methodPtr;
         return func(pThis, handle, index, versionIndex, pchGameBranchMin, pchGameBranchMax, cchGameBranchSize);
     }
-    public static uint GetQueryUGCContentDescriptors(this IntPtr pThis, int handle, uint index, IntPtr pvecDescriptors, uint cMaxEntries)
+    public static uint GetQueryUGCContentDescriptors(this IntPtr pThis, ulong handle, uint index, IntPtr pvecDescriptors, uint cMaxEntries)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, IntPtr, uint, uint>)((byte*)vtable + 20 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 20 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, IntPtr, uint, uint>)methodPtr;
         return func(pThis, handle, index, pvecDescriptors, cMaxEntries);
     }
-    public static byte ReleaseQueryUGCRequest(this IntPtr pThis, int handle)
+    public static byte ReleaseQueryUGCRequest(this IntPtr pThis, ulong handle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte>)((byte*)vtable + 21 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 21 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte>)methodPtr;
         return func(pThis, handle);
     }
-    public static byte AddRequiredTag(this IntPtr pThis, int handle, IntPtr pTagName)
+    public static byte AddRequiredTag(this IntPtr pThis, ulong handle, IntPtr pTagName)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)((byte*)vtable + 22 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 22 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, handle, pTagName);
     }
-    public static byte AddRequiredTagGroup(this IntPtr pThis, int handle, IntPtr pTagGroups)
+    public static byte AddRequiredTagGroup(this IntPtr pThis, ulong handle, IntPtr pTagGroups)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)((byte*)vtable + 23 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 23 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, handle, pTagGroups);
     }
-    public static byte AddExcludedTag(this IntPtr pThis, int handle, IntPtr pTagName)
+    public static byte AddExcludedTag(this IntPtr pThis, ulong handle, IntPtr pTagName)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)((byte*)vtable + 24 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 24 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, handle, pTagName);
     }
-    public static byte SetReturnOnlyIDs(this IntPtr pThis, int handle, byte bReturnOnlyIDs)
+    public static byte SetReturnOnlyIDs(this IntPtr pThis, ulong handle, byte bReturnOnlyIDs)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte, byte>)((byte*)vtable + 25 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 25 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte, byte>)methodPtr;
         return func(pThis, handle, bReturnOnlyIDs);
     }
-    public static byte SetReturnKeyValueTags(this IntPtr pThis, int handle, byte bReturnKeyValueTags)
+    public static byte SetReturnKeyValueTags(this IntPtr pThis, ulong handle, byte bReturnKeyValueTags)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte, byte>)((byte*)vtable + 26 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 26 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte, byte>)methodPtr;
         return func(pThis, handle, bReturnKeyValueTags);
     }
-    public static byte SetReturnLongDescription(this IntPtr pThis, int handle, byte bReturnLongDescription)
+    public static byte SetReturnLongDescription(this IntPtr pThis, ulong handle, byte bReturnLongDescription)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte, byte>)((byte*)vtable + 27 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 27 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte, byte>)methodPtr;
         return func(pThis, handle, bReturnLongDescription);
     }
-    public static byte SetReturnMetadata(this IntPtr pThis, int handle, byte bReturnMetadata)
+    public static byte SetReturnMetadata(this IntPtr pThis, ulong handle, byte bReturnMetadata)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte, byte>)((byte*)vtable + 28 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 28 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte, byte>)methodPtr;
         return func(pThis, handle, bReturnMetadata);
     }
-    public static byte SetReturnChildren(this IntPtr pThis, int handle, byte bReturnChildren)
+    public static byte SetReturnChildren(this IntPtr pThis, ulong handle, byte bReturnChildren)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte, byte>)((byte*)vtable + 29 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 29 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte, byte>)methodPtr;
         return func(pThis, handle, bReturnChildren);
     }
-    public static byte SetReturnAdditionalPreviews(this IntPtr pThis, int handle, byte bReturnAdditionalPreviews)
+    public static byte SetReturnAdditionalPreviews(this IntPtr pThis, ulong handle, byte bReturnAdditionalPreviews)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte, byte>)((byte*)vtable + 30 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 30 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte, byte>)methodPtr;
         return func(pThis, handle, bReturnAdditionalPreviews);
     }
-    public static byte SetReturnTotalOnly(this IntPtr pThis, int handle, byte bReturnTotalOnly)
+    public static byte SetReturnTotalOnly(this IntPtr pThis, ulong handle, byte bReturnTotalOnly)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte, byte>)((byte*)vtable + 31 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 31 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte, byte>)methodPtr;
         return func(pThis, handle, bReturnTotalOnly);
     }
-    public static byte SetReturnPlaytimeStats(this IntPtr pThis, int handle, uint unDays)
+    public static byte SetReturnPlaytimeStats(this IntPtr pThis, ulong handle, uint unDays)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, byte>)((byte*)vtable + 32 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 32 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, byte>)methodPtr;
         return func(pThis, handle, unDays);
     }
-    public static byte SetLanguage(this IntPtr pThis, int handle, IntPtr pchLanguage)
+    public static byte SetLanguage(this IntPtr pThis, ulong handle, IntPtr pchLanguage)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)((byte*)vtable + 33 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 33 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, handle, pchLanguage);
     }
-    public static byte SetAllowCachedResponse(this IntPtr pThis, int handle, uint unMaxAgeSeconds)
+    public static byte SetAllowCachedResponse(this IntPtr pThis, ulong handle, uint unMaxAgeSeconds)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, byte>)((byte*)vtable + 34 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 34 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, byte>)methodPtr;
         return func(pThis, handle, unMaxAgeSeconds);
     }
-    public static byte SetAdminQuery(this IntPtr pThis, int handle, byte bAdminQuery)
+    public static byte SetAdminQuery(this IntPtr pThis, ulong handle, byte bAdminQuery)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte, byte>)((byte*)vtable + 35 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 35 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte, byte>)methodPtr;
         return func(pThis, handle, bAdminQuery);
     }
-    public static byte SetCloudFileNameFilter(this IntPtr pThis, int handle, IntPtr pMatchCloudFileName)
+    public static byte SetCloudFileNameFilter(this IntPtr pThis, ulong handle, IntPtr pMatchCloudFileName)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)((byte*)vtable + 36 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 36 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, handle, pMatchCloudFileName);
     }
-    public static byte SetMatchAnyTag(this IntPtr pThis, int handle, byte bMatchAnyTag)
+    public static byte SetMatchAnyTag(this IntPtr pThis, ulong handle, byte bMatchAnyTag)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte, byte>)((byte*)vtable + 37 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 37 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte, byte>)methodPtr;
         return func(pThis, handle, bMatchAnyTag);
     }
-    public static byte SetSearchText(this IntPtr pThis, int handle, IntPtr pSearchText)
+    public static byte SetSearchText(this IntPtr pThis, ulong handle, IntPtr pSearchText)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)((byte*)vtable + 38 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 38 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, handle, pSearchText);
     }
-    public static byte SetRankedByTrendDays(this IntPtr pThis, int handle, uint unDays)
+    public static byte SetRankedByTrendDays(this IntPtr pThis, ulong handle, uint unDays)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, byte>)((byte*)vtable + 39 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 39 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, byte>)methodPtr;
         return func(pThis, handle, unDays);
     }
-    public static byte SetTimeCreatedDateRange(this IntPtr pThis, int handle, int rtStart, int rtEnd)
+    public static byte SetTimeCreatedDateRange(this IntPtr pThis, ulong handle, uint rtStart, uint rtEnd)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, byte>)((byte*)vtable + 40 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 40 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, uint, byte>)methodPtr;
         return func(pThis, handle, rtStart, rtEnd);
     }
-    public static byte SetTimeUpdatedDateRange(this IntPtr pThis, int handle, int rtStart, int rtEnd)
+    public static byte SetTimeUpdatedDateRange(this IntPtr pThis, ulong handle, uint rtStart, uint rtEnd)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, byte>)((byte*)vtable + 41 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 41 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, uint, byte>)methodPtr;
         return func(pThis, handle, rtStart, rtEnd);
     }
-    public static byte AddRequiredKeyValueTag(this IntPtr pThis, int handle, IntPtr pKey, IntPtr pValue)
+    public static byte AddRequiredKeyValueTag(this IntPtr pThis, ulong handle, IntPtr pKey, IntPtr pValue)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, byte>)((byte*)vtable + 42 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 42 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, handle, pKey, pValue);
     }
-    public static ulong RequestUGCDetails(this IntPtr pThis, int nPublishedFileID, uint unMaxAgeSeconds)
+    public static ulong RequestUGCDetails(this IntPtr pThis, ulong nPublishedFileID, uint unMaxAgeSeconds)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, ulong>)((byte*)vtable + 43 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 43 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, ulong>)methodPtr;
         return func(pThis, nPublishedFileID, unMaxAgeSeconds);
     }
-    public static ulong CreateItem(this IntPtr pThis, int nConsumerAppId, int eFileType)
+    public static ulong CreateItem(this IntPtr pThis, uint nConsumerAppId, int eFileType)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, ulong>)((byte*)vtable + 44 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 44 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, int, ulong>)methodPtr;
         return func(pThis, nConsumerAppId, eFileType);
     }
-    public static int StartItemUpdate(this IntPtr pThis, int nConsumerAppId, int nPublishedFileID)
+    public static ulong StartItemUpdate(this IntPtr pThis, uint nConsumerAppId, ulong nPublishedFileID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int>)((byte*)vtable + 45 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 45 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, ulong, ulong>)methodPtr;
         return func(pThis, nConsumerAppId, nPublishedFileID);
     }
-    public static byte SetItemTitle(this IntPtr pThis, int handle, IntPtr pchTitle)
+    public static byte SetItemTitle(this IntPtr pThis, ulong handle, IntPtr pchTitle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)((byte*)vtable + 46 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 46 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, handle, pchTitle);
     }
-    public static byte SetItemDescription(this IntPtr pThis, int handle, IntPtr pchDescription)
+    public static byte SetItemDescription(this IntPtr pThis, ulong handle, IntPtr pchDescription)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)((byte*)vtable + 47 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 47 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, handle, pchDescription);
     }
-    public static byte SetItemUpdateLanguage(this IntPtr pThis, int handle, IntPtr pchLanguage)
+    public static byte SetItemUpdateLanguage(this IntPtr pThis, ulong handle, IntPtr pchLanguage)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)((byte*)vtable + 48 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 48 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, handle, pchLanguage);
     }
-    public static byte SetItemMetadata(this IntPtr pThis, int handle, IntPtr pchMetaData)
+    public static byte SetItemMetadata(this IntPtr pThis, ulong handle, IntPtr pchMetaData)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)((byte*)vtable + 49 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 49 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, handle, pchMetaData);
     }
-    public static byte SetItemVisibility(this IntPtr pThis, int handle, int eVisibility)
+    public static byte SetItemVisibility(this IntPtr pThis, ulong handle, int eVisibility)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, byte>)((byte*)vtable + 50 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 50 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, byte>)methodPtr;
         return func(pThis, handle, eVisibility);
     }
-    public static byte SetItemTags(this IntPtr pThis, int updateHandle, IntPtr pTags, byte bAllowAdminTags)
+    public static byte SetItemTags(this IntPtr pThis, ulong updateHandle, IntPtr pTags, byte bAllowAdminTags)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte, byte>)((byte*)vtable + 51 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 51 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte, byte>)methodPtr;
         return func(pThis, updateHandle, pTags, bAllowAdminTags);
     }
-    public static byte SetItemContent(this IntPtr pThis, int handle, IntPtr pszContentFolder)
+    public static byte SetItemContent(this IntPtr pThis, ulong handle, IntPtr pszContentFolder)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)((byte*)vtable + 52 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 52 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, handle, pszContentFolder);
     }
-    public static byte SetItemPreview(this IntPtr pThis, int handle, IntPtr pszPreviewFile)
+    public static byte SetItemPreview(this IntPtr pThis, ulong handle, IntPtr pszPreviewFile)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)((byte*)vtable + 53 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 53 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, handle, pszPreviewFile);
     }
-    public static byte SetAllowLegacyUpload(this IntPtr pThis, int handle, byte bAllowLegacyUpload)
+    public static byte SetAllowLegacyUpload(this IntPtr pThis, ulong handle, byte bAllowLegacyUpload)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte, byte>)((byte*)vtable + 54 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 54 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte, byte>)methodPtr;
         return func(pThis, handle, bAllowLegacyUpload);
     }
-    public static byte RemoveAllItemKeyValueTags(this IntPtr pThis, int handle)
+    public static byte RemoveAllItemKeyValueTags(this IntPtr pThis, ulong handle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte>)((byte*)vtable + 55 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 55 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte>)methodPtr;
         return func(pThis, handle);
     }
-    public static byte RemoveItemKeyValueTags(this IntPtr pThis, int handle, IntPtr pchKey)
+    public static byte RemoveItemKeyValueTags(this IntPtr pThis, ulong handle, IntPtr pchKey)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)((byte*)vtable + 56 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 56 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, handle, pchKey);
     }
-    public static byte AddItemKeyValueTag(this IntPtr pThis, int handle, IntPtr pchKey, IntPtr pchValue)
+    public static byte AddItemKeyValueTag(this IntPtr pThis, ulong handle, IntPtr pchKey, IntPtr pchValue)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, byte>)((byte*)vtable + 57 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 57 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, handle, pchKey, pchValue);
     }
-    public static byte AddItemPreviewFile(this IntPtr pThis, int handle, IntPtr pszPreviewFile, int type)
+    public static byte AddItemPreviewFile(this IntPtr pThis, ulong handle, IntPtr pszPreviewFile, int type)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, int, byte>)((byte*)vtable + 58 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 58 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, int, byte>)methodPtr;
         return func(pThis, handle, pszPreviewFile, type);
     }
-    public static byte AddItemPreviewVideo(this IntPtr pThis, int handle, IntPtr pszVideoID)
+    public static byte AddItemPreviewVideo(this IntPtr pThis, ulong handle, IntPtr pszVideoID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)((byte*)vtable + 59 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 59 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, handle, pszVideoID);
     }
-    public static byte UpdateItemPreviewFile(this IntPtr pThis, int handle, uint index, IntPtr pszPreviewFile)
+    public static byte UpdateItemPreviewFile(this IntPtr pThis, ulong handle, uint index, IntPtr pszPreviewFile)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, IntPtr, byte>)((byte*)vtable + 60 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 60 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, IntPtr, byte>)methodPtr;
         return func(pThis, handle, index, pszPreviewFile);
     }
-    public static byte UpdateItemPreviewVideo(this IntPtr pThis, int handle, uint index, IntPtr pszVideoID)
+    public static byte UpdateItemPreviewVideo(this IntPtr pThis, ulong handle, uint index, IntPtr pszVideoID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, IntPtr, byte>)((byte*)vtable + 61 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 61 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, IntPtr, byte>)methodPtr;
         return func(pThis, handle, index, pszVideoID);
     }
-    public static byte RemoveItemPreview(this IntPtr pThis, int handle, uint index)
+    public static byte RemoveItemPreview(this IntPtr pThis, ulong handle, uint index)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, byte>)((byte*)vtable + 62 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 62 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, byte>)methodPtr;
         return func(pThis, handle, index);
     }
-    public static byte AddContentDescriptor(this IntPtr pThis, int handle, int descid)
+    public static byte AddContentDescriptor(this IntPtr pThis, ulong handle, int descid)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, byte>)((byte*)vtable + 63 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 63 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, byte>)methodPtr;
         return func(pThis, handle, descid);
     }
-    public static byte RemoveContentDescriptor(this IntPtr pThis, int handle, int descid)
+    public static byte RemoveContentDescriptor(this IntPtr pThis, ulong handle, int descid)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, byte>)((byte*)vtable + 64 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 64 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, int, byte>)methodPtr;
         return func(pThis, handle, descid);
     }
-    public static byte SetRequiredGameVersions(this IntPtr pThis, int handle, IntPtr pszGameBranchMin, IntPtr pszGameBranchMax)
+    public static byte SetRequiredGameVersions(this IntPtr pThis, ulong handle, IntPtr pszGameBranchMin, IntPtr pszGameBranchMax)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, byte>)((byte*)vtable + 65 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 65 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, handle, pszGameBranchMin, pszGameBranchMax);
     }
-    public static ulong SubmitItemUpdate(this IntPtr pThis, int handle, IntPtr pchChangeNote)
+    public static ulong SubmitItemUpdate(this IntPtr pThis, ulong handle, IntPtr pchChangeNote)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, ulong>)((byte*)vtable + 66 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 66 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, ulong>)methodPtr;
         return func(pThis, handle, pchChangeNote);
     }
-    public static int GetItemUpdateProgress(this IntPtr pThis, int handle, IntPtr punBytesProcessed, IntPtr punBytesTotal)
+    public static int GetItemUpdateProgress(this IntPtr pThis, ulong handle, IntPtr punBytesProcessed, IntPtr punBytesTotal)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, int>)((byte*)vtable + 67 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 67 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, int>)methodPtr;
         return func(pThis, handle, punBytesProcessed, punBytesTotal);
     }
-    public static ulong SetUserItemVote(this IntPtr pThis, int nPublishedFileID, byte bVoteUp)
+    public static ulong SetUserItemVote(this IntPtr pThis, ulong nPublishedFileID, byte bVoteUp)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte, ulong>)((byte*)vtable + 68 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 68 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte, ulong>)methodPtr;
         return func(pThis, nPublishedFileID, bVoteUp);
     }
-    public static ulong GetUserItemVote(this IntPtr pThis, int nPublishedFileID)
+    public static ulong GetUserItemVote(this IntPtr pThis, ulong nPublishedFileID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, ulong>)((byte*)vtable + 69 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 69 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, nPublishedFileID);
     }
-    public static ulong AddItemToFavorites(this IntPtr pThis, int nAppId, int nPublishedFileID)
+    public static ulong AddItemToFavorites(this IntPtr pThis, uint nAppId, ulong nPublishedFileID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, ulong>)((byte*)vtable + 70 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 70 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, ulong, ulong>)methodPtr;
         return func(pThis, nAppId, nPublishedFileID);
     }
-    public static ulong RemoveItemFromFavorites(this IntPtr pThis, int nAppId, int nPublishedFileID)
+    public static ulong RemoveItemFromFavorites(this IntPtr pThis, uint nAppId, ulong nPublishedFileID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, ulong>)((byte*)vtable + 71 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 71 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, ulong, ulong>)methodPtr;
         return func(pThis, nAppId, nPublishedFileID);
     }
-    public static ulong SubscribeItem(this IntPtr pThis, int nPublishedFileID)
+    public static ulong SubscribeItem(this IntPtr pThis, ulong nPublishedFileID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, ulong>)((byte*)vtable + 72 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 72 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, nPublishedFileID);
     }
-    public static ulong UnsubscribeItem(this IntPtr pThis, int nPublishedFileID)
+    public static ulong UnsubscribeItem(this IntPtr pThis, ulong nPublishedFileID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, ulong>)((byte*)vtable + 73 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 73 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, nPublishedFileID);
     }
     public static uint GetNumSubscribedItems(this IntPtr pThis, byte bIncludeLocallyDisabled)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte, uint>)((byte*)vtable + 74 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 74 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte, uint>)methodPtr;
         return func(pThis, bIncludeLocallyDisabled);
     }
     public static uint GetSubscribedItems(this IntPtr pThis, IntPtr pvecPublishedFileID, uint cMaxEntries, byte bIncludeLocallyDisabled)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, byte, uint>)((byte*)vtable + 75 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 75 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, byte, uint>)methodPtr;
         return func(pThis, pvecPublishedFileID, cMaxEntries, bIncludeLocallyDisabled);
     }
-    public static uint GetItemState(this IntPtr pThis, int nPublishedFileID)
+    public static uint GetItemState(this IntPtr pThis, ulong nPublishedFileID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint>)((byte*)vtable + 76 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 76 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint>)methodPtr;
         return func(pThis, nPublishedFileID);
     }
-    public static byte GetItemInstallInfo(this IntPtr pThis, int nPublishedFileID, IntPtr punSizeOnDisk, IntPtr pchFolder, uint cchFolderSize, IntPtr punTimeStamp)
+    public static byte GetItemInstallInfo(this IntPtr pThis, ulong nPublishedFileID, IntPtr punSizeOnDisk, IntPtr pchFolder, uint cchFolderSize, IntPtr punTimeStamp)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, uint, IntPtr, byte>)((byte*)vtable + 77 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 77 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, uint, IntPtr, byte>)methodPtr;
         return func(pThis, nPublishedFileID, punSizeOnDisk, pchFolder, cchFolderSize, punTimeStamp);
     }
-    public static byte GetItemDownloadInfo(this IntPtr pThis, int nPublishedFileID, IntPtr punBytesDownloaded, IntPtr punBytesTotal)
+    public static byte GetItemDownloadInfo(this IntPtr pThis, ulong nPublishedFileID, IntPtr punBytesDownloaded, IntPtr punBytesTotal)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, byte>)((byte*)vtable + 78 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 78 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, nPublishedFileID, punBytesDownloaded, punBytesTotal);
     }
-    public static byte DownloadItem(this IntPtr pThis, int nPublishedFileID, byte bHighPriority)
+    public static byte DownloadItem(this IntPtr pThis, ulong nPublishedFileID, byte bHighPriority)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte, byte>)((byte*)vtable + 79 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 79 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte, byte>)methodPtr;
         return func(pThis, nPublishedFileID, bHighPriority);
     }
-    public static byte BInitWorkshopForGameServer(this IntPtr pThis, int unWorkshopDepotID, IntPtr pszFolder)
+    public static byte BInitWorkshopForGameServer(this IntPtr pThis, uint unWorkshopDepotID, IntPtr pszFolder)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)((byte*)vtable + 80 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 80 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, byte>)methodPtr;
         return func(pThis, unWorkshopDepotID, pszFolder);
     }
     public static void SuspendDownloads(this IntPtr pThis, byte bSuspend)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte, void>)((byte*)vtable + 81 * IntPtr.Size);
-        return func(pThis, bSuspend);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 81 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte, void>)methodPtr;
+        func(pThis, bSuspend);
     }
     public static ulong StartPlaytimeTracking(this IntPtr pThis, IntPtr pvecPublishedFileID, uint unNumPublishedFileIDs)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, ulong>)((byte*)vtable + 82 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 82 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, ulong>)methodPtr;
         return func(pThis, pvecPublishedFileID, unNumPublishedFileIDs);
     }
     public static ulong StopPlaytimeTracking(this IntPtr pThis, IntPtr pvecPublishedFileID, uint unNumPublishedFileIDs)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, ulong>)((byte*)vtable + 83 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 83 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, ulong>)methodPtr;
         return func(pThis, pvecPublishedFileID, unNumPublishedFileIDs);
     }
     public static ulong StopPlaytimeTrackingForAllItems(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong>)((byte*)vtable + 84 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 84 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong>)methodPtr;
         return func(pThis);
     }
-    public static ulong AddDependency(this IntPtr pThis, int nParentPublishedFileID, int nChildPublishedFileID)
+    public static ulong AddDependency(this IntPtr pThis, ulong nParentPublishedFileID, ulong nChildPublishedFileID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, ulong>)((byte*)vtable + 85 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 85 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, ulong>)methodPtr;
         return func(pThis, nParentPublishedFileID, nChildPublishedFileID);
     }
-    public static ulong RemoveDependency(this IntPtr pThis, int nParentPublishedFileID, int nChildPublishedFileID)
+    public static ulong RemoveDependency(this IntPtr pThis, ulong nParentPublishedFileID, ulong nChildPublishedFileID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, ulong>)((byte*)vtable + 86 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 86 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, ulong>)methodPtr;
         return func(pThis, nParentPublishedFileID, nChildPublishedFileID);
     }
-    public static ulong AddAppDependency(this IntPtr pThis, int nPublishedFileID, int nAppID)
+    public static ulong AddAppDependency(this IntPtr pThis, ulong nPublishedFileID, uint nAppID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, ulong>)((byte*)vtable + 87 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 87 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, ulong>)methodPtr;
         return func(pThis, nPublishedFileID, nAppID);
     }
-    public static ulong RemoveAppDependency(this IntPtr pThis, int nPublishedFileID, int nAppID)
+    public static ulong RemoveAppDependency(this IntPtr pThis, ulong nPublishedFileID, uint nAppID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, ulong>)((byte*)vtable + 88 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 88 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, ulong>)methodPtr;
         return func(pThis, nPublishedFileID, nAppID);
     }
-    public static ulong GetAppDependencies(this IntPtr pThis, int nPublishedFileID)
+    public static ulong GetAppDependencies(this IntPtr pThis, ulong nPublishedFileID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, ulong>)((byte*)vtable + 89 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 89 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, nPublishedFileID);
     }
-    public static ulong DeleteItem(this IntPtr pThis, int nPublishedFileID)
+    public static ulong DeleteItem(this IntPtr pThis, ulong nPublishedFileID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, ulong>)((byte*)vtable + 90 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 90 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, nPublishedFileID);
     }
     public static byte ShowWorkshopEULA(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 91 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 91 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static ulong GetWorkshopEULAStatus(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong>)((byte*)vtable + 92 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 92 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong>)methodPtr;
         return func(pThis);
     }
     public static uint GetUserContentDescriptorPreferences(this IntPtr pThis, IntPtr pvecDescriptors, uint cMaxEntries)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, uint>)((byte*)vtable + 93 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 93 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, uint>)methodPtr;
         return func(pThis, pvecDescriptors, cMaxEntries);
     }
     public static byte SetItemsDisabledLocally(this IntPtr pThis, IntPtr pvecPublishedFileIDs, uint unNumPublishedFileIDs, byte bDisabledLocally)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, byte, byte>)((byte*)vtable + 94 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 94 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, byte, byte>)methodPtr;
         return func(pThis, pvecPublishedFileIDs, unNumPublishedFileIDs, bDisabledLocally);
     }
     public static byte SetSubscriptionsLoadOrder(this IntPtr pThis, IntPtr pvecPublishedFileIDs, uint unNumPublishedFileIDs)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, byte>)((byte*)vtable + 95 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 95 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, byte>)methodPtr;
         return func(pThis, pvecPublishedFileIDs, unNumPublishedFileIDs);
     }
+}
 
+public static unsafe class ISteamHTMLSurfaceExtensions
+{
     public static byte Init(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 0 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static byte Shutdown(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 1 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static ulong CreateBrowser(this IntPtr pThis, IntPtr pchUserAgent, IntPtr pchUserCSS)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, ulong>)((byte*)vtable + 2 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, ulong>)methodPtr;
         return func(pThis, pchUserAgent, pchUserCSS);
     }
     public static void RemoveBrowser(this IntPtr pThis, uint unBrowserHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, void>)((byte*)vtable + 3 * IntPtr.Size);
-        return func(pThis, unBrowserHandle);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, void>)methodPtr;
+        func(pThis, unBrowserHandle);
     }
     public static void LoadURL(this IntPtr pThis, uint unBrowserHandle, IntPtr pchURL, IntPtr pchPostData)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, IntPtr, void>)((byte*)vtable + 4 * IntPtr.Size);
-        return func(pThis, unBrowserHandle, pchURL, pchPostData);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 4 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, IntPtr, void>)methodPtr;
+        func(pThis, unBrowserHandle, pchURL, pchPostData);
     }
     public static void SetSize(this IntPtr pThis, uint unBrowserHandle, uint unWidth, uint unHeight)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, uint, void>)((byte*)vtable + 5 * IntPtr.Size);
-        return func(pThis, unBrowserHandle, unWidth, unHeight);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 5 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, uint, void>)methodPtr;
+        func(pThis, unBrowserHandle, unWidth, unHeight);
     }
     public static void StopLoad(this IntPtr pThis, uint unBrowserHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, void>)((byte*)vtable + 6 * IntPtr.Size);
-        return func(pThis, unBrowserHandle);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 6 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, void>)methodPtr;
+        func(pThis, unBrowserHandle);
     }
     public static void Reload(this IntPtr pThis, uint unBrowserHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, void>)((byte*)vtable + 7 * IntPtr.Size);
-        return func(pThis, unBrowserHandle);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 7 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, void>)methodPtr;
+        func(pThis, unBrowserHandle);
     }
     public static void GoBack(this IntPtr pThis, uint unBrowserHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, void>)((byte*)vtable + 8 * IntPtr.Size);
-        return func(pThis, unBrowserHandle);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 8 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, void>)methodPtr;
+        func(pThis, unBrowserHandle);
     }
     public static void GoForward(this IntPtr pThis, uint unBrowserHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, void>)((byte*)vtable + 9 * IntPtr.Size);
-        return func(pThis, unBrowserHandle);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 9 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, void>)methodPtr;
+        func(pThis, unBrowserHandle);
     }
     public static void AddHeader(this IntPtr pThis, uint unBrowserHandle, IntPtr pchKey, IntPtr pchValue)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, IntPtr, void>)((byte*)vtable + 10 * IntPtr.Size);
-        return func(pThis, unBrowserHandle, pchKey, pchValue);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 10 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, IntPtr, void>)methodPtr;
+        func(pThis, unBrowserHandle, pchKey, pchValue);
     }
     public static void ExecuteJavascript(this IntPtr pThis, uint unBrowserHandle, IntPtr pchScript)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, void>)((byte*)vtable + 11 * IntPtr.Size);
-        return func(pThis, unBrowserHandle, pchScript);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 11 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, void>)methodPtr;
+        func(pThis, unBrowserHandle, pchScript);
     }
     public static void MouseUp(this IntPtr pThis, uint unBrowserHandle, int eMouseButton)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, int, void>)((byte*)vtable + 12 * IntPtr.Size);
-        return func(pThis, unBrowserHandle, eMouseButton);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 12 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, int, void>)methodPtr;
+        func(pThis, unBrowserHandle, eMouseButton);
     }
     public static void MouseDown(this IntPtr pThis, uint unBrowserHandle, int eMouseButton)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, int, void>)((byte*)vtable + 13 * IntPtr.Size);
-        return func(pThis, unBrowserHandle, eMouseButton);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 13 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, int, void>)methodPtr;
+        func(pThis, unBrowserHandle, eMouseButton);
     }
     public static void MouseDoubleClick(this IntPtr pThis, uint unBrowserHandle, int eMouseButton)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, int, void>)((byte*)vtable + 14 * IntPtr.Size);
-        return func(pThis, unBrowserHandle, eMouseButton);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 14 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, int, void>)methodPtr;
+        func(pThis, unBrowserHandle, eMouseButton);
     }
     public static void MouseMove(this IntPtr pThis, uint unBrowserHandle, int x, int y)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, int, int, void>)((byte*)vtable + 15 * IntPtr.Size);
-        return func(pThis, unBrowserHandle, x, y);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 15 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, int, int, void>)methodPtr;
+        func(pThis, unBrowserHandle, x, y);
     }
     public static void MouseWheel(this IntPtr pThis, uint unBrowserHandle, int nDelta)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, int, void>)((byte*)vtable + 16 * IntPtr.Size);
-        return func(pThis, unBrowserHandle, nDelta);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 16 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, int, void>)methodPtr;
+        func(pThis, unBrowserHandle, nDelta);
     }
     public static void KeyDown(this IntPtr pThis, uint unBrowserHandle, uint nNativeKeyCode, int eHTMLKeyModifiers, byte bIsSystemKey)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, int, byte, void>)((byte*)vtable + 17 * IntPtr.Size);
-        return func(pThis, unBrowserHandle, nNativeKeyCode, eHTMLKeyModifiers, bIsSystemKey);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 17 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, int, byte, void>)methodPtr;
+        func(pThis, unBrowserHandle, nNativeKeyCode, eHTMLKeyModifiers, bIsSystemKey);
     }
     public static void KeyUp(this IntPtr pThis, uint unBrowserHandle, uint nNativeKeyCode, int eHTMLKeyModifiers)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, int, void>)((byte*)vtable + 18 * IntPtr.Size);
-        return func(pThis, unBrowserHandle, nNativeKeyCode, eHTMLKeyModifiers);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 18 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, int, void>)methodPtr;
+        func(pThis, unBrowserHandle, nNativeKeyCode, eHTMLKeyModifiers);
     }
     public static void KeyChar(this IntPtr pThis, uint unBrowserHandle, uint cUnicodeChar, int eHTMLKeyModifiers)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, int, void>)((byte*)vtable + 19 * IntPtr.Size);
-        return func(pThis, unBrowserHandle, cUnicodeChar, eHTMLKeyModifiers);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 19 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, int, void>)methodPtr;
+        func(pThis, unBrowserHandle, cUnicodeChar, eHTMLKeyModifiers);
     }
     public static void SetHorizontalScroll(this IntPtr pThis, uint unBrowserHandle, uint nAbsolutePixelScroll)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, void>)((byte*)vtable + 20 * IntPtr.Size);
-        return func(pThis, unBrowserHandle, nAbsolutePixelScroll);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 20 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, void>)methodPtr;
+        func(pThis, unBrowserHandle, nAbsolutePixelScroll);
     }
     public static void SetVerticalScroll(this IntPtr pThis, uint unBrowserHandle, uint nAbsolutePixelScroll)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, void>)((byte*)vtable + 21 * IntPtr.Size);
-        return func(pThis, unBrowserHandle, nAbsolutePixelScroll);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 21 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, void>)methodPtr;
+        func(pThis, unBrowserHandle, nAbsolutePixelScroll);
     }
     public static void SetKeyFocus(this IntPtr pThis, uint unBrowserHandle, byte bHasKeyFocus)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, byte, void>)((byte*)vtable + 22 * IntPtr.Size);
-        return func(pThis, unBrowserHandle, bHasKeyFocus);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 22 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, byte, void>)methodPtr;
+        func(pThis, unBrowserHandle, bHasKeyFocus);
     }
     public static void ViewSource(this IntPtr pThis, uint unBrowserHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, void>)((byte*)vtable + 23 * IntPtr.Size);
-        return func(pThis, unBrowserHandle);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 23 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, void>)methodPtr;
+        func(pThis, unBrowserHandle);
     }
     public static void CopyToClipboard(this IntPtr pThis, uint unBrowserHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, void>)((byte*)vtable + 24 * IntPtr.Size);
-        return func(pThis, unBrowserHandle);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 24 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, void>)methodPtr;
+        func(pThis, unBrowserHandle);
     }
     public static void PasteFromClipboard(this IntPtr pThis, uint unBrowserHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, void>)((byte*)vtable + 25 * IntPtr.Size);
-        return func(pThis, unBrowserHandle);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 25 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, void>)methodPtr;
+        func(pThis, unBrowserHandle);
     }
     public static void Find(this IntPtr pThis, uint unBrowserHandle, IntPtr pchSearchStr, byte bCurrentlyInFind, byte bReverse)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, byte, byte, void>)((byte*)vtable + 26 * IntPtr.Size);
-        return func(pThis, unBrowserHandle, pchSearchStr, bCurrentlyInFind, bReverse);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 26 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, byte, byte, void>)methodPtr;
+        func(pThis, unBrowserHandle, pchSearchStr, bCurrentlyInFind, bReverse);
     }
     public static void StopFind(this IntPtr pThis, uint unBrowserHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, void>)((byte*)vtable + 27 * IntPtr.Size);
-        return func(pThis, unBrowserHandle);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 27 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, void>)methodPtr;
+        func(pThis, unBrowserHandle);
     }
     public static void GetLinkAtPosition(this IntPtr pThis, uint unBrowserHandle, int x, int y)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, int, int, void>)((byte*)vtable + 28 * IntPtr.Size);
-        return func(pThis, unBrowserHandle, x, y);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 28 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, int, int, void>)methodPtr;
+        func(pThis, unBrowserHandle, x, y);
     }
-    public static void SetCookie(this IntPtr pThis, IntPtr pchHostname, IntPtr pchKey, IntPtr pchValue, IntPtr pchPath, int nExpires, byte bSecure, byte bHTTPOnly)
+    public static void SetCookie(this IntPtr pThis, IntPtr pchHostname, IntPtr pchKey, IntPtr pchValue, IntPtr pchPath, uint nExpires, byte bSecure, byte bHTTPOnly)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr, IntPtr, int, byte, byte, void>)((byte*)vtable + 29 * IntPtr.Size);
-        return func(pThis, pchHostname, pchKey, pchValue, pchPath, nExpires, bSecure, bHTTPOnly);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 29 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr, IntPtr, uint, byte, byte, void>)methodPtr;
+        func(pThis, pchHostname, pchKey, pchValue, pchPath, nExpires, bSecure, bHTTPOnly);
     }
-    public static void SetPageScaleFactor(this IntPtr pThis, uint unBrowserHandle, int flZoom, int nPointX, int nPointY)
+    public static void SetPageScaleFactor(this IntPtr pThis, uint unBrowserHandle, float flZoom, int nPointX, int nPointY)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, int, int, int, void>)((byte*)vtable + 30 * IntPtr.Size);
-        return func(pThis, unBrowserHandle, flZoom, nPointX, nPointY);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 30 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, float, int, int, void>)methodPtr;
+        func(pThis, unBrowserHandle, flZoom, nPointX, nPointY);
     }
     public static void SetBackgroundMode(this IntPtr pThis, uint unBrowserHandle, byte bBackgroundMode)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, byte, void>)((byte*)vtable + 31 * IntPtr.Size);
-        return func(pThis, unBrowserHandle, bBackgroundMode);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 31 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, byte, void>)methodPtr;
+        func(pThis, unBrowserHandle, bBackgroundMode);
     }
-    public static void SetDPIScalingFactor(this IntPtr pThis, uint unBrowserHandle, int flDPIScaling)
+    public static void SetDPIScalingFactor(this IntPtr pThis, uint unBrowserHandle, float flDPIScaling)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, int, void>)((byte*)vtable + 32 * IntPtr.Size);
-        return func(pThis, unBrowserHandle, flDPIScaling);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 32 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, float, void>)methodPtr;
+        func(pThis, unBrowserHandle, flDPIScaling);
     }
     public static void OpenDeveloperTools(this IntPtr pThis, uint unBrowserHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, void>)((byte*)vtable + 33 * IntPtr.Size);
-        return func(pThis, unBrowserHandle);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 33 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, void>)methodPtr;
+        func(pThis, unBrowserHandle);
     }
     public static void AllowStartRequest(this IntPtr pThis, uint unBrowserHandle, byte bAllowed)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, byte, void>)((byte*)vtable + 34 * IntPtr.Size);
-        return func(pThis, unBrowserHandle, bAllowed);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 34 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, byte, void>)methodPtr;
+        func(pThis, unBrowserHandle, bAllowed);
     }
     public static void JSDialogResponse(this IntPtr pThis, uint unBrowserHandle, byte bResult)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, byte, void>)((byte*)vtable + 35 * IntPtr.Size);
-        return func(pThis, unBrowserHandle, bResult);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 35 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, byte, void>)methodPtr;
+        func(pThis, unBrowserHandle, bResult);
     }
     public static void FileLoadDialogResponse(this IntPtr pThis, uint unBrowserHandle, IntPtr pchSelectedFiles)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, void>)((byte*)vtable + 36 * IntPtr.Size);
-        return func(pThis, unBrowserHandle, pchSelectedFiles);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 36 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, void>)methodPtr;
+        func(pThis, unBrowserHandle, pchSelectedFiles);
     }
+}
 
+public static unsafe class ISteamInventoryExtensions
+{
     public static int GetResultStatus(this IntPtr pThis, int resultHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 0 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int>)methodPtr;
         return func(pThis, resultHandle);
     }
     public static byte GetResultItems(this IntPtr pThis, int resultHandle, IntPtr pOutItemsArray, IntPtr punOutItemsArraySize)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, byte>)((byte*)vtable + 1 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, resultHandle, pOutItemsArray, punOutItemsArraySize);
     }
     public static byte GetResultItemProperty(this IntPtr pThis, int resultHandle, uint unItemIndex, IntPtr pchPropertyName, IntPtr pchValueBuffer, IntPtr punValueBufferSizeOut)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint, IntPtr, IntPtr, IntPtr, byte>)((byte*)vtable + 2 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, uint, IntPtr, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, resultHandle, unItemIndex, pchPropertyName, pchValueBuffer, punValueBufferSizeOut);
     }
     public static uint GetResultTimestamp(this IntPtr pThis, int resultHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, uint>)((byte*)vtable + 3 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, uint>)methodPtr;
         return func(pThis, resultHandle);
     }
     public static byte CheckResultSteamID(this IntPtr pThis, int resultHandle, ulong steamIDExpected)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, ulong, byte>)((byte*)vtable + 4 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 4 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, ulong, byte>)methodPtr;
         return func(pThis, resultHandle, steamIDExpected);
     }
     public static void DestroyResult(this IntPtr pThis, int resultHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, void>)((byte*)vtable + 5 * IntPtr.Size);
-        return func(pThis, resultHandle);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 5 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, void>)methodPtr;
+        func(pThis, resultHandle);
     }
     public static byte GetAllItems(this IntPtr pThis, IntPtr pResultHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)((byte*)vtable + 6 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 6 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pResultHandle);
     }
     public static byte GetItemsByID(this IntPtr pThis, IntPtr pResultHandle, IntPtr pInstanceIDs, uint unCountInstanceIDs)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, uint, byte>)((byte*)vtable + 7 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 7 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, uint, byte>)methodPtr;
         return func(pThis, pResultHandle, pInstanceIDs, unCountInstanceIDs);
     }
     public static byte SerializeResult(this IntPtr pThis, int resultHandle, IntPtr pOutBuffer, IntPtr punOutBufferSize)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, byte>)((byte*)vtable + 8 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 8 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, resultHandle, pOutBuffer, punOutBufferSize);
     }
     public static byte DeserializeResult(this IntPtr pThis, IntPtr pOutResultHandle, IntPtr pBuffer, uint unBufferSize, byte bRESERVED_MUST_BE_FALSE)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, uint, byte, byte>)((byte*)vtable + 9 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 9 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, uint, byte, byte>)methodPtr;
         return func(pThis, pOutResultHandle, pBuffer, unBufferSize, bRESERVED_MUST_BE_FALSE);
     }
     public static byte GenerateItems(this IntPtr pThis, IntPtr pResultHandle, IntPtr pArrayItemDefs, IntPtr punArrayQuantity, uint unArrayLength)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr, uint, byte>)((byte*)vtable + 10 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 10 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr, uint, byte>)methodPtr;
         return func(pThis, pResultHandle, pArrayItemDefs, punArrayQuantity, unArrayLength);
     }
     public static byte GrantPromoItems(this IntPtr pThis, IntPtr pResultHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)((byte*)vtable + 11 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 11 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pResultHandle);
     }
     public static byte AddPromoItem(this IntPtr pThis, IntPtr pResultHandle, int itemDef)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, byte>)((byte*)vtable + 12 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 12 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, byte>)methodPtr;
         return func(pThis, pResultHandle, itemDef);
     }
     public static byte AddPromoItems(this IntPtr pThis, IntPtr pResultHandle, IntPtr pArrayItemDefs, uint unArrayLength)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, uint, byte>)((byte*)vtable + 13 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 13 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, uint, byte>)methodPtr;
         return func(pThis, pResultHandle, pArrayItemDefs, unArrayLength);
     }
-    public static byte ConsumeItem(this IntPtr pThis, IntPtr pResultHandle, int itemConsume, uint unQuantity)
+    public static byte ConsumeItem(this IntPtr pThis, IntPtr pResultHandle, ulong itemConsume, uint unQuantity)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, uint, byte>)((byte*)vtable + 14 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 14 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, ulong, uint, byte>)methodPtr;
         return func(pThis, pResultHandle, itemConsume, unQuantity);
     }
     public static byte ExchangeItems(this IntPtr pThis, IntPtr pResultHandle, IntPtr pArrayGenerate, IntPtr punArrayGenerateQuantity, uint unArrayGenerateLength, IntPtr pArrayDestroy, IntPtr punArrayDestroyQuantity, uint unArrayDestroyLength)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr, uint, IntPtr, IntPtr, uint, byte>)((byte*)vtable + 15 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 15 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr, uint, IntPtr, IntPtr, uint, byte>)methodPtr;
         return func(pThis, pResultHandle, pArrayGenerate, punArrayGenerateQuantity, unArrayGenerateLength, pArrayDestroy, punArrayDestroyQuantity, unArrayDestroyLength);
     }
-    public static byte TransferItemQuantity(this IntPtr pThis, IntPtr pResultHandle, int itemIdSource, uint unQuantity, int itemIdDest)
+    public static byte TransferItemQuantity(this IntPtr pThis, IntPtr pResultHandle, ulong itemIdSource, uint unQuantity, ulong itemIdDest)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, uint, int, byte>)((byte*)vtable + 16 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 16 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, ulong, uint, ulong, byte>)methodPtr;
         return func(pThis, pResultHandle, itemIdSource, unQuantity, itemIdDest);
     }
     public static void SendItemDropHeartbeat(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 17 * IntPtr.Size);
-        return func(pThis);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 17 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
     }
     public static byte TriggerItemDrop(this IntPtr pThis, IntPtr pResultHandle, int dropListDefinition)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, byte>)((byte*)vtable + 18 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 18 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, byte>)methodPtr;
         return func(pThis, pResultHandle, dropListDefinition);
     }
     public static byte TradeItems(this IntPtr pThis, IntPtr pResultHandle, ulong steamIDTradePartner, IntPtr pArrayGive, IntPtr pArrayGiveQuantity, uint nArrayGiveLength, IntPtr pArrayGet, IntPtr pArrayGetQuantity, uint nArrayGetLength)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, ulong, IntPtr, IntPtr, uint, IntPtr, IntPtr, uint, byte>)((byte*)vtable + 19 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 19 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, ulong, IntPtr, IntPtr, uint, IntPtr, IntPtr, uint, byte>)methodPtr;
         return func(pThis, pResultHandle, steamIDTradePartner, pArrayGive, pArrayGiveQuantity, nArrayGiveLength, pArrayGet, pArrayGetQuantity, nArrayGetLength);
     }
     public static byte LoadItemDefinitions(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 20 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 20 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static byte GetItemDefinitionIDs(this IntPtr pThis, IntPtr pItemDefIDs, IntPtr punItemDefIDsArraySize)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte>)((byte*)vtable + 21 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 21 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pItemDefIDs, punItemDefIDsArraySize);
     }
     public static byte GetItemDefinitionProperty(this IntPtr pThis, int iDefinition, IntPtr pchPropertyName, IntPtr pchValueBuffer, IntPtr punValueBufferSizeOut)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, IntPtr, byte>)((byte*)vtable + 22 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 22 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, iDefinition, pchPropertyName, pchValueBuffer, punValueBufferSizeOut);
     }
     public static ulong RequestEligiblePromoItemDefinitionsIDs(this IntPtr pThis, ulong steamID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)((byte*)vtable + 23 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 23 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, steamID);
     }
     public static byte GetEligiblePromoItemDefinitionIDs(this IntPtr pThis, ulong steamID, IntPtr pItemDefIDs, IntPtr punItemDefIDsArraySize)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, byte>)((byte*)vtable + 24 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 24 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, steamID, pItemDefIDs, punItemDefIDsArraySize);
     }
     public static ulong StartPurchase(this IntPtr pThis, IntPtr pArrayItemDefs, IntPtr punArrayQuantity, uint unArrayLength)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, uint, ulong>)((byte*)vtable + 25 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 25 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, uint, ulong>)methodPtr;
         return func(pThis, pArrayItemDefs, punArrayQuantity, unArrayLength);
     }
     public static ulong RequestPrices(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong>)((byte*)vtable + 26 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 26 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong>)methodPtr;
         return func(pThis);
     }
     public static uint GetNumItemsWithPrices(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint>)((byte*)vtable + 27 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 27 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint>)methodPtr;
         return func(pThis);
     }
     public static byte GetItemsWithPrices(this IntPtr pThis, IntPtr pArrayItemDefs, IntPtr pCurrentPrices, IntPtr pBasePrices, uint unArrayLength)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr, uint, byte>)((byte*)vtable + 28 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 28 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr, uint, byte>)methodPtr;
         return func(pThis, pArrayItemDefs, pCurrentPrices, pBasePrices, unArrayLength);
     }
     public static byte GetItemPrice(this IntPtr pThis, int iDefinition, IntPtr pCurrentPrice, IntPtr pBasePrice)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, byte>)((byte*)vtable + 29 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 29 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, iDefinition, pCurrentPrice, pBasePrice);
     }
-    public static int StartUpdateProperties(this IntPtr pThis)
+    public static ulong StartUpdateProperties(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int>)((byte*)vtable + 30 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 30 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong>)methodPtr;
         return func(pThis);
     }
-    public static byte RemoveProperty(this IntPtr pThis, int handle, int nItemID, IntPtr pchPropertyName)
+    public static byte RemoveProperty(this IntPtr pThis, ulong handle, ulong nItemID, IntPtr pchPropertyName)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, IntPtr, byte>)((byte*)vtable + 31 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 31 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, handle, nItemID, pchPropertyName);
     }
-    public static byte SetProperty(this IntPtr pThis, int handle, int nItemID, IntPtr pchPropertyName, IntPtr pchPropertyValue)
+    public static byte SetProperty_String(this IntPtr pThis, ulong handle, ulong nItemID, IntPtr pchPropertyName, IntPtr pchPropertyValue)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, IntPtr, IntPtr, byte>)((byte*)vtable + 32 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 32 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, handle, nItemID, pchPropertyName, pchPropertyValue);
     }
-    public static byte SetProperty(this IntPtr pThis, int handle, int nItemID, IntPtr pchPropertyName, byte bValue)
+    public static byte SetProperty_Bool(this IntPtr pThis, ulong handle, ulong nItemID, IntPtr pchPropertyName, byte bValue)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, IntPtr, byte, byte>)((byte*)vtable + 33 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 33 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, IntPtr, byte, byte>)methodPtr;
         return func(pThis, handle, nItemID, pchPropertyName, bValue);
     }
-    public static byte SetProperty(this IntPtr pThis, int handle, int nItemID, IntPtr pchPropertyName, long nValue)
+    public static byte SetProperty_Int64(this IntPtr pThis, ulong handle, ulong nItemID, IntPtr pchPropertyName, long nValue)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, IntPtr, long, byte>)((byte*)vtable + 34 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 34 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, IntPtr, long, byte>)methodPtr;
         return func(pThis, handle, nItemID, pchPropertyName, nValue);
     }
-    public static byte SetProperty(this IntPtr pThis, int handle, int nItemID, IntPtr pchPropertyName, int flValue)
+    public static byte SetProperty_Float(this IntPtr pThis, ulong handle, ulong nItemID, IntPtr pchPropertyName, float flValue)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, IntPtr, int, byte>)((byte*)vtable + 35 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 35 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, IntPtr, float, byte>)methodPtr;
         return func(pThis, handle, nItemID, pchPropertyName, flValue);
     }
-    public static byte SubmitUpdateProperties(this IntPtr pThis, int handle, IntPtr pResultHandle)
+    public static byte SubmitUpdateProperties(this IntPtr pThis, ulong handle, IntPtr pResultHandle)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)((byte*)vtable + 36 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 36 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, handle, pResultHandle);
     }
     public static byte InspectItem(this IntPtr pThis, IntPtr pResultHandle, IntPtr pchItemToken)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte>)((byte*)vtable + 37 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 37 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pResultHandle, pchItemToken);
     }
+}
 
-    public static void SetTimelineTooltip(this IntPtr pThis, IntPtr pchDescription, int flTimeDelta)
+public static unsafe class ISteamTimelineExtensions
+{
+    public static void SetTimelineTooltip(this IntPtr pThis, IntPtr pchDescription, float flTimeDelta)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, void>)((byte*)vtable + 0 * IntPtr.Size);
-        return func(pThis, pchDescription, flTimeDelta);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float, void>)methodPtr;
+        func(pThis, pchDescription, flTimeDelta);
     }
-    public static void ClearTimelineTooltip(this IntPtr pThis, int flTimeDelta)
+    public static void ClearTimelineTooltip(this IntPtr pThis, float flTimeDelta)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, void>)((byte*)vtable + 1 * IntPtr.Size);
-        return func(pThis, flTimeDelta);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)methodPtr;
+        func(pThis, flTimeDelta);
     }
     public static void SetTimelineGameMode(this IntPtr pThis, int eMode)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, void>)((byte*)vtable + 2 * IntPtr.Size);
-        return func(pThis, eMode);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, void>)methodPtr;
+        func(pThis, eMode);
     }
-    public static int AddInstantaneousTimelineEvent(this IntPtr pThis, IntPtr pchTitle, IntPtr pchDescription, IntPtr pchIcon, uint unIconPriority, int flStartOffsetSeconds, int ePossibleClip)
+    public static ulong AddInstantaneousTimelineEvent(this IntPtr pThis, IntPtr pchTitle, IntPtr pchDescription, IntPtr pchIcon, uint unIconPriority, float flStartOffsetSeconds, int ePossibleClip)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr, uint, int, int, int>)((byte*)vtable + 3 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr, uint, float, int, ulong>)methodPtr;
         return func(pThis, pchTitle, pchDescription, pchIcon, unIconPriority, flStartOffsetSeconds, ePossibleClip);
     }
-    public static int AddRangeTimelineEvent(this IntPtr pThis, IntPtr pchTitle, IntPtr pchDescription, IntPtr pchIcon, uint unIconPriority, int flStartOffsetSeconds, int flDuration, int ePossibleClip)
+    public static ulong AddRangeTimelineEvent(this IntPtr pThis, IntPtr pchTitle, IntPtr pchDescription, IntPtr pchIcon, uint unIconPriority, float flStartOffsetSeconds, float flDuration, int ePossibleClip)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr, uint, int, int, int, int>)((byte*)vtable + 4 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 4 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr, uint, float, float, int, ulong>)methodPtr;
         return func(pThis, pchTitle, pchDescription, pchIcon, unIconPriority, flStartOffsetSeconds, flDuration, ePossibleClip);
     }
-    public static int StartRangeTimelineEvent(this IntPtr pThis, IntPtr pchTitle, IntPtr pchDescription, IntPtr pchIcon, uint unPriority, int flStartOffsetSeconds, int ePossibleClip)
+    public static ulong StartRangeTimelineEvent(this IntPtr pThis, IntPtr pchTitle, IntPtr pchDescription, IntPtr pchIcon, uint unPriority, float flStartOffsetSeconds, int ePossibleClip)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr, uint, int, int, int>)((byte*)vtable + 5 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 5 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr, uint, float, int, ulong>)methodPtr;
         return func(pThis, pchTitle, pchDescription, pchIcon, unPriority, flStartOffsetSeconds, ePossibleClip);
     }
-    public static void UpdateRangeTimelineEvent(this IntPtr pThis, int ulEvent, IntPtr pchTitle, IntPtr pchDescription, IntPtr pchIcon, uint unPriority, int ePossibleClip)
+    public static void UpdateRangeTimelineEvent(this IntPtr pThis, ulong ulEvent, IntPtr pchTitle, IntPtr pchDescription, IntPtr pchIcon, uint unPriority, int ePossibleClip)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, IntPtr, uint, int, void>)((byte*)vtable + 6 * IntPtr.Size);
-        return func(pThis, ulEvent, pchTitle, pchDescription, pchIcon, unPriority, ePossibleClip);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 6 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, IntPtr, uint, int, void>)methodPtr;
+        func(pThis, ulEvent, pchTitle, pchDescription, pchIcon, unPriority, ePossibleClip);
     }
-    public static void EndRangeTimelineEvent(this IntPtr pThis, int ulEvent, int flEndOffsetSeconds)
+    public static void EndRangeTimelineEvent(this IntPtr pThis, ulong ulEvent, float flEndOffsetSeconds)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, void>)((byte*)vtable + 7 * IntPtr.Size);
-        return func(pThis, ulEvent, flEndOffsetSeconds);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 7 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, float, void>)methodPtr;
+        func(pThis, ulEvent, flEndOffsetSeconds);
     }
-    public static void RemoveTimelineEvent(this IntPtr pThis, int ulEvent)
+    public static void RemoveTimelineEvent(this IntPtr pThis, ulong ulEvent)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, void>)((byte*)vtable + 8 * IntPtr.Size);
-        return func(pThis, ulEvent);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 8 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, void>)methodPtr;
+        func(pThis, ulEvent);
     }
-    public static ulong DoesEventRecordingExist(this IntPtr pThis, int ulEvent)
+    public static ulong DoesEventRecordingExist(this IntPtr pThis, ulong ulEvent)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, ulong>)((byte*)vtable + 9 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 9 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, ulEvent);
     }
     public static void StartGamePhase(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 10 * IntPtr.Size);
-        return func(pThis);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 10 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
     }
     public static void EndGamePhase(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 11 * IntPtr.Size);
-        return func(pThis);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 11 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
     }
     public static void SetGamePhaseID(this IntPtr pThis, IntPtr pchPhaseID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)((byte*)vtable + 12 * IntPtr.Size);
-        return func(pThis, pchPhaseID);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 12 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)methodPtr;
+        func(pThis, pchPhaseID);
     }
     public static ulong DoesGamePhaseRecordingExist(this IntPtr pThis, IntPtr pchPhaseID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, ulong>)((byte*)vtable + 13 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 13 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, ulong>)methodPtr;
         return func(pThis, pchPhaseID);
     }
     public static void AddGamePhaseTag(this IntPtr pThis, IntPtr pchTagName, IntPtr pchTagIcon, IntPtr pchTagGroup, uint unPriority)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr, uint, void>)((byte*)vtable + 14 * IntPtr.Size);
-        return func(pThis, pchTagName, pchTagIcon, pchTagGroup, unPriority);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 14 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr, uint, void>)methodPtr;
+        func(pThis, pchTagName, pchTagIcon, pchTagGroup, unPriority);
     }
     public static void SetGamePhaseAttribute(this IntPtr pThis, IntPtr pchAttributeGroup, IntPtr pchAttributeValue, uint unPriority)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, uint, void>)((byte*)vtable + 15 * IntPtr.Size);
-        return func(pThis, pchAttributeGroup, pchAttributeValue, unPriority);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 15 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, uint, void>)methodPtr;
+        func(pThis, pchAttributeGroup, pchAttributeValue, unPriority);
     }
     public static void OpenOverlayToGamePhase(this IntPtr pThis, IntPtr pchPhaseID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)((byte*)vtable + 16 * IntPtr.Size);
-        return func(pThis, pchPhaseID);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 16 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)methodPtr;
+        func(pThis, pchPhaseID);
     }
-    public static void OpenOverlayToTimelineEvent(this IntPtr pThis, int ulEvent)
+    public static void OpenOverlayToTimelineEvent(this IntPtr pThis, ulong ulEvent)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, void>)((byte*)vtable + 17 * IntPtr.Size);
-        return func(pThis, ulEvent);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 17 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, void>)methodPtr;
+        func(pThis, ulEvent);
     }
+}
 
-    public static void GetVideoURL(this IntPtr pThis, int unVideoAppID)
+public static unsafe class ISteamVideoExtensions
+{
+    public static void GetVideoURL(this IntPtr pThis, uint unVideoAppID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, void>)((byte*)vtable + 0 * IntPtr.Size);
-        return func(pThis, unVideoAppID);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, void>)methodPtr;
+        func(pThis, unVideoAppID);
     }
     public static byte IsBroadcasting(this IntPtr pThis, IntPtr pnNumViewers)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)((byte*)vtable + 1 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pnNumViewers);
     }
-    public static void GetOPFSettings(this IntPtr pThis, int unVideoAppID)
+    public static void GetOPFSettings(this IntPtr pThis, uint unVideoAppID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, void>)((byte*)vtable + 2 * IntPtr.Size);
-        return func(pThis, unVideoAppID);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, void>)methodPtr;
+        func(pThis, unVideoAppID);
     }
-    public static byte GetOPFStringForApp(this IntPtr pThis, int unVideoAppID, IntPtr pchBuffer, IntPtr pnBufferSize)
+    public static byte GetOPFStringForApp(this IntPtr pThis, uint unVideoAppID, IntPtr pchBuffer, IntPtr pnBufferSize)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, byte>)((byte*)vtable + 3 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, unVideoAppID, pchBuffer, pnBufferSize);
     }
+}
 
+public static unsafe class ISteamParentalSettingsExtensions
+{
     public static byte BIsParentalLockEnabled(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 0 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static byte BIsParentalLockLocked(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 1 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
-    public static byte BIsAppBlocked(this IntPtr pThis, int nAppID)
+    public static byte BIsAppBlocked(this IntPtr pThis, uint nAppID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte>)((byte*)vtable + 2 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, byte>)methodPtr;
         return func(pThis, nAppID);
     }
-    public static byte BIsAppInBlockList(this IntPtr pThis, int nAppID)
+    public static byte BIsAppInBlockList(this IntPtr pThis, uint nAppID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte>)((byte*)vtable + 3 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, byte>)methodPtr;
         return func(pThis, nAppID);
     }
     public static byte BIsFeatureBlocked(this IntPtr pThis, int eFeature)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte>)((byte*)vtable + 4 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 4 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, byte>)methodPtr;
         return func(pThis, eFeature);
     }
     public static byte BIsFeatureInBlockList(this IntPtr pThis, int eFeature)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte>)((byte*)vtable + 5 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 5 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, byte>)methodPtr;
         return func(pThis, eFeature);
     }
+}
 
+public static unsafe class ISteamRemotePlayExtensions
+{
     public static uint GetSessionCount(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint>)((byte*)vtable + 0 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint>)methodPtr;
         return func(pThis);
     }
-    public static int GetSessionID(this IntPtr pThis, int iSessionIndex)
+    public static uint GetSessionID(this IntPtr pThis, int iSessionIndex)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 1 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, uint>)methodPtr;
         return func(pThis, iSessionIndex);
     }
-    public static ulong GetSessionSteamID(this IntPtr pThis, int unSessionID)
+    public static ulong GetSessionSteamID(this IntPtr pThis, uint unSessionID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, ulong>)((byte*)vtable + 2 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, ulong>)methodPtr;
         return func(pThis, unSessionID);
     }
-    public static IntPtr GetSessionClientName(this IntPtr pThis, int unSessionID)
+    public static IntPtr GetSessionClientName(this IntPtr pThis, uint unSessionID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)((byte*)vtable + 3 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr>)methodPtr;
         return func(pThis, unSessionID);
     }
-    public static int GetSessionClientFormFactor(this IntPtr pThis, int unSessionID)
+    public static int GetSessionClientFormFactor(this IntPtr pThis, uint unSessionID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 4 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 4 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, int>)methodPtr;
         return func(pThis, unSessionID);
     }
-    public static byte BGetSessionClientResolution(this IntPtr pThis, int unSessionID, IntPtr pnResolutionX, IntPtr pnResolutionY)
+    public static byte BGetSessionClientResolution(this IntPtr pThis, uint unSessionID, IntPtr pnResolutionX, IntPtr pnResolutionY)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, byte>)((byte*)vtable + 5 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 5 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, unSessionID, pnResolutionX, pnResolutionY);
     }
     public static byte ShowRemotePlayTogetherUI(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 6 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 6 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static byte BSendRemotePlayTogetherInvite(this IntPtr pThis, ulong steamIDFriend)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, byte>)((byte*)vtable + 7 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 7 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, byte>)methodPtr;
         return func(pThis, steamIDFriend);
     }
     public static byte BEnableRemotePlayTogetherDirectInput(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 8 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 8 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static void DisableRemotePlayTogetherDirectInput(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 9 * IntPtr.Size);
-        return func(pThis);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 9 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
     }
     public static uint GetInput(this IntPtr pThis, IntPtr pInput, uint unMaxEvents)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, uint>)((byte*)vtable + 10 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 10 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, uint, uint>)methodPtr;
         return func(pThis, pInput, unMaxEvents);
     }
-    public static void SetMouseVisibility(this IntPtr pThis, int unSessionID, byte bVisible)
+    public static void SetMouseVisibility(this IntPtr pThis, uint unSessionID, byte bVisible)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte, void>)((byte*)vtable + 11 * IntPtr.Size);
-        return func(pThis, unSessionID, bVisible);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 11 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, byte, void>)methodPtr;
+        func(pThis, unSessionID, bVisible);
     }
-    public static void SetMousePosition(this IntPtr pThis, int unSessionID, int flNormalizedX, int flNormalizedY)
+    public static void SetMousePosition(this IntPtr pThis, uint unSessionID, float flNormalizedX, float flNormalizedY)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, void>)((byte*)vtable + 12 * IntPtr.Size);
-        return func(pThis, unSessionID, flNormalizedX, flNormalizedY);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 12 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, float, float, void>)methodPtr;
+        func(pThis, unSessionID, flNormalizedX, flNormalizedY);
     }
-    public static int CreateMouseCursor(this IntPtr pThis, int nWidth, int nHeight, int nHotX, int nHotY, IntPtr pBGRA, int nPitch)
+    public static uint CreateMouseCursor(this IntPtr pThis, int nWidth, int nHeight, int nHotX, int nHotY, IntPtr pBGRA, int nPitch)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, int, IntPtr, int, int>)((byte*)vtable + 13 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 13 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, int, int, IntPtr, int, uint>)methodPtr;
         return func(pThis, nWidth, nHeight, nHotX, nHotY, pBGRA, nPitch);
     }
-    public static void SetMouseCursor(this IntPtr pThis, int unSessionID, int unCursorID)
+    public static void SetMouseCursor(this IntPtr pThis, uint unSessionID, uint unCursorID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, void>)((byte*)vtable + 14 * IntPtr.Size);
-        return func(pThis, unSessionID, unCursorID);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 14 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, void>)methodPtr;
+        func(pThis, unSessionID, unCursorID);
     }
+}
 
+public static unsafe class ISteamNetworkingMessagesExtensions
+{
     public static int SendMessageToUser(this IntPtr pThis, int identityRemote, IntPtr pubData, uint cubData, int nSendFlags, int nRemoteChannel)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, uint, int, int, int>)((byte*)vtable + 0 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, uint, int, int, int>)methodPtr;
         return func(pThis, identityRemote, pubData, cubData, nSendFlags, nRemoteChannel);
     }
     public static int ReceiveMessagesOnChannel(this IntPtr pThis, int nLocalChannel, IntPtr ppOutMessages, int nMaxMessages)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, int, int>)((byte*)vtable + 1 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, int, int>)methodPtr;
         return func(pThis, nLocalChannel, ppOutMessages, nMaxMessages);
     }
     public static byte AcceptSessionWithUser(this IntPtr pThis, int identityRemote)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte>)((byte*)vtable + 2 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, byte>)methodPtr;
         return func(pThis, identityRemote);
     }
     public static byte CloseSessionWithUser(this IntPtr pThis, int identityRemote)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte>)((byte*)vtable + 3 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, byte>)methodPtr;
         return func(pThis, identityRemote);
     }
     public static byte CloseChannelWithUser(this IntPtr pThis, int identityRemote, int nLocalChannel)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, byte>)((byte*)vtable + 4 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 4 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, byte>)methodPtr;
         return func(pThis, identityRemote, nLocalChannel);
     }
     public static int GetSessionConnectionInfo(this IntPtr pThis, int identityRemote, IntPtr pConnectionInfo, IntPtr pQuickStatus)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, int>)((byte*)vtable + 5 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 5 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, int>)methodPtr;
         return func(pThis, identityRemote, pConnectionInfo, pQuickStatus);
     }
+}
 
+public static unsafe class ISteamNetworkingSocketsExtensions
+{
     public static uint CreateListenSocketIP(this IntPtr pThis, int localAddress, int nOptions, IntPtr pOptions)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, IntPtr, uint>)((byte*)vtable + 0 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, IntPtr, uint>)methodPtr;
         return func(pThis, localAddress, nOptions, pOptions);
     }
     public static uint ConnectByIPAddress(this IntPtr pThis, int address, int nOptions, IntPtr pOptions)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, IntPtr, uint>)((byte*)vtable + 1 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, IntPtr, uint>)methodPtr;
         return func(pThis, address, nOptions, pOptions);
     }
     public static uint CreateListenSocketP2P(this IntPtr pThis, int nLocalVirtualPort, int nOptions, IntPtr pOptions)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, IntPtr, uint>)((byte*)vtable + 2 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, IntPtr, uint>)methodPtr;
         return func(pThis, nLocalVirtualPort, nOptions, pOptions);
     }
     public static uint ConnectP2P(this IntPtr pThis, int identityRemote, int nRemoteVirtualPort, int nOptions, IntPtr pOptions)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, IntPtr, uint>)((byte*)vtable + 3 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, int, IntPtr, uint>)methodPtr;
         return func(pThis, identityRemote, nRemoteVirtualPort, nOptions, pOptions);
     }
     public static int AcceptConnection(this IntPtr pThis, uint hConn)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, int>)((byte*)vtable + 4 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 4 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, int>)methodPtr;
         return func(pThis, hConn);
     }
     public static byte CloseConnection(this IntPtr pThis, uint hPeer, int nReason, IntPtr pszDebug, byte bEnableLinger)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, int, IntPtr, byte, byte>)((byte*)vtable + 5 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 5 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, int, IntPtr, byte, byte>)methodPtr;
         return func(pThis, hPeer, nReason, pszDebug, bEnableLinger);
     }
     public static byte CloseListenSocket(this IntPtr pThis, uint hSocket)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, byte>)((byte*)vtable + 6 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 6 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, byte>)methodPtr;
         return func(pThis, hSocket);
     }
     public static byte SetConnectionUserData(this IntPtr pThis, uint hPeer, long nUserData)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, long, byte>)((byte*)vtable + 7 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 7 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, long, byte>)methodPtr;
         return func(pThis, hPeer, nUserData);
     }
     public static long GetConnectionUserData(this IntPtr pThis, uint hPeer)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, long>)((byte*)vtable + 8 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 8 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, long>)methodPtr;
         return func(pThis, hPeer);
     }
     public static void SetConnectionName(this IntPtr pThis, uint hPeer, IntPtr pszName)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, void>)((byte*)vtable + 9 * IntPtr.Size);
-        return func(pThis, hPeer, pszName);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 9 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, void>)methodPtr;
+        func(pThis, hPeer, pszName);
     }
     public static byte GetConnectionName(this IntPtr pThis, uint hPeer, IntPtr pszName, int nMaxLen)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, int, byte>)((byte*)vtable + 10 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 10 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, int, byte>)methodPtr;
         return func(pThis, hPeer, pszName, nMaxLen);
     }
     public static int SendMessageToConnection(this IntPtr pThis, uint hConn, IntPtr pData, uint cbData, int nSendFlags, IntPtr pOutMessageNumber)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, uint, int, IntPtr, int>)((byte*)vtable + 11 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 11 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, uint, int, IntPtr, int>)methodPtr;
         return func(pThis, hConn, pData, cbData, nSendFlags, pOutMessageNumber);
     }
     public static void SendMessages(this IntPtr pThis, int nMessages, IntPtr pMessages, IntPtr pOutMessageNumberOrResult)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, void>)((byte*)vtable + 12 * IntPtr.Size);
-        return func(pThis, nMessages, pMessages, pOutMessageNumberOrResult);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 12 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, void>)methodPtr;
+        func(pThis, nMessages, pMessages, pOutMessageNumberOrResult);
     }
     public static int FlushMessagesOnConnection(this IntPtr pThis, uint hConn)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, int>)((byte*)vtable + 13 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 13 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, int>)methodPtr;
         return func(pThis, hConn);
     }
     public static int ReceiveMessagesOnConnection(this IntPtr pThis, uint hConn, IntPtr ppOutMessages, int nMaxMessages)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, int, int>)((byte*)vtable + 14 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 14 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, int, int>)methodPtr;
         return func(pThis, hConn, ppOutMessages, nMaxMessages);
     }
     public static byte GetConnectionInfo(this IntPtr pThis, uint hConn, IntPtr pInfo)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, byte>)((byte*)vtable + 15 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 15 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, byte>)methodPtr;
         return func(pThis, hConn, pInfo);
     }
     public static int GetConnectionRealTimeStatus(this IntPtr pThis, uint hConn, IntPtr pStatus, int nLanes, IntPtr pLanes)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, int, IntPtr, int>)((byte*)vtable + 16 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 16 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, int, IntPtr, int>)methodPtr;
         return func(pThis, hConn, pStatus, nLanes, pLanes);
     }
     public static int GetDetailedConnectionStatus(this IntPtr pThis, uint hConn, IntPtr pszBuf, int cbBuf)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, int, int>)((byte*)vtable + 17 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 17 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, int, int>)methodPtr;
         return func(pThis, hConn, pszBuf, cbBuf);
     }
     public static byte GetListenSocketAddress(this IntPtr pThis, uint hSocket, IntPtr address)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, byte>)((byte*)vtable + 18 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 18 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, byte>)methodPtr;
         return func(pThis, hSocket, address);
     }
     public static byte CreateSocketPair(this IntPtr pThis, IntPtr pOutConnection1, IntPtr pOutConnection2, byte bUseNetworkLoopback, IntPtr pIdentity1, IntPtr pIdentity2)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte, IntPtr, IntPtr, byte>)((byte*)vtable + 19 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 19 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pOutConnection1, pOutConnection2, bUseNetworkLoopback, pIdentity1, pIdentity2);
     }
     public static int ConfigureConnectionLanes(this IntPtr pThis, uint hConn, int nNumLanes, IntPtr pLanePriorities, IntPtr pLaneWeights)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, int, IntPtr, IntPtr, int>)((byte*)vtable + 20 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 20 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, int, IntPtr, IntPtr, int>)methodPtr;
         return func(pThis, hConn, nNumLanes, pLanePriorities, pLaneWeights);
     }
     public static byte GetIdentity(this IntPtr pThis, IntPtr pIdentity)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)((byte*)vtable + 21 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 21 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pIdentity);
     }
     public static int InitAuthentication(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int>)((byte*)vtable + 22 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 22 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int>)methodPtr;
         return func(pThis);
     }
     public static int GetAuthenticationStatus(this IntPtr pThis, IntPtr pDetails)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int>)((byte*)vtable + 23 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 23 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int>)methodPtr;
         return func(pThis, pDetails);
     }
     public static uint CreatePollGroup(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint>)((byte*)vtable + 24 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 24 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint>)methodPtr;
         return func(pThis);
     }
     public static byte DestroyPollGroup(this IntPtr pThis, uint hPollGroup)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, byte>)((byte*)vtable + 25 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 25 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, byte>)methodPtr;
         return func(pThis, hPollGroup);
     }
     public static byte SetConnectionPollGroup(this IntPtr pThis, uint hConn, uint hPollGroup)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, uint, byte>)((byte*)vtable + 26 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 26 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, uint, byte>)methodPtr;
         return func(pThis, hConn, hPollGroup);
     }
     public static int ReceiveMessagesOnPollGroup(this IntPtr pThis, uint hPollGroup, IntPtr ppOutMessages, int nMaxMessages)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, int, int>)((byte*)vtable + 27 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 27 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, int, int>)methodPtr;
         return func(pThis, hPollGroup, ppOutMessages, nMaxMessages);
     }
     public static byte ReceivedRelayAuthTicket(this IntPtr pThis, IntPtr pvTicket, int cbTicket, IntPtr pOutParsedTicket)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, IntPtr, byte>)((byte*)vtable + 28 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 28 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, IntPtr, byte>)methodPtr;
         return func(pThis, pvTicket, cbTicket, pOutParsedTicket);
     }
     public static int FindRelayAuthTicketForServer(this IntPtr pThis, int identityGameServer, int nRemoteVirtualPort, IntPtr pOutParsedTicket)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, IntPtr, int>)((byte*)vtable + 29 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 29 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, IntPtr, int>)methodPtr;
         return func(pThis, identityGameServer, nRemoteVirtualPort, pOutParsedTicket);
     }
     public static uint ConnectToHostedDedicatedServer(this IntPtr pThis, int identityTarget, int nRemoteVirtualPort, int nOptions, IntPtr pOptions)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, IntPtr, uint>)((byte*)vtable + 30 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 30 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, int, IntPtr, uint>)methodPtr;
         return func(pThis, identityTarget, nRemoteVirtualPort, nOptions, pOptions);
     }
     public static int GetHostedDedicatedServerPort(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int>)((byte*)vtable + 31 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 31 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int>)methodPtr;
         return func(pThis);
     }
-    public static int GetHostedDedicatedServerPOPID(this IntPtr pThis)
+    public static uint GetHostedDedicatedServerPOPID(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int>)((byte*)vtable + 32 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 32 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint>)methodPtr;
         return func(pThis);
     }
     public static int GetHostedDedicatedServerAddress(this IntPtr pThis, IntPtr pRouting)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int>)((byte*)vtable + 33 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 33 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int>)methodPtr;
         return func(pThis, pRouting);
     }
     public static uint CreateHostedDedicatedServerListenSocket(this IntPtr pThis, int nLocalVirtualPort, int nOptions, IntPtr pOptions)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, IntPtr, uint>)((byte*)vtable + 34 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 34 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, IntPtr, uint>)methodPtr;
         return func(pThis, nLocalVirtualPort, nOptions, pOptions);
     }
     public static int GetGameCoordinatorServerLogin(this IntPtr pThis, IntPtr pLoginInfo, IntPtr pcbSignedBlob, IntPtr pBlob)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr, int>)((byte*)vtable + 35 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 35 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr, int>)methodPtr;
         return func(pThis, pLoginInfo, pcbSignedBlob, pBlob);
     }
     public static uint ConnectP2PCustomSignaling(this IntPtr pThis, IntPtr pSignaling, IntPtr pPeerIdentity, int nRemoteVirtualPort, int nOptions, IntPtr pOptions)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, int, int, IntPtr, uint>)((byte*)vtable + 36 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 36 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, int, int, IntPtr, uint>)methodPtr;
         return func(pThis, pSignaling, pPeerIdentity, nRemoteVirtualPort, nOptions, pOptions);
     }
     public static byte ReceivedP2PCustomSignal(this IntPtr pThis, IntPtr pMsg, int cbMsg, IntPtr pContext)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, IntPtr, byte>)((byte*)vtable + 37 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 37 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, IntPtr, byte>)methodPtr;
         return func(pThis, pMsg, cbMsg, pContext);
     }
-    public static byte GetCertificateRequest(this IntPtr pThis, IntPtr pcbBlob, IntPtr pBlob, int errMsg)
+    public static byte GetCertificateRequest(this IntPtr pThis, IntPtr pcbBlob, IntPtr pBlob, IntPtr errMsg)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, int, byte>)((byte*)vtable + 38 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 38 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pcbBlob, pBlob, errMsg);
     }
-    public static byte SetCertificate(this IntPtr pThis, IntPtr pCertificate, int cbCertificate, int errMsg)
+    public static byte SetCertificate(this IntPtr pThis, IntPtr pCertificate, int cbCertificate, IntPtr errMsg)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, int, byte>)((byte*)vtable + 39 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 39 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, IntPtr, byte>)methodPtr;
         return func(pThis, pCertificate, cbCertificate, errMsg);
     }
     public static void ResetIdentity(this IntPtr pThis, IntPtr pIdentity)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)((byte*)vtable + 40 * IntPtr.Size);
-        return func(pThis, pIdentity);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 40 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)methodPtr;
+        func(pThis, pIdentity);
     }
     public static void RunCallbacks(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 41 * IntPtr.Size);
-        return func(pThis);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 41 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
     }
     public static byte BeginAsyncRequestFakeIP(this IntPtr pThis, int nNumPorts)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte>)((byte*)vtable + 42 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 42 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, byte>)methodPtr;
         return func(pThis, nNumPorts);
     }
     public static void GetFakeIP(this IntPtr pThis, int idxFirstPort, IntPtr pInfo)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, void>)((byte*)vtable + 43 * IntPtr.Size);
-        return func(pThis, idxFirstPort, pInfo);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 43 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, void>)methodPtr;
+        func(pThis, idxFirstPort, pInfo);
     }
     public static uint CreateListenSocketP2PFakeIP(this IntPtr pThis, int idxFakePort, int nOptions, IntPtr pOptions)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, IntPtr, uint>)((byte*)vtable + 44 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 44 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, IntPtr, uint>)methodPtr;
         return func(pThis, idxFakePort, nOptions, pOptions);
     }
     public static int GetRemoteFakeIPForConnection(this IntPtr pThis, uint hConn, IntPtr pOutAddr)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, int>)((byte*)vtable + 45 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 45 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, int>)methodPtr;
         return func(pThis, hConn, pOutAddr);
     }
     public static IntPtr CreateFakeUDPPort(this IntPtr pThis, int idxFakeServerPort)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)((byte*)vtable + 46 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 46 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)methodPtr;
         return func(pThis, idxFakeServerPort);
     }
+}
 
+public static unsafe class ISteamNetworkingUtilsExtensions
+{
     public static IntPtr AllocateMessage(this IntPtr pThis, int cbAllocateBuffer)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)((byte*)vtable + 0 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)methodPtr;
         return func(pThis, cbAllocateBuffer);
     }
     public static void InitRelayNetworkAccess(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 1 * IntPtr.Size);
-        return func(pThis);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
     }
     public static int GetRelayNetworkStatus(this IntPtr pThis, IntPtr pDetails)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int>)((byte*)vtable + 2 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int>)methodPtr;
         return func(pThis, pDetails);
     }
-    public static int GetLocalPingLocation(this IntPtr pThis, int result)
+    public static float GetLocalPingLocation(this IntPtr pThis, int result)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 3 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, float>)methodPtr;
         return func(pThis, result);
     }
     public static int EstimatePingTimeBetweenTwoLocations(this IntPtr pThis, int location1, int location2)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int>)((byte*)vtable + 4 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 4 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, int>)methodPtr;
         return func(pThis, location1, location2);
     }
     public static int EstimatePingTimeFromLocalHost(this IntPtr pThis, int remoteLocation)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 5 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 5 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int>)methodPtr;
         return func(pThis, remoteLocation);
     }
     public static void ConvertPingLocationToString(this IntPtr pThis, int location, IntPtr pszBuf, int cchBufSize)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, int, void>)((byte*)vtable + 6 * IntPtr.Size);
-        return func(pThis, location, pszBuf, cchBufSize);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 6 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, int, void>)methodPtr;
+        func(pThis, location, pszBuf, cchBufSize);
     }
     public static byte ParsePingLocationString(this IntPtr pThis, IntPtr pszString, int result)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, byte>)((byte*)vtable + 7 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 7 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, byte>)methodPtr;
         return func(pThis, pszString, result);
     }
-    public static byte CheckPingDataUpToDate(this IntPtr pThis, int flMaxAgeSeconds)
+    public static byte CheckPingDataUpToDate(this IntPtr pThis, float flMaxAgeSeconds)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte>)((byte*)vtable + 8 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 8 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, float, byte>)methodPtr;
         return func(pThis, flMaxAgeSeconds);
     }
-    public static int GetPingToDataCenter(this IntPtr pThis, int popID, IntPtr pViaRelayPoP)
+    public static int GetPingToDataCenter(this IntPtr pThis, uint popID, IntPtr pViaRelayPoP)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, int>)((byte*)vtable + 9 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 9 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, int>)methodPtr;
         return func(pThis, popID, pViaRelayPoP);
     }
-    public static int GetDirectPingToPOP(this IntPtr pThis, int popID)
+    public static int GetDirectPingToPOP(this IntPtr pThis, uint popID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 10 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 10 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, int>)methodPtr;
         return func(pThis, popID);
     }
     public static int GetPOPCount(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int>)((byte*)vtable + 11 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 11 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int>)methodPtr;
         return func(pThis);
     }
     public static int GetPOPList(this IntPtr pThis, IntPtr list, int nListSz)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, int>)((byte*)vtable + 12 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 12 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, int>)methodPtr;
         return func(pThis, list, nListSz);
     }
-    public static int GetLocalTimestamp(this IntPtr pThis)
+    public static long GetLocalTimestamp(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int>)((byte*)vtable + 13 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 13 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, long>)methodPtr;
         return func(pThis);
     }
     public static void SetDebugOutputFunction(this IntPtr pThis, int eDetailLevel, int pfnFunc)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, void>)((byte*)vtable + 14 * IntPtr.Size);
-        return func(pThis, eDetailLevel, pfnFunc);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 14 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, void>)methodPtr;
+        func(pThis, eDetailLevel, pfnFunc);
     }
     public static byte IsFakeIPv4(this IntPtr pThis, uint nIPv4)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, byte>)((byte*)vtable + 15 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 15 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, byte>)methodPtr;
         return func(pThis, nIPv4);
     }
     public static int GetIPv4FakeIPType(this IntPtr pThis, uint nIPv4)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, int>)((byte*)vtable + 16 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 16 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, int>)methodPtr;
         return func(pThis, nIPv4);
     }
     public static int GetRealIdentityForFakeIP(this IntPtr pThis, int fakeIP, IntPtr pOutRealIdentity)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, int>)((byte*)vtable + 17 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 17 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, int>)methodPtr;
         return func(pThis, fakeIP, pOutRealIdentity);
     }
     public static byte SetGlobalConfigValueInt32(this IntPtr pThis, int eValue, int val)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, byte>)((byte*)vtable + 18 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 18 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, byte>)methodPtr;
         return func(pThis, eValue, val);
     }
-    public static byte SetGlobalConfigValueFloat(this IntPtr pThis, int eValue, int val)
+    public static byte SetGlobalConfigValueFloat(this IntPtr pThis, int eValue, float val)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, byte>)((byte*)vtable + 19 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 19 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, float, byte>)methodPtr;
         return func(pThis, eValue, val);
     }
     public static byte SetGlobalConfigValueString(this IntPtr pThis, int eValue, IntPtr val)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)((byte*)vtable + 20 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 20 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)methodPtr;
         return func(pThis, eValue, val);
     }
     public static byte SetGlobalConfigValuePtr(this IntPtr pThis, int eValue, IntPtr val)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)((byte*)vtable + 21 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 21 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, byte>)methodPtr;
         return func(pThis, eValue, val);
     }
     public static byte SetConnectionConfigValueInt32(this IntPtr pThis, uint hConn, int eValue, int val)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, int, int, byte>)((byte*)vtable + 22 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 22 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, int, int, byte>)methodPtr;
         return func(pThis, hConn, eValue, val);
     }
-    public static byte SetConnectionConfigValueFloat(this IntPtr pThis, uint hConn, int eValue, int val)
+    public static byte SetConnectionConfigValueFloat(this IntPtr pThis, uint hConn, int eValue, float val)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, int, int, byte>)((byte*)vtable + 23 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 23 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, int, float, byte>)methodPtr;
         return func(pThis, hConn, eValue, val);
     }
     public static byte SetConnectionConfigValueString(this IntPtr pThis, uint hConn, int eValue, IntPtr val)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, int, IntPtr, byte>)((byte*)vtable + 24 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 24 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, int, IntPtr, byte>)methodPtr;
         return func(pThis, hConn, eValue, val);
     }
     public static byte SetGlobalCallback_SteamNetConnectionStatusChanged(this IntPtr pThis, int fnCallback)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte>)((byte*)vtable + 25 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 25 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, byte>)methodPtr;
         return func(pThis, fnCallback);
     }
     public static byte SetGlobalCallback_SteamNetAuthenticationStatusChanged(this IntPtr pThis, int fnCallback)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte>)((byte*)vtable + 26 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 26 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, byte>)methodPtr;
         return func(pThis, fnCallback);
     }
     public static byte SetGlobalCallback_SteamRelayNetworkStatusChanged(this IntPtr pThis, int fnCallback)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte>)((byte*)vtable + 27 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 27 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, byte>)methodPtr;
         return func(pThis, fnCallback);
     }
     public static byte SetGlobalCallback_FakeIPResult(this IntPtr pThis, int fnCallback)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte>)((byte*)vtable + 28 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 28 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, byte>)methodPtr;
         return func(pThis, fnCallback);
     }
     public static byte SetGlobalCallback_MessagesSessionRequest(this IntPtr pThis, int fnCallback)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte>)((byte*)vtable + 29 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 29 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, byte>)methodPtr;
         return func(pThis, fnCallback);
     }
     public static byte SetGlobalCallback_MessagesSessionFailed(this IntPtr pThis, int fnCallback)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte>)((byte*)vtable + 30 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 30 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, byte>)methodPtr;
         return func(pThis, fnCallback);
     }
     public static byte SetConfigValue(this IntPtr pThis, int eValue, int eScopeType, int scopeObj, int eDataType, IntPtr pArg)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, int, IntPtr, byte>)((byte*)vtable + 31 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 31 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, int, int, IntPtr, byte>)methodPtr;
         return func(pThis, eValue, eScopeType, scopeObj, eDataType, pArg);
     }
     public static byte SetConfigValueStruct(this IntPtr pThis, int opt, int eScopeType, int scopeObj)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, byte>)((byte*)vtable + 32 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 32 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, int, byte>)methodPtr;
         return func(pThis, opt, eScopeType, scopeObj);
     }
     public static int GetConfigValue(this IntPtr pThis, int eValue, int eScopeType, int scopeObj, IntPtr pOutDataType, IntPtr pResult, IntPtr cbResult)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int, int, IntPtr, IntPtr, IntPtr, int>)((byte*)vtable + 33 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 33 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int, int, IntPtr, IntPtr, IntPtr, int>)methodPtr;
         return func(pThis, eValue, eScopeType, scopeObj, pOutDataType, pResult, cbResult);
     }
     public static IntPtr GetConfigValueInfo(this IntPtr pThis, int eValue, IntPtr pOutDataType, IntPtr pOutScope)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, IntPtr>)((byte*)vtable + 34 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 34 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, IntPtr, IntPtr>)methodPtr;
         return func(pThis, eValue, pOutDataType, pOutScope);
     }
     public static int IterateGenericEditableConfigValues(this IntPtr pThis, int eCurrent, byte bEnumerateDevVars)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, byte, int>)((byte*)vtable + 35 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 35 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, byte, int>)methodPtr;
         return func(pThis, eCurrent, bEnumerateDevVars);
     }
     public static void SteamNetworkingIPAddr_ToString(this IntPtr pThis, int addr, IntPtr buf, uint cbBuf, byte bWithPort)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, uint, byte, void>)((byte*)vtable + 36 * IntPtr.Size);
-        return func(pThis, addr, buf, cbBuf, bWithPort);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 36 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, uint, byte, void>)methodPtr;
+        func(pThis, addr, buf, cbBuf, bWithPort);
     }
     public static byte SteamNetworkingIPAddr_ParseString(this IntPtr pThis, IntPtr pAddr, IntPtr pszStr)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte>)((byte*)vtable + 37 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 37 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pAddr, pszStr);
     }
     public static int SteamNetworkingIPAddr_GetFakeIPType(this IntPtr pThis, int addr)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, int>)((byte*)vtable + 38 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 38 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, int>)methodPtr;
         return func(pThis, addr);
     }
     public static void SteamNetworkingIdentity_ToString(this IntPtr pThis, int identity, IntPtr buf, uint cbBuf)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, uint, void>)((byte*)vtable + 39 * IntPtr.Size);
-        return func(pThis, identity, buf, cbBuf);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 39 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, uint, void>)methodPtr;
+        func(pThis, identity, buf, cbBuf);
     }
     public static byte SteamNetworkingIdentity_ParseString(this IntPtr pThis, IntPtr pIdentity, IntPtr pszStr)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte>)((byte*)vtable + 40 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 40 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, pIdentity, pszStr);
     }
+}
 
+public static unsafe class ISteamGameServerExtensions
+{
     public static void SetProduct(this IntPtr pThis, IntPtr pszProduct)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)((byte*)vtable + 0 * IntPtr.Size);
-        return func(pThis, pszProduct);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)methodPtr;
+        func(pThis, pszProduct);
     }
     public static void SetGameDescription(this IntPtr pThis, IntPtr pszGameDescription)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)((byte*)vtable + 1 * IntPtr.Size);
-        return func(pThis, pszGameDescription);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)methodPtr;
+        func(pThis, pszGameDescription);
     }
     public static void SetModDir(this IntPtr pThis, IntPtr pszModDir)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)((byte*)vtable + 2 * IntPtr.Size);
-        return func(pThis, pszModDir);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)methodPtr;
+        func(pThis, pszModDir);
     }
     public static void SetDedicatedServer(this IntPtr pThis, byte bDedicated)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte, void>)((byte*)vtable + 3 * IntPtr.Size);
-        return func(pThis, bDedicated);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte, void>)methodPtr;
+        func(pThis, bDedicated);
     }
     public static void LogOn(this IntPtr pThis, IntPtr pszToken)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)((byte*)vtable + 4 * IntPtr.Size);
-        return func(pThis, pszToken);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 4 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)methodPtr;
+        func(pThis, pszToken);
     }
     public static void LogOnAnonymous(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 5 * IntPtr.Size);
-        return func(pThis);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 5 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
     }
     public static void LogOff(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 6 * IntPtr.Size);
-        return func(pThis);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 6 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
     }
     public static byte BLoggedOn(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 7 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 7 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static byte BSecure(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 8 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 8 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static ulong GetSteamID(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong>)((byte*)vtable + 9 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 9 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong>)methodPtr;
         return func(pThis);
     }
     public static byte WasRestartRequested(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte>)((byte*)vtable + 10 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 10 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte>)methodPtr;
         return func(pThis);
     }
     public static void SetMaxPlayerCount(this IntPtr pThis, int cPlayersMax)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, void>)((byte*)vtable + 11 * IntPtr.Size);
-        return func(pThis, cPlayersMax);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 11 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, void>)methodPtr;
+        func(pThis, cPlayersMax);
     }
     public static void SetBotPlayerCount(this IntPtr pThis, int cBotplayers)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, void>)((byte*)vtable + 12 * IntPtr.Size);
-        return func(pThis, cBotplayers);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 12 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, void>)methodPtr;
+        func(pThis, cBotplayers);
     }
     public static void SetServerName(this IntPtr pThis, IntPtr pszServerName)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)((byte*)vtable + 13 * IntPtr.Size);
-        return func(pThis, pszServerName);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 13 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)methodPtr;
+        func(pThis, pszServerName);
     }
     public static void SetMapName(this IntPtr pThis, IntPtr pszMapName)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)((byte*)vtable + 14 * IntPtr.Size);
-        return func(pThis, pszMapName);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 14 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)methodPtr;
+        func(pThis, pszMapName);
     }
     public static void SetPasswordProtected(this IntPtr pThis, byte bPasswordProtected)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte, void>)((byte*)vtable + 15 * IntPtr.Size);
-        return func(pThis, bPasswordProtected);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 15 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte, void>)methodPtr;
+        func(pThis, bPasswordProtected);
     }
     public static void SetSpectatorPort(this IntPtr pThis, int unSpectatorPort)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, void>)((byte*)vtable + 16 * IntPtr.Size);
-        return func(pThis, unSpectatorPort);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 16 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, void>)methodPtr;
+        func(pThis, unSpectatorPort);
     }
     public static void SetSpectatorServerName(this IntPtr pThis, IntPtr pszSpectatorServerName)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)((byte*)vtable + 17 * IntPtr.Size);
-        return func(pThis, pszSpectatorServerName);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 17 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)methodPtr;
+        func(pThis, pszSpectatorServerName);
     }
     public static void ClearAllKeyValues(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 18 * IntPtr.Size);
-        return func(pThis);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 18 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
     }
     public static void SetKeyValue(this IntPtr pThis, IntPtr pKey, IntPtr pValue)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, void>)((byte*)vtable + 19 * IntPtr.Size);
-        return func(pThis, pKey, pValue);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 19 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, void>)methodPtr;
+        func(pThis, pKey, pValue);
     }
     public static void SetGameTags(this IntPtr pThis, IntPtr pchGameTags)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)((byte*)vtable + 20 * IntPtr.Size);
-        return func(pThis, pchGameTags);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 20 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)methodPtr;
+        func(pThis, pchGameTags);
     }
     public static void SetGameData(this IntPtr pThis, IntPtr pchGameData)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)((byte*)vtable + 21 * IntPtr.Size);
-        return func(pThis, pchGameData);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 21 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)methodPtr;
+        func(pThis, pchGameData);
     }
     public static void SetRegion(this IntPtr pThis, IntPtr pszRegion)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)((byte*)vtable + 22 * IntPtr.Size);
-        return func(pThis, pszRegion);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 22 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)methodPtr;
+        func(pThis, pszRegion);
     }
     public static void SetAdvertiseServerActive(this IntPtr pThis, byte bActive)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, byte, void>)((byte*)vtable + 23 * IntPtr.Size);
-        return func(pThis, bActive);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 23 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, byte, void>)methodPtr;
+        func(pThis, bActive);
     }
     public static uint GetAuthSessionTicket(this IntPtr pThis, IntPtr pTicket, int cbMaxTicket, IntPtr pcbTicket, IntPtr pSnid)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, IntPtr, IntPtr, uint>)((byte*)vtable + 24 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 24 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, IntPtr, IntPtr, uint>)methodPtr;
         return func(pThis, pTicket, cbMaxTicket, pcbTicket, pSnid);
     }
     public static int BeginAuthSession(this IntPtr pThis, IntPtr pAuthTicket, int cbAuthTicket, ulong steamID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, ulong, int>)((byte*)vtable + 25 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 25 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, ulong, int>)methodPtr;
         return func(pThis, pAuthTicket, cbAuthTicket, steamID);
     }
     public static void EndAuthSession(this IntPtr pThis, ulong steamID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, void>)((byte*)vtable + 26 * IntPtr.Size);
-        return func(pThis, steamID);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 26 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, void>)methodPtr;
+        func(pThis, steamID);
     }
     public static void CancelAuthTicket(this IntPtr pThis, uint hAuthTicket)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, void>)((byte*)vtable + 27 * IntPtr.Size);
-        return func(pThis, hAuthTicket);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 27 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, void>)methodPtr;
+        func(pThis, hAuthTicket);
     }
-    public static int UserHasLicenseForApp(this IntPtr pThis, ulong steamID, int appID)
+    public static int UserHasLicenseForApp(this IntPtr pThis, ulong steamID, uint appID)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, int, int>)((byte*)vtable + 28 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 28 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, uint, int>)methodPtr;
         return func(pThis, steamID, appID);
     }
     public static byte RequestUserGroupStatus(this IntPtr pThis, ulong steamIDUser, ulong steamIDGroup)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, byte>)((byte*)vtable + 29 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 29 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong, byte>)methodPtr;
         return func(pThis, steamIDUser, steamIDGroup);
     }
     public static void GetGameplayStats(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 30 * IntPtr.Size);
-        return func(pThis);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 30 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
     }
     public static ulong GetServerReputation(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong>)((byte*)vtable + 31 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 31 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong>)methodPtr;
         return func(pThis);
     }
     public static int GetPublicIP(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int>)((byte*)vtable + 32 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 32 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int>)methodPtr;
         return func(pThis);
     }
     public static byte HandleIncomingPacket(this IntPtr pThis, IntPtr pData, int cbData, uint srcIP, int srcPort)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, uint, int, byte>)((byte*)vtable + 33 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 33 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, uint, int, byte>)methodPtr;
         return func(pThis, pData, cbData, srcIP, srcPort);
     }
     public static int GetNextOutgoingPacket(this IntPtr pThis, IntPtr pOut, int cbMaxOut, IntPtr pNetAdr, IntPtr pPort)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, IntPtr, IntPtr, int>)((byte*)vtable + 34 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 34 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, IntPtr, IntPtr, int>)methodPtr;
         return func(pThis, pOut, cbMaxOut, pNetAdr, pPort);
     }
     public static ulong AssociateWithClan(this IntPtr pThis, ulong steamIDClan)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)((byte*)vtable + 35 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 35 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, steamIDClan);
     }
     public static ulong ComputeNewPlayerCompatibility(this IntPtr pThis, ulong steamIDNewPlayer)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)((byte*)vtable + 36 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 36 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, steamIDNewPlayer);
     }
     public static byte SendUserConnectAndAuthenticate_DEPRECATED(this IntPtr pThis, uint unIPClient, IntPtr pvAuthBlob, uint cubAuthBlobSize, IntPtr pSteamIDUser)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, uint, IntPtr, byte>)((byte*)vtable + 37 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 37 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, uint, IntPtr, uint, IntPtr, byte>)methodPtr;
         return func(pThis, unIPClient, pvAuthBlob, cubAuthBlobSize, pSteamIDUser);
     }
     public static ulong CreateUnauthenticatedUserConnection(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong>)((byte*)vtable + 38 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 38 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong>)methodPtr;
         return func(pThis);
     }
     public static void SendUserDisconnect_DEPRECATED(this IntPtr pThis, ulong steamIDUser)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, void>)((byte*)vtable + 39 * IntPtr.Size);
-        return func(pThis, steamIDUser);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 39 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, void>)methodPtr;
+        func(pThis, steamIDUser);
     }
     public static byte BUpdateUserData(this IntPtr pThis, ulong steamIDUser, IntPtr pchPlayerName, uint uScore)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, uint, byte>)((byte*)vtable + 40 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 40 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, uint, byte>)methodPtr;
         return func(pThis, steamIDUser, pchPlayerName, uScore);
     }
+}
 
+public static unsafe class ISteamGameServerStatsExtensions
+{
     public static ulong RequestUserStats(this IntPtr pThis, ulong steamIDUser)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)((byte*)vtable + 0 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, steamIDUser);
     }
-    public static byte GetUserStat(this IntPtr pThis, ulong steamIDUser, IntPtr pchName, IntPtr pData)
+    public static byte GetUserStat_Int32(this IntPtr pThis, ulong steamIDUser, IntPtr pchName, IntPtr pData)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, byte>)((byte*)vtable + 1 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, steamIDUser, pchName, pData);
     }
-    public static byte GetUserStat(this IntPtr pThis, ulong steamIDUser, IntPtr pchName, IntPtr pData)
+    public static byte GetUserStat_Float(this IntPtr pThis, ulong steamIDUser, IntPtr pchName, IntPtr pData)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, byte>)((byte*)vtable + 2 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, steamIDUser, pchName, pData);
     }
     public static byte GetUserAchievement(this IntPtr pThis, ulong steamIDUser, IntPtr pchName, IntPtr pbAchieved)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, byte>)((byte*)vtable + 3 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, IntPtr, byte>)methodPtr;
         return func(pThis, steamIDUser, pchName, pbAchieved);
     }
-    public static byte SetUserStat(this IntPtr pThis, ulong steamIDUser, IntPtr pchName, int nData)
+    public static byte SetUserStat_Int32(this IntPtr pThis, ulong steamIDUser, IntPtr pchName, int nData)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, int, byte>)((byte*)vtable + 4 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 4 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, int, byte>)methodPtr;
         return func(pThis, steamIDUser, pchName, nData);
     }
-    public static byte SetUserStat(this IntPtr pThis, ulong steamIDUser, IntPtr pchName, int fData)
+    public static byte SetUserStat_Float(this IntPtr pThis, ulong steamIDUser, IntPtr pchName, float fData)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, int, byte>)((byte*)vtable + 5 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 5 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, float, byte>)methodPtr;
         return func(pThis, steamIDUser, pchName, fData);
     }
-    public static byte UpdateUserAvgRateStat(this IntPtr pThis, ulong steamIDUser, IntPtr pchName, int flCountThisSession, int dSessionLength)
+    public static byte UpdateUserAvgRateStat(this IntPtr pThis, ulong steamIDUser, IntPtr pchName, float flCountThisSession, double dSessionLength)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, int, int, byte>)((byte*)vtable + 6 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 6 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, float, double, byte>)methodPtr;
         return func(pThis, steamIDUser, pchName, flCountThisSession, dSessionLength);
     }
     public static byte SetUserAchievement(this IntPtr pThis, ulong steamIDUser, IntPtr pchName)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)((byte*)vtable + 7 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 7 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, steamIDUser, pchName);
     }
     public static byte ClearUserAchievement(this IntPtr pThis, ulong steamIDUser, IntPtr pchName)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)((byte*)vtable + 8 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 8 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, IntPtr, byte>)methodPtr;
         return func(pThis, steamIDUser, pchName);
     }
     public static ulong StoreUserStats(this IntPtr pThis, ulong steamIDUser)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)((byte*)vtable + 9 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 9 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, ulong, ulong>)methodPtr;
         return func(pThis, steamIDUser);
     }
+}
 
+public static unsafe class ISteamNetworkingFakeUDPPortExtensions
+{
     public static void DestroyFakeUDPPort(this IntPtr pThis)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, void>)((byte*)vtable + 0 * IntPtr.Size);
-        return func(pThis);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 0 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, void>)methodPtr;
+        func(pThis);
     }
     public static int SendMessageToFakeIP(this IntPtr pThis, int remoteAddress, IntPtr pData, uint cbData, int nSendFlags)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, uint, int, int>)((byte*)vtable + 1 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 1 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, uint, int, int>)methodPtr;
         return func(pThis, remoteAddress, pData, cbData, nSendFlags);
     }
     public static int ReceiveMessages(this IntPtr pThis, IntPtr ppOutMessages, int nMaxMessages)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, int>)((byte*)vtable + 2 * IntPtr.Size);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 2 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, int, int>)methodPtr;
         return func(pThis, ppOutMessages, nMaxMessages);
     }
     public static void ScheduleCleanup(this IntPtr pThis, int remoteAddress)
     {
-        var vtable = *(IntPtr*)pThis;
-        var func = *(delegate* unmanaged[Cdecl]<IntPtr, int, void>)((byte*)vtable + 3 * IntPtr.Size);
-        return func(pThis, remoteAddress);
+        var vtable = *(IntPtr*)(void*)pThis;
+        var methodPtr = *(IntPtr*)((byte*)vtable + 3 * IntPtr.Size);
+        var func = (delegate* unmanaged[Cdecl]<IntPtr, int, void>)methodPtr;
+        func(pThis, remoteAddress);
     }
-
 }
+
