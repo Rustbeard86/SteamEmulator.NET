@@ -361,4 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/steamworks_sdk_163/sdk
+
+# steamworks sdk
+/steamworks_sdk_163/
