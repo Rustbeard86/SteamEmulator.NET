@@ -36,4 +36,27 @@ public static partial class Manager
         throw new InvalidOperationException(
             $"No implementation or default stub found for {typeof(T).Name}. Ensure the Stub exists or register a custom implementation.");
     }
+
+    public static IntPtr GetGameServerGlobal()
+    {
+        return IntPtr.Zero;
+    }
+
+    public static bool SteamAPI_Init()
+    {
+        return true;
+    }
+
+    public static void SteamAPI_Shutdown()
+    {
+    }
+
+    public static void SteamAPI_RunCallbacks()
+    {
+    }
+
+    public static bool SteamAPI_IsSteamRunning()
+    {
+        return true;
+    }
 }
