@@ -364,3 +364,5 @@ FodyWeavers.xsd
 
 # steamworks sdk
 /steamworks_sdk_163/
+/found_exports.txt
+/exports.txt
