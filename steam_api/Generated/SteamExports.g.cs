@@ -10306,6 +10306,23 @@ public static class SteamExports
         return _cache_SteamGameServerStats;
     }
 
+    [UnmanagedCallersOnly(EntryPoint = "SteamInternal_CreateInterface")]
+    public static IntPtr SteamInternal_CreateInterface(IntPtr pVersion)
+    {
+        var version = Marshal.PtrToStringAnsi(pVersion);
+        if (version == null) return IntPtr.Zero;
+        return version switch
+        {
+            _ => IntPtr.Zero
+        };
+    }
+
+    [UnmanagedCallersOnly(EntryPoint = "g_pSteamClientGameServer")]
+    public static IntPtr g_pSteamClientGameServer()
+    {
+        return SteamEmulator.Manager.GetGameServerGlobal();
+    }
+
     // Generic Stubs for missing exports
     [UnmanagedCallersOnly(EntryPoint = "GetHSteamPipe")]
     public static IntPtr Stub_GetHSteamPipe()
@@ -11252,13 +11269,6 @@ public static class SteamExports
         return IntPtr.Zero;
     }
 
-    [UnmanagedCallersOnly(EntryPoint = "SteamInternal_CreateInterface")]
-    public static IntPtr Stub_SteamInternal_CreateInterface()
-    {
-        // Stub for SteamInternal_CreateInterface @1041
-        return IntPtr.Zero;
-    }
-
     [UnmanagedCallersOnly(EntryPoint = "SteamInternal_FindOrCreateGameServerInterface")]
     public static IntPtr Stub_SteamInternal_FindOrCreateGameServerInterface()
     {
@@ -11284,13 +11294,6 @@ public static class SteamExports
     public static IntPtr Stub_SteamInternal_SteamAPI_Init()
     {
         // Stub for SteamInternal_SteamAPI_Init @1045
-        return IntPtr.Zero;
-    }
-
-    [UnmanagedCallersOnly(EntryPoint = "g_pSteamClientGameServer")]
-    public static IntPtr Stub_g_pSteamClientGameServer()
-    {
-        // Stub for g_pSteamClientGameServer @1046
         return IntPtr.Zero;
     }
 
