@@ -7,6 +7,7 @@
 		<Nullable>enable</Nullable>
 		<AssemblyName Condition="'$(RuntimeIdentifier)' == 'win-x64'">steam_api64</AssemblyName>
 		<AssemblyName Condition="'$(RuntimeIdentifier)' == 'win-x86'">steam_api</AssemblyName>
+		<Platforms>AnyCPU;x64</Platforms>
 	</PropertyGroup>
 
 	<ItemGroup>
