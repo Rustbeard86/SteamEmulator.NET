@@ -313,10 +313,11 @@ public static class Generator
 
         // Map Interface Name (e.g. SteamUser) to Entry Point (e.g. SteamUser_Entry)
         var interfaceToEntryMap = new Dictionary<string, string>();
-        foreach(var iface in interfaces)
+        foreach (var iface in interfaces)
         {
             // Heuristic: Accessor name logic from previous step
-            var accessorName = iface.Accessors.FirstOrDefault()?.Name ?? iface.ClassName[1..]; // Remove 'I' -> SteamUser
+            var accessorName =
+                iface.Accessors.FirstOrDefault()?.Name ?? iface.ClassName[1..]; // Remove 'I' -> SteamUser
             interfaceToEntryMap[iface.ClassName] = $"{accessorName}_Entry";
             // Also map clean name "SteamUser" -> "SteamUser_Entry"
             interfaceToEntryMap[accessorName] = $"{accessorName}_Entry";
@@ -332,17 +333,14 @@ public static class Generator
             {
                 // Pattern: SteamAPI_ISteamUser_v023
                 // Extract "SteamUser" and "023"
-                var parts = name.Split("_v"); 
+                var parts = name.Split("_v");
                 if (parts.Length == 2)
                 {
                     var prefix = parts[0].Replace("SteamAPI_I", ""); // SteamUser
                     var ver = parts[1]; // 023
                     var key = prefix + ver; // SteamUser023
-                    
-                    if (interfaceToEntryMap.TryGetValue(prefix, out var entry))
-                    {
-                        versionMap[key] = entry;
-                    }
+
+                    if (interfaceToEntryMap.TryGetValue(prefix, out var entry)) versionMap[key] = entry;
                 }
             }
         }
@@ -449,18 +447,18 @@ public static class Generator
         {
             var funcName = func.FunctionName;
             if (usedExportNames.Contains(funcName)) continue;
-            
+
             // Skip SteamInternal_CreateInterface here, we handle it specially later or if it appears in exports
-            if (funcName == "SteamInternal_CreateInterface") continue; 
+            if (funcName == "SteamInternal_CreateInterface") continue;
 
             var ordinal = exports.FirstOrDefault(e => e.Name == funcName)?.Ordinal ?? -1;
             if (ordinal == -1) continue;
 
             sb.AppendLine($"    [UnmanagedCallersOnly(EntryPoint = \"{funcName}\")]");
             sb.Append($"    public static {TypeDb.MapType(func.ReturnType)} {funcName}(");
-            
+
             var paramList = new List<string>();
-            foreach (var p in func.Params) 
+            foreach (var p in func.Params)
             {
                 var pType = TypeDb.MapType(p.ParamType);
                 var pName = CleanParamName(p.ParamName);
@@ -468,6 +466,7 @@ public static class Generator
                 paramList.Add(pName);
                 if (p != func.Params.Last()) sb.Append(", ");
             }
+
             sb.AppendLine(")");
             sb.AppendLine("    {");
 
@@ -480,14 +479,10 @@ public static class Generator
                 {
                     var prefix = parts[0].Replace("SteamAPI_I", "");
                     if (interfaceToEntryMap.TryGetValue(prefix, out var entry))
-                    {
-                         sb.AppendLine($"        return {entry}();");
-                    }
+                        sb.AppendLine($"        return {entry}();");
                     else
-                    {
                         // Fallback
                         CallManager(func, paramList);
-                    }
                 }
                 else
                 {
@@ -513,11 +508,11 @@ public static class Generator
 
             void CallManager(FunctionDef f, List<string> pNames)
             {
-                 sb.Append("        ");
-                 if (f.ReturnType != "void") sb.Append("return ");
-                 sb.Append($"SteamEmulator.Manager.{f.FunctionName}(");
-                 sb.Append(string.Join(", ", pNames));
-                 sb.AppendLine(");");
+                sb.Append("        ");
+                if (f.ReturnType != "void") sb.Append("return ");
+                sb.Append($"SteamEmulator.Manager.{f.FunctionName}(");
+                sb.Append(string.Join(", ", pNames));
+                sb.AppendLine(");");
             }
         }
 
@@ -534,11 +529,11 @@ public static class Generator
             sb.AppendLine("        return SteamEmulator.Manager.CreateInterface(version);");
             sb.AppendLine("    }");
             sb.AppendLine();
-            
+
             activeShims.Add(("SteamInternal_CreateInterface", createOrdinal));
             usedExportNames.Add("SteamInternal_CreateInterface");
         }
-        
+
         // 3c. g_pSteamClientGameServer (Data Export)
         var gpOrdinal = exports.FirstOrDefault(e => e.Name == "g_pSteamClientGameServer")?.Ordinal ?? -1;
         if (gpOrdinal != -1 && !usedExportNames.Contains("g_pSteamClientGameServer"))
@@ -674,12 +669,11 @@ public static class Generator
                     var key = prefix + ver;
 
                     if (interfaceToEntryMap.TryGetValue(prefix, out var entry))
-                    {
                         sb.AppendLine($"            \"{key}\" => SteamExports.{entry}(),");
-                    }
                 }
             }
         }
+
         sb.AppendLine("            _ => IntPtr.Zero");
         sb.AppendLine("        };");
         sb.AppendLine("    }");
