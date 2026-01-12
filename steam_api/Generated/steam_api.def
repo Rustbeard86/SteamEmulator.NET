@@ -1,4 +1,4 @@
-LIBRARY steam_api64
+LIBRARY steam_api
 EXPORTS
     GetHSteamPipe @1
     GetHSteamUser @2

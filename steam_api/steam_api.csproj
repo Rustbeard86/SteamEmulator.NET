@@ -11,7 +11,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<LinkerArg Condition="'$(RuntimeIdentifier)' == 'win-x64'" Include="/DEF:$(ProjectDir)steam_api64.def" />
-		<LinkerArg Condition="'$(RuntimeIdentifier)' == 'win-x86'" Include="/DEF:$(ProjectDir)steam_api.def" />
+		<LinkerArg Condition="'$(RuntimeIdentifier)' == 'win-x64'" Include="/DEF:$(ProjectDir)Generated\steam_api64.def" />
+		<LinkerArg Condition="'$(RuntimeIdentifier)' == 'win-x86'" Include="/DEF:$(ProjectDir)Generated\steam_api.def" />
 	</ItemGroup>
 </Project>
