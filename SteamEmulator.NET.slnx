@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="SteamApi.Generator/SteamApi.Generator.csproj" Id="5375d2a6-2e2b-48da-b5f6-8d4948bd09ef" />
+  <Project Path="steam_api/steam_api.csproj" Id="9d7cc3a9-c5de-4e4a-a735-2b009950c83f" />
+</Solution>

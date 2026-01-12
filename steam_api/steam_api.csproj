@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<PublishAot>true</PublishAot>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<LangVersion>preview</LangVersion>
+		<Nullable>enable</Nullable>
+		<AssemblyName Condition="'$(RuntimeIdentifier)' == 'win-x64'">steam_api64</AssemblyName>
+		<AssemblyName Condition="'$(RuntimeIdentifier)' == 'win-x86'">steam_api</AssemblyName>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<LinkerArg Condition="'$(RuntimeIdentifier)' == 'win-x64'" Include="/DEF:$(ProjectDir)steam_api64.def" />
+		<LinkerArg Condition="'$(RuntimeIdentifier)' == 'win-x86'" Include="/DEF:$(ProjectDir)steam_api.def" />
+	</ItemGroup>
+</Project>
